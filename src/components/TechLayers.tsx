@@ -48,7 +48,7 @@ export const TechLayers: React.FC<TechLayersProps> = ({ content }) => {
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-bold text-zinc-500">
-                  BOSQICH {layer.step}
+                  {content.stepPrefix} {layer.step}
                 </span>
                 <div className="w-9 h-9 rounded-lg bg-white border border-zinc-200 flex items-center justify-center">
                   {getIcon(idx)}

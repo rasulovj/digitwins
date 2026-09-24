@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TranslationContent } from '../locales/translations';
-import { Gauge, Server, Users, ShieldCheck } from 'lucide-react';
+import { Gauge, Server, Users, FlaskConical } from 'lucide-react';
 
 interface LiveTelemetryProps {
   content: TranslationContent['telemetrySection'];
@@ -10,6 +10,7 @@ export const LiveTelemetry: React.FC<LiveTelemetryProps> = ({ content }) => {
   const [oeeVal, setOeeVal] = useState(95.8);
   const [activeNodes, setActiveNodes] = useState(3852);
   const [trainees, setTrainees] = useState(4520);
+  const [rdProjects, setRdProjects] = useState(24);
   const [latency, setLatency] = useState(14);
 
   useEffect(() => {
@@ -17,6 +18,7 @@ export const LiveTelemetry: React.FC<LiveTelemetryProps> = ({ content }) => {
       setOeeVal(Number((94.5 + Math.random() * 2.2).toFixed(1)));
       setActiveNodes(3850 + Math.floor(Math.random() * 8));
       setTrainees(4520 + Math.floor(Math.random() * 15));
+      setRdProjects(24 + (Math.random() > 0.5 ? 1 : 0));
       setLatency(12 + Math.floor(Math.random() * 6));
     }, 3200);
 
@@ -47,15 +49,40 @@ export const LiveTelemetry: React.FC<LiveTelemetryProps> = ({ content }) => {
           </div>
         </div>
 
-        {/* Live Telemetry Grid */}
+        {/* Live Telemetry Grid - 4 Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           
-          {/* Tile 1: Factory OEE */}
+          {/* Tile 1: SEZ Land Telemetry */}
+          <div className="bg-white border border-zinc-200 rounded-2xl p-5 space-y-4 shadow-2xs">
+            <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
+              <span className="flex items-center gap-1.5 font-medium">
+                <Server className="w-4 h-4 text-sky-600" />
+                <span>{content.tile1Title}</span>
+              </span>
+              <span className="text-sky-700 font-bold">ONLINE</span>
+            </div>
+
+            <div>
+              <div className="text-3xl font-bold font-mono text-zinc-900 mb-1">
+                {activeNodes}
+              </div>
+              <div className="text-xs text-zinc-500 font-mono">
+                {content.tile1Sub}
+              </div>
+            </div>
+
+            <div className="text-[11px] font-mono text-zinc-500 flex justify-between pt-1 border-t border-zinc-100">
+              <span>{content.tile1FootLabel}</span>
+              <span className="text-emerald-700 font-semibold">{latency} ms</span>
+            </div>
+          </div>
+
+          {/* Tile 2: Factory OEE */}
           <div className="bg-white border border-zinc-200 rounded-2xl p-5 space-y-4 shadow-2xs">
             <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
               <span className="flex items-center gap-1.5 font-medium">
                 <Gauge className="w-4 h-4 text-sky-600" />
-                <span>FABRIKA OEE UNUMDORLIGI</span>
+                <span>{content.tile2Title}</span>
               </span>
               <span className="text-emerald-700 font-bold">NORMAL</span>
             </div>
@@ -73,83 +100,58 @@ export const LiveTelemetry: React.FC<LiveTelemetryProps> = ({ content }) => {
             </div>
 
             <div className="text-[11px] font-mono text-zinc-500 flex justify-between pt-1 border-t border-zinc-100">
-              <span>Kutilmagan to'xtalish:</span>
-              <span className="text-zinc-900 font-semibold">0 daqiqa</span>
+              <span>{content.tile2FootLabel}</span>
+              <span className="text-zinc-900 font-semibold">{content.tile2FootValue}</span>
             </div>
           </div>
 
-          {/* Tile 2: SEZ Land Telemetry Nodes */}
+          {/* Tile 3: R&D / TechTransfer */}
           <div className="bg-white border border-zinc-200 rounded-2xl p-5 space-y-4 shadow-2xs">
             <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
               <span className="flex items-center gap-1.5 font-medium">
-                <Server className="w-4 h-4 text-sky-600" />
-                <span>EIZ SAHA DATCHIKLARI</span>
+                <FlaskConical className="w-4 h-4 text-amber-600" />
+                <span>{content.tile3Title}</span>
               </span>
-              <span className="text-sky-700 font-bold">ONLINE</span>
+              <span className="text-amber-700 font-bold">24/7</span>
             </div>
 
             <div>
               <div className="text-3xl font-bold font-mono text-zinc-900 mb-1">
-                {activeNodes}
+                {rdProjects}+
               </div>
               <div className="text-xs text-zinc-500 font-mono">
-                1,240 Ga sanoat hududida
+                {content.tile3Sub}
               </div>
             </div>
 
             <div className="text-[11px] font-mono text-zinc-500 flex justify-between pt-1 border-t border-zinc-100">
-              <span>Kechikish (ping):</span>
-              <span className="text-emerald-700 font-semibold">{latency} ms</span>
+              <span>{content.tile3FootLabel}</span>
+              <span className="text-amber-700 font-semibold">{content.tile3FootValue}</span>
             </div>
           </div>
 
-          {/* Tile 3: Virtual Academy Simulation */}
+          {/* Tile 4: Virtual Academy Simulation */}
           <div className="bg-white border border-zinc-200 rounded-2xl p-5 space-y-4 shadow-2xs">
             <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
               <span className="flex items-center gap-1.5 font-medium">
                 <Users className="w-4 h-4 text-violet-600" />
-                <span>VR & AKADEMIYA TA'LIMI</span>
+                <span>{content.tile4Title}</span>
               </span>
-              <span className="text-violet-700 font-bold">AKTIV</span>
+              <span className="text-violet-700 font-bold">ISO/OSHA</span>
             </div>
 
             <div>
               <div className="text-3xl font-bold font-mono text-zinc-900 mb-1">
-                {trainees}
+                {trainees}+
               </div>
               <div className="text-xs text-zinc-500 font-mono">
-                Tayyorlangan sanoat mutaxassisi
+                {content.tile4Sub}
               </div>
             </div>
 
             <div className="text-[11px] font-mono text-zinc-500 flex justify-between pt-1 border-t border-zinc-100">
-              <span>Muvaffaqiyatli test:</span>
-              <span className="text-zinc-900 font-semibold">%98.4</span>
-            </div>
-          </div>
-
-          {/* Tile 4: System Reliability */}
-          <div className="bg-white border border-zinc-200 rounded-2xl p-5 space-y-4 shadow-2xs">
-            <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
-              <span className="flex items-center gap-1.5 font-medium">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span>BARQARORLIK KAFOLATI</span>
-              </span>
-              <span className="text-emerald-700 font-bold">99.98%</span>
-            </div>
-
-            <div>
-              <div className="text-3xl font-bold font-mono text-emerald-700 mb-1">
-                24/7 SLA
-              </div>
-              <div className="text-xs text-zinc-500 font-mono">
-                Xavfsiz sanoat shifrlash
-              </div>
-            </div>
-
-            <div className="text-[11px] font-mono text-zinc-500 flex justify-between pt-1 border-t border-zinc-100">
-              <span>Standartlar:</span>
-              <span className="text-zinc-900 font-semibold">OPC-UA / TLS 1.3</span>
+              <span>{content.tile4FootLabel}</span>
+              <span className="text-zinc-900 font-semibold">{content.tile4FootValue}</span>
             </div>
           </div>
 

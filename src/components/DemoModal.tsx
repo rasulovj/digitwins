@@ -29,6 +29,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
     if (preselectedPlatform) {
       if (preselectedPlatform.includes('Industry')) setPlatform('industry');
       else if (preselectedPlatform.includes('Factory')) setPlatform('factory');
+      else if (preselectedPlatform.includes('R&D') || preselectedPlatform.includes('TechTransfer')) setPlatform('rd');
       else if (preselectedPlatform.includes('Education')) setPlatform('education');
       else setPlatform('all');
     }
@@ -137,6 +138,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
               <option value="all">{formContent.platformOptions.all}</option>
               <option value="industry">{formContent.platformOptions.industry}</option>
               <option value="factory">{formContent.platformOptions.factory}</option>
+              <option value="rd">{formContent.platformOptions.rd}</option>
               <option value="education">{formContent.platformOptions.education}</option>
             </select>
           </div>

@@ -177,6 +177,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ content }) => {
                         <option value="factory">
                           {content.form.platformOptions.factory}
                         </option>
+                        <option value="rd">
+                          {content.form.platformOptions.rd}
+                        </option>
                         <option value="education">
                           {content.form.platformOptions.education}
                         </option>
