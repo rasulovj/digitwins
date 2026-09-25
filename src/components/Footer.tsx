@@ -121,7 +121,7 @@ export const Footer: React.FC<FooterProps> = ({ content, navContent }) => {
         {/* Bottom copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 font-mono gap-4">
           <div>&copy; {new Date().getFullYear()} DigiTwins.uz. {content.rights}</div>
-          <div>Universal Spatial Twin & Green Tech Ecosystem</div>
+          <div>Spatial Twin & Green Tech Ecosystem</div>
         </div>
 
       </div>
