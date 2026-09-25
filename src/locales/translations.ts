@@ -1,1037 +1,787 @@
 export type Language = 'uz' | 'tr' | 'en';
 
-export interface PlatformItem {
+export interface DimensionItem {
   id: string;
-  badge: string;
+  tag: string;
   title: string;
   subtitle: string;
+  description: string;
   features: string[];
-  metricLabel: string;
-  metricValue: string;
-  metricSub: string;
+  widgetTitle: string;
+  widgetStatus: string;
+  metric1Label: string;
+  metric1Value: string;
+  metric2Label: string;
+  metric2Value: string;
+  btnText: string;
 }
 
 export interface TranslationContent {
   nav: {
-    platforms: string;
-    techLayers: string;
-    telemetry: string;
+    system: string;
+    dimensions: string;
+    greenCarbon: string;
+    tech: string;
     contact: string;
     demoButton: string;
   };
   hero: {
-    groupTag: string;
-    titleStart: string;
-    titleHighlight: string;
-    titleEnd: string;
+    badge: string;
+    title1: string;
+    title2: string;
     description: string;
-    ctaDemo: string;
-    ctaPlatforms: string;
-    statusActive: string;
+    tagAreas: string;
+    tagFacilities: string;
+    tagXr: string;
+    tagGreen: string;
+    btnMain: string;
+    btnSub: string;
+    canvasTelemetry: string;
   };
-  stats: {
-    label1: string;
-    value1: string;
-    sub1: string;
-    label2: string;
-    value2: string;
-    sub2: string;
-    label3: string;
-    value3: string;
-    sub3: string;
-  };
-  twinExplorer: {
-    tabIndustry: string;
-    tabFactory: string;
-    tabRd: string;
-    tabEducation: string;
-    liveBadge: string;
-    allocated: string;
-    available: string;
-    activeStatus: string;
-    // Industry Tab
-    industryTitle: string;
-    industryDesc: string;
-    industryGis: string;
-    parcel1Name: string;
-    parcel1Desc: string;
-    parcel2Name: string;
-    parcel2Desc: string;
-    parcel3Name: string;
-    parcel3Desc: string;
-    parcel4Name: string;
-    parcel4Desc: string;
-    powerLabel: string;
-    powerValue: string;
-    gasLabel: string;
-    gasValue: string;
-    legalLabel: string;
-    legalValue: string;
-    // Factory Tab
-    factoryTitle: string;
-    factoryDesc: string;
-    factoryOeeBadge: string;
-    stage1Label: string;
-    stage1Title: string;
-    stage1Desc: string;
-    stage2Label: string;
-    stage2Title: string;
-    stage2Desc: string;
-    stage3Label: string;
-    stage3Title: string;
-    stage3Desc: string;
-    factoryFooterProtocol: string;
-    factoryFooterMaintenance: string;
-    // R&D Tab
-    rdTitle: string;
-    rdDesc: string;
-    rdBadge: string;
-    rdStage1Tag: string;
-    rdStage1Title: string;
-    rdStage1Desc: string;
-    rdStage1Partner: string;
-    rdStage2Tag: string;
-    rdStage2Title: string;
-    rdStage2Desc: string;
-    rdStage2Saving: string;
-    rdStage3Tag: string;
-    rdStage3Title: string;
-    rdStage3Desc: string;
-    rdStage3Speed: string;
-    rdFooterModel: string;
-    rdFooterRate: string;
-    // Education Tab
-    eduTitle: string;
-    eduDesc: string;
-    eduBadge: string;
-    eduCard1Tag: string;
-    eduCard1Title: string;
-    eduCard1Desc: string;
-    eduCard1Metric: string;
-    eduCard2Tag: string;
-    eduCard2Title: string;
-    eduCard2Desc: string;
-    eduCard2Metric: string;
-    eduCard3Tag: string;
-    eduCard3Title: string;
-    eduCard3Desc: string;
-    eduCard3Metric: string;
-    eduFooterCert: string;
-    eduFooterSafety: string;
-  };
-  platformsSection: {
-    tag: string;
+  coreEngines: {
+    badge: string;
     title: string;
-    description: string;
-    ctaBtn: string;
-    activeBadge: string;
-    platforms: PlatformItem[];
+    subtitle: string;
+    engine1Tag: string;
+    engine1Title: string;
+    engine1Desc: string;
+    engine1Check: string;
+    engine2Tag: string;
+    engine2Title: string;
+    engine2Desc: string;
+    engine2Check: string;
   };
-  techLayersSection: {
-    tag: string;
+  dimensionsSection: {
+    badge: string;
     title: string;
+    subtitle: string;
+    items: DimensionItem[];
+  };
+  greenCarbonSection: {
+    badge: string;
+    title1: string;
+    title2: string;
     description: string;
+    f1: string;
+    f2: string;
+    f3: string;
+    f4: string;
+    boxLabel: string;
+    boxValue: string;
+    boxSub: string;
+    boxBtn: string;
+  };
+  techSection: {
+    badge: string;
+    title: string;
+    subtitle: string;
     stepPrefix: string;
     layers: Array<{
       step: string;
       title: string;
       description: string;
-      tags: string[];
+      tag: string;
     }>;
   };
-  telemetrySection: {
-    tag: string;
-    title: string;
-    description: string;
-    liveBadge: string;
-    refreshNote: string;
-    tile1Title: string;
-    tile1Sub: string;
-    tile1FootLabel: string;
-    tile2Title: string;
-    tile2Sub: string;
-    tile2FootLabel: string;
-    tile2FootValue: string;
-    tile3Title: string;
-    tile3Sub: string;
-    tile3FootLabel: string;
-    tile3FootValue: string;
-    tile4Title: string;
-    tile4Sub: string;
-    tile4FootLabel: string;
-    tile4FootValue: string;
-  };
   contactSection: {
-    tag: string;
+    badge: string;
     title: string;
     description: string;
     officeLabel: string;
     officeValue: string;
-    emailLabel: string;
+    phoneLabel: string;
+    phoneValue: string;
     form: {
       nameLabel: string;
       namePlaceholder: string;
-      companyLabel: string;
-      companyPlaceholder: string;
+      orgLabel: string;
+      orgPlaceholder: string;
       emailLabel: string;
       emailPlaceholder: string;
-      platformLabel: string;
-      platformOptions: {
+      domainLabel: string;
+      domainOptions: {
         all: string;
-        industry: string;
-        factory: string;
-        rd: string;
-        education: string;
+        macro: string;
+        micro: string;
+        xr: string;
+        green: string;
       };
-      messageLabel: string;
-      messagePlaceholder: string;
+      notesLabel: string;
+      notesPlaceholder: string;
       submitBtn: string;
       submittingBtn: string;
       successMsg: string;
     };
   };
   demoModal: {
+    badge: string;
     title: string;
-    subtitle: string;
     close: string;
-    phoneLabel: string;
-    submit: string;
+    nameLabel: string;
+    orgLabel: string;
+    domainLabel: string;
+    notesLabel: string;
+    submitBtn: string;
   };
   footer: {
-    tagline: string;
+    description: string;
+    dimensionsHeading: string;
+    contactHeading: string;
+    phoneLabel: string;
+    phoneValue: string;
     rights: string;
     locations: string;
     privacy: string;
-    terms: string;
   };
 }
 
 export const translations: Record<Language, TranslationContent> = {
   // ============================================================
-  // UZBEK (UZ) - 100% Qisqa, Aniq va Sof O'zbek Tili
+  // UZBEK (UZ) - To'liq va Toza O'zbek Tili
   // ============================================================
   uz: {
     nav: {
-      platforms: "Platformalar",
-      techLayers: "Texnologiya",
-      telemetry: "Telemetriya",
-      contact: "Bog'lanish",
-      demoButton: "Demo Olish",
+      system: "Nimalar Qilamiz?",
+      dimensions: "Transformatsiya Qatlamlari",
+      greenCarbon: "Green Carbon",
+      tech: "Texnologiya Qatlami",
+      contact: "Aloqa",
+      demoButton: "Loyiha / Demo So'rash",
     },
     hero: {
-      groupTag: "DEEP TECH & DIGITAL TWIN GROUP",
-      titleStart: "Sanoat, ishlab chiqarish va ilm-fanning",
-      titleHighlight: "yagona raqamli egizagi",
-      titleEnd: ".",
+      badge: "MAKONIY RAQAMLASHTIRISH EKOTIZIMI",
+      title1: "Jismoniy Maydon va Inshootlarning",
+      title2: "Raqamli Egizak Xizmatlari",
       description:
-        "Sanoat zonalari (Maydon & EIZ), ishlab chiqarish (IIoT), texnologiya transferi (R&D) hamda professional ta'limni (VR & Akademiya) birlashtiruvchi ekotizim.",
-      ctaDemo: "Demo Belgilash",
-      ctaPlatforms: "Platformalarni Ko'rish",
-      statusActive: "Tizim Ishlamoqda",
+        "Maydonlar, inshootlar va obyektlarni 3D lazer skanerlash, IoT datchiklar va simulyatsiya tizimlari orqali raqamli egizakka aylantiramiz. Tayyor modellarni integratsiya qilamiz yoki ehtiyojingizga qarab noldan modellaymiz.",
+      tagAreas: "Makro / Geografik",
+      tagFacilities: "Mikro / Inshootlar",
+      tagXr: "Inson va Ta'sir",
+      tagGreen: "Green Carbon",
+      btnMain: "Jismoniy Aktivingizni Raqamlashtiring",
+      btnSub: "Transformatsiya Qatlamlarini Kashf Eting",
+      canvasTelemetry: "Jonli Telemetriya & GIS",
     },
-    stats: {
-      label1: "Asosiy Yo'nalish",
-      value1: "4 ta Ustun",
-      sub1: "Maydon, Zavod, R&D va Akademiya",
-      label2: "Yagona Maydon",
-      value2: "1,240+ Ga",
-      sub2: "Monitoringdagi sanoat hududlari",
-      label3: "Tizim Samaradorligi",
-      value3: "99.4%",
-      sub3: "Raqamli model aniqligi",
+    coreEngines: {
+      badge: "NIMALAR QILAMIZ?",
+      title: "Jismoniy Dunyoni Raqamli Modellarga Ko'chiramiz",
+      subtitle:
+        "Ehtiyojingizga qarab tayyor raqamli shablonlarni taqdim etamiz yoki maydoningizda maxsus skanerlash va datchik o'rnatish ishlarini bajaramiz.",
+      engine1Tag: "1. MODEL: TAYYOR EGIZAKLAR KUTUBXONASI",
+      engine1Title: "Tayyor Raqamlashtirilgan Aktivlar",
+      engine1Desc:
+        "Oldindan modellashtirilgan makoniy shablonlarni, bino va yer maydoni modellarini tizimga integratsiya qilamiz.",
+      engine1Check: "Tayyor 3D va GIS kutubxonasi integratsiyasi",
+      engine2Tag: "2. MODEL: MAYDONNI RAQAMLASHTIRISH XIZMATI",
+      engine2Title: "Maxsus Raqamli Egizak Yaratish",
+      engine2Desc:
+        "Raqamlashmagan maydonlar, inshootlar va obyektlarni 3D skanerlash va datchiklar o'rnatish orqali raqamli egizakka ko'chiramiz.",
+      engine2Check: "Maydon skanerlash, datchiklar va 3D egizak modeli",
     },
-    twinExplorer: {
-      tabIndustry: "1. Industry (Maydon & EIZ)",
-      tabFactory: "2. Factory (Ishlab Chiqarish)",
-      tabRd: "3. R&D (Sanoat-Ilm Hamkorligi)",
-      tabEducation: "4. Education (Ta'lim & VR)",
-      liveBadge: "Jonli Tizim",
-      allocated: "Band",
-      available: "Bo'sh",
-      activeStatus: "FAOL",
-      // Industry
-      industryTitle: "Toshkent Maxsus Sanoat Zonasi (EIZ) — 3D GIS Maydon Egizagi",
-      industryDesc: "1,240 Gektar hudud, 48 ta sanoat maydoni va markaziy kommunikatsiyalar",
-      industryGis: "GIS: 41.2995° N, 69.2401° E",
-      parcel1Name: "Maydon A-01",
-      parcel1Desc: "Farmatsevtika zavodi",
-      parcel2Name: "Maydon A-02",
-      parcel2Desc: "Mashinasozlik va avtomatika",
-      parcel3Name: "Maydon B-01",
-      parcel3Desc: "To'qimachilik klasteri",
-      parcel4Name: "Maydon B-02",
-      parcel4Desc: "Metall konstruksiya korxonasi",
-      powerLabel: "Elektr Nimstansiyasi",
-      powerValue: "110/10 kV — 12 MW Zaxira",
-      gasLabel: "Magistral Gaz Quvuri",
-      gasValue: "0.6 MPa Yuqori Bosim",
-      legalLabel: "Huquqiy Imtiyoz (EIZ)",
-      legalValue: "0% Bojxona / 10 yil Soliq Imtiyozi",
-      // Factory
-      factoryTitle: "Zavod Ishlab Chiqarish Liniyasi — SCADA & IIoT Telemetriyasi",
-      factoryDesc: "Avtomatlashtirilgan oqim, datchiklar telemetriyasi va OEE unumdorlik tahlili",
-      factoryOeeBadge: "OEE: 95.8% (Optimal)",
-      stage1Label: "01-BO'LIM: XOMASHYO",
-      stage1Title: "Yuklash Dastgohi",
-      stage1Desc: "Datchik harorati: 42.1°C\nYuklama: 88% quvvat",
-      stage2Label: "02-BO'LIM: MONTAJ",
-      stage2Title: "Robotik Payvandlash",
-      stage2Desc: "Tebranish darajasi: 1.1 mm/s\nSikl davomiyligi: 14.2 soniya",
-      stage3Label: "03-BO'LIM: SIFAT NAZORATI",
-      stage3Title: "Optik Skaner",
-      stage3Desc: "Nuqsonlar: 0.02% (Minimal)\nChiqish hajmi: 1,840 dona/soat",
-      factoryFooterProtocol: "Protokol: OPC-UA over TLS · PLC: Siemens S7-1500",
-      factoryFooterMaintenance: "Bashoratli Ta'mirlash: Xavf 0%",
-      // R&D
-      rdTitle: "Sanoat-Ilm Hamkorligi & Texnologiya Transferi Laboratoriyasi",
-      rdDesc: "Universitet ilmiy ishlanmalarini 3D simulyatsiya orqali sinash va ishlab chiqarishga joriy etish",
-      rdBadge: "24+ Faol Transfer Loyihasi",
-      rdStage1Tag: "01-BOSQICH: ILMIY R&D",
-      rdStage1Title: "Akademik R&D & Patent",
-      rdStage1Desc: "Universitet laboratoriyalarida yaratilgan yangi material, algoritm va konstruksiya loyihalari.",
-      rdStage1Partner: "Hamkorlar: 8 ta Yetakchi Universitet",
-      rdStage2Tag: "02-BOSQICH: RAQAMLI EGIZAK",
-      rdStage2Title: "3D Virtual Prototiplash",
-      rdStage2Desc: "Qimmatbaho jismoniy qoliplarsiz, raqamli egizak muhitida to'liq yuklama sinovlari.",
-      rdStage2Saving: "Xarajat Tejami: 72% gacha arzonroq",
-      rdStage3Tag: "03-BOSQICH: ISHLAB CHIQARISH",
-      rdStage3Title: "Zavodga Integratsiya",
-      rdStage3Desc: "Sinovdan o'tgan texnologiyani to'g'ridan-to'g'ri DigiTwins Factory platformasi orqali liniyaga ulash.",
-      rdStage3Speed: "Ishga Tushish Tezligi: 2.8x tezroq",
-      rdFooterModel: "Hamkorlik Modeli: Intellektual Mulk Himoyasi & Litsenziyalash",
-      rdFooterRate: "Tijoratlashtirish Ko'rsatkichi: 91.5% Muvaffaqiyat",
-      // Education
-      eduTitle: "Sanoat Ta'lim Akademiyasi — VR Simulyator & Malaka Nazorati",
-      eduDesc: "Sanoat xodimlari va operatorlar uchun xavfsiz virtual trenajyorlar va sertifikatsiya",
-      eduBadge: "4,500+ Malakali Xodim",
-      eduCard1Tag: "XAVFSIZLIK VR TIZIMI",
-      eduCard1Title: "Texnika Xavfsizligi VR",
-      eduCard1Desc: "Favqulodda vaziyatlar, yuqori kuchlanish va sanoat xavfsizligi bo'yicha virtual trenajyor.",
-      eduCard1Metric: "Muvaffaqiyat Ko'rsatkichi: 99.1%",
-      eduCard2Tag: "USKUNA EGIZAGI",
-      eduCard2Title: "Dastgoh Operatori Trenajyori",
-      eduCard2Desc: "Qimmatbaho uskunani buzmasdan, 1:1 fizik modelda boshqarishni o'rgatuvchi trenajyor.",
-      eduCard2Metric: "O'rganish Tezligi: 3.4x tezroq",
-      eduCard3Tag: "MALAKA ANALITIKASI",
-      eduCard3Title: "Raqamli Sertifikatsiya",
-      eduCard3Desc: "Xodimlar reflekslari, xatolik darajasi va xalqaro standartlarga (OSHA) muvofiqlik nazorati.",
-      eduCard3Metric: "Standart: ISO 9001 / OSHA",
-      eduFooterCert: "Sertifikatsiya: Xalqaro Sanoat Standartlari",
-      eduFooterSafety: "O'quv jarayonida xavf: Mutlaqo 0%",
-    },
-    platformsSection: {
-      tag: "XIZMATLAR VA PLATFORMALAR",
-      title: "To'rtta strategik vertikal",
-      description: "Sanoat zonalari, aqlli ishlab chiqarish, R&D transferi va VR ta'limi.",
-      ctaBtn: "Demo So'rash",
-      activeBadge: "FAOL",
-      platforms: [
+    dimensionsSection: {
+      badge: "TRANSFORMATSIYA QATLAMLARI",
+      title: "Makoniy O'lchovlarga Ko'ra Raqamli Egizak Yechimlari",
+      subtitle:
+        "Geografik hududlardan tortib binolar va ta'lim simulyatsiyalarigacha bo'lgan 3 bosqichda ishlaymiz.",
+      items: [
         {
-          id: "industry",
-          badge: "MAYDON & EIZ",
-          title: "DigiTwins Industry",
-          subtitle: "Sanoat zonalari & 3D GIS egizagi",
+          id: "macro",
+          tag: "MAKRO O'LCHOV",
+          title: "Geografik va Makoniy Aktivlar",
+          subtitle: "Yer Maydonlari va Geografik Hududlar",
+          description:
+            "Maydonlar, yerlar va infratuzilma tarmoqlarining 3D GIS va makoniy raqamli egizak modellari.",
           features: [
-            "Yer maydonlarini 3D taqsimlash",
-            "Infratuzilma (gaz, tok, suv) telemetriyasi",
-            "Investorlar uchun raqamli portal",
+            "3D GIS Topografiya va Maydon Xaritalash",
+            "Makoniy Ma'lumotlar Portali va Raqamli Ajratish",
+            "Keng Maydonli Infratuzilma va Joylashuv Analitikasi",
           ],
-          metricLabel: "Yig'ilgan Maydon",
-          metricValue: "1,240 Ga",
-          metricSub: "3,850 datchik nuqtasi",
+          widgetTitle: "MAKONIY TELEMETRIYA",
+          widgetStatus: "JONLI",
+          metric1Label: "Xaritalangan Maydon",
+          metric1Value: "2,450 Hektar",
+          metric2Label: "GIS Aniqligi",
+          metric2Value: "< 2 cm",
+          btnText: "Makro Egizak Demosi",
         },
         {
-          id: "factory",
-          badge: "ISHLAB CHIQARISH",
-          title: "DigiTwins Factory",
-          subtitle: "Aqlli ishlab chiqarish & IIoT",
+          id: "micro",
+          tag: "MIKRO O'LCHOV",
+          title: "Inshootlar va Operatsion Ob'ektlar",
+          subtitle: "Binolar, Inshootlar va Jismoniy Aktivlar",
+          description:
+            "Binolar, inshootlar va tizimlarning IoT datchiklari orqali raqamli kuzatuvi va simulyatsiyasi.",
           features: [
-            "Real vaqt OEE unumdorlik nazorati",
-            "Bashoratli ta'mirlash (Predictive)",
-            "Virtual ishga tushirish (Commissioning)",
+            "Jismoniy Aktiv va Inshoot 3D Modellashtirishi",
+            "Jonli IoT va Datchik Telemetriya Integratsiyasi",
+            "Prognostik Ta'mirlash va Jarayon Optimizatsiyasi",
           ],
-          metricLabel: "OEE Unumdorligi",
-          metricValue: "95.8%",
-          metricSub: "To'xtalishlar -38%",
+          widgetTitle: "JONLI INSHOOT MONITORINGI",
+          widgetStatus: "FAOL",
+          metric1Label: "Boshqariladigan Bino va Tesis",
+          metric1Value: "82 Tesis",
+          metric2Label: "Datchik Unumdorligi",
+          metric2Value: "96.2%",
+          btnText: "Mikro Egizak Demosi",
         },
         {
-          id: "rd",
-          badge: "R&D TRANSFER",
-          title: "DigiTwins R&D",
-          subtitle: "Sanoat-Ilm Texnologiya Transferi",
+          id: "xr",
+          tag: "TA'SIR O'LCHOVI",
+          title: "Inson, Simulyatsiya va Ta'sir",
+          subtitle: "Jarayonlar, Ta'lim va Virtual Tajriba",
+          description:
+            "Ta'lim, simulyatsiya va 3D interaktiv ma'lumot tajribasi muhitlari.",
           features: [
-            "Universitet — Zavod to'g'ridan-to'g'ri ko'prigi",
-            "3D virtual prototiplash va sinov",
-            "Patentlarni sanoatda tijoratlashtirish",
+            "Virtual va Arttirilgan Haqiqat (XR) Simulyatsiyasi",
+            "Interaktiv Jarayon va Senariy Modellashtirish",
+            "Raqamli Kompetensiya va Tajriba Boshqaruvi",
           ],
-          metricLabel: "Transfer Loyihalari",
-          metricValue: "24+ Loyiha",
-          metricSub: "8 ta hamkor universitet bilan",
-        },
-        {
-          id: "education",
-          badge: "TA'LIM & VR",
-          title: "DigiTwins Education",
-          subtitle: "VR Trenajyorlar & Akademiya",
-          features: [
-            "Sanoat xavfsizligi (HSE) VR tizimlari",
-            "Dastgoh operatori virtual trenajyori",
-            "Raqamli ISO/OSHA sertifikatsiya",
-          ],
-          metricLabel: "Tayyorlangan Kadrlar",
-          metricValue: "4,500+",
-          metricSub: "98.4% sertifikatlash natijasi",
+          widgetTitle: "SIMULYATSIYA VA XR",
+          widgetStatus: "TAYYOR",
+          metric1Label: "Faol Foydalanuvchilar",
+          metric1Value: "18,400+",
+          metric2Label: "Simulyator Modullari",
+          metric2Value: "54 Tayyor Egizak",
+          btnText: "Ta'sir Demosi",
         },
       ],
     },
-    techLayersSection: {
-      tag: "TEXNOLOGIK QATLAM",
-      title: "4 bosqichli muhandislik arxitekturasi",
-      description: "Fizik maydondan datchik ma'lumotlarini qabul qilib, ularni model va simulyatsiyaga aylantiramiz.",
-      stepPrefix: "BOSQICH",
+    greenCarbonSection: {
+      badge: "GREEN CARBON AI & ESG INTEGRATION",
+      title1: "Yashil Raqamli Egizak va",
+      title2: "Uglerod Izini Boshqarish",
+      description:
+        "GreenCarbonAI (greencarbonai.com) integratsiyasi bilan obyekt yoki inshootning energiya sarfi hamda uglerod chiqindisini raqamli egizakda kuzatamiz.",
+      f1: "Jonli Uglerod va Suv Izi Hisoboti",
+      f2: "Yevropa Ittifoqi SKDM va ESG Standartlari",
+      f3: "Energiya Samaradorligi va Issiqlik Xaritasi",
+      f4: "Yashil Pasport va Barqarorlik Sertifikati",
+      boxLabel: "JONLI UGLEROD NEYTRALLIK DARAJA",
+      boxValue: "94.8%",
+      boxSub: "Optimizatsiya Faol",
+      boxBtn: "Green Carbon Modulini Qo'shish",
+    },
+    techSection: {
+      badge: "TEXNOLOGIYA QATLAMI",
+      title: "4 Bosqichda Makoniy Egizak Arxitekturasi",
+      subtitle:
+        "Datchikdan raqamli egizakkacha, simulyatsiyadan tahliliy qaror qabul qilishgacha bo'lgan yaxlit tizim.",
+      stepPrefix: "0",
       layers: [
         {
-          step: "01",
-          title: "IoT & Telemetriya",
-          description: "PLC, datchik va hisoblagichlardan uzluksiz ma'lumot oqimi.",
-          tags: ["MQTT / OPC-UA", "Sensors", "Edge"],
+          step: "1",
+          title: "IoT & Sensör Katmanı",
+          description:
+            "Maydon, inshoot va infratuzilmadagi fizik datchiklardan jonli telemetriya ma'lumotlarini yig'ish.",
+          tag: "Wi-Fi / MQTT / Sensors",
         },
         {
-          step: "02",
-          title: "GIS & Fazoviy Model",
-          description: "Hudud va binolarni millimetr aniqlikdagi 3D koordinataga ko'chirish.",
-          tags: ["BIM", "GIS Spatial", "Point Cloud"],
+          step: "2",
+          title: "Raqamli Egizak Yaratish",
+          description:
+            "Infratuzilma ma'lumotlarining yuqori aniqlikdagi makoniy modellashtirilishi va 3D egizak yaratilishi.",
+          tag: "3D Spatial / Point Cloud",
         },
         {
-          step: "03",
-          title: "Jonli Simulyatsiya",
-          description: "Fizik jarayonlarni virtual muhitda real vaqtda sinash.",
-          tags: ["Physics Engine", "Real-Time Sync"],
+          step: "3",
+          title: "Raqamli Egizak Simulyatsiyasi",
+          description:
+            "Jismoniy aktivlarning virtual muhitdagi jonli modellari, jarayonlar kuzatuvi va simulyatsiyalari.",
+          tag: "XR / Physics Engine",
         },
         {
-          step: "04",
-          title: "AI Tahlil & Qaror",
-          description: "Mashinani o'rganish orqali eskirish va xatolarni oldindan aniqlash.",
-          tags: ["Predictive Analytics", "Anomaly Detection"],
+          step: "4",
+          title: "Qaror Qabul Qilish va Analitika",
+          description:
+            "Ma'lumotlarga asoslangan optimallashtirish, prognozli ta'mirlash va yuqori darajadagi boshqaruv tahlili.",
+          tag: "Predictive Analytics",
         },
       ],
     },
-    telemetrySection: {
-      tag: "JONLI KO'RSATKICHLAR",
-      title: "Real vaqtdagi tizim telemetriyasi",
-      description: "Sanoat maydonlari, ishlab chiqarish liniyalari va ilmiy-ta'limiy jarayonlar holati.",
-      liveBadge: "JONLI TARMOQ",
-      refreshNote: "Avtomatik yangilanadi",
-      tile1Title: "MAYDON & EIZ (INDUSTRY)",
-      tile1Sub: "1,240 Ga · 48 ta maydon",
-      tile1FootLabel: "Kechikish (ping):",
-      tile2Title: "ISHLAB CHIQARISH (FACTORY)",
-      tile2Sub: "OEE Unumdorlik darajasi",
-      tile2FootLabel: "Kutilmagan to'xtalish:",
-      tile2FootValue: "0 daqiqa",
-      tile3Title: "R&D TEXNOLOGIYA TRANSFERI",
-      tile3Sub: "8 ta Hamkor Universitet & Lab",
-      tile3FootLabel: "Tijoratlashtirish:",
-      tile3FootValue: "91.5% Muvaffaqiyat",
-      tile4Title: "VR TA'LIM (EDUCATION)",
-      tile4Sub: "Tayyorlangan Sanoat Xodimlari",
-      tile4FootLabel: "Imtihon topshirish:",
-      tile4FootValue: "98.4%",
-    },
     contactSection: {
-      tag: "BOG'LANISH",
-      title: "Muhandislik uchrashuvini rejalashtiramiz",
-      description: "Sanoat hududingiz, zavodingiz yoki ta'lim loyihangiz uchun to'g'ridan-to'g'ri bog'laning.",
+      badge: "ALOQA VA MARKAZ",
+      title: "Fiziki Varligingizni Raqamli Egizakka Aylantiring",
+      description:
+        "Arazilar, inshootlar, binolar va har qanday jismoniy varliqlarning raqamli egizagi. Jismoniy dunyodagi barcha makonlarni raqamli modellarga ko'chiramiz.",
       officeLabel: "Bosh Qarorgoh",
-      officeValue: "Toshkent shahri, O'zbekiston",
-      emailLabel: "Elektron Pochta",
+      officeValue: "Toshkent, O'zbekiston / Istanbul, Turkiya",
+      phoneLabel: "Telefon",
+      phoneValue: "+998 90 277 73 66",
       form: {
-        nameLabel: "Ism Familiya",
-        namePlaceholder: "Masalan: Jamshid Rasulov",
-        companyLabel: "Tashkilot / Korxona",
-        companyPlaceholder: "Kompaniya nomi",
+        nameLabel: "Ismingiz va Familiyangiz",
+        namePlaceholder: "Jasur Rahimov",
+        orgLabel: "Kompaniya / Tashkilot Nomi",
+        orgPlaceholder: "Tashkent Spatial Development",
         emailLabel: "Elektron Pochta",
-        emailPlaceholder: "nomi@kompaniya.uz",
-        platformLabel: "Qiziqtirgan yo'nalish",
-        platformOptions: {
-          all: "Barcha yo'nalishlar (Kompleks ekotizim)",
-          industry: "DigiTwins Industry (Maydon & EIZ)",
-          factory: "DigiTwins Factory (Ishlab Chiqarish)",
-          rd: "DigiTwins R&D (Sanoat-Ilm Hamkorligi)",
-          education: "DigiTwins Education (Ta'lim & VR)",
+        emailPlaceholder: "info@kompaniya.uz",
+        domainLabel: "Sizni Qiziqtirgan Katman",
+        domainOptions: {
+          all: "Barcha Transformatsiya Qatlamlari",
+          macro: "Mekansal & Coğrafi Varlıklar (Arazilar, OSB & Altyapı)",
+          micro: "Tesisler & Yapı Kompleksleri (Fabrika, Binalar & Miras)",
+          xr: "Simülasyon, XR & Eğitim (Nara XR & Digital School)",
+          green: "Green Carbon AI (Karbon & Enerji)",
         },
-        messageLabel: "Loyiha haqida qisqacha",
-        messagePlaceholder: "Hudud o'lchami, uskuna soni yoki maqsadlar...",
-        submitBtn: "So'rov Yuborish",
+        notesLabel: "Saha / Aktiv Haqida Izohlar",
+        notesPlaceholder: "Saha büyüklüğü, lokasyon va hedefleringiz...",
+        submitBtn: "So'rovni Yuborish / Request Demo",
         submittingBtn: "Yuborilmoqda...",
-        successMsg: "So'rovingiz qabul qilindi! Tez orada bog'lanamiz.",
+        successMsg: "Rahmat! So'rovingiz qabul qilindi. Mutaxassislarimiz tez orada bog'lanishadi.",
       },
     },
     demoModal: {
-      title: "Demo Belgilash",
-      subtitle: "DigiTwins platformasining amaliy imkoniyatlarini ko'rsatamiz.",
+      badge: "DIGITWINS LOYIHA SO'ROVI",
+      title: "Jismoniy Aktivingizni Raqamlashtiring",
       close: "Yopish",
-      phoneLabel: "Telefon yoki Telegram",
-      submit: "Tasdiqlash",
+      nameLabel: "Ismingiz va Familiyangiz",
+      orgLabel: "Kompaniya / Tashkilot Nomi",
+      domainLabel: "Sizni Qiziqtirgan Katman",
+      notesLabel: "Saha / Aktiv Haqida Izohlar",
+      submitBtn: "So'rovni Yuborish / Request Demo",
     },
     footer: {
-      tagline: "Sanoat, ishlab chiqarish, R&D va ta'lim uchun raqamli egizaklar guruhi.",
+      description:
+        "Arazilar, inshootlar, binolar va barcha jismoniy varliqlarning raqamli egizagi. Jismoniy dunyodagi barcha makonlarni raqamli modellarga ko'chiramiz.",
+      dimensionsHeading: "TRANSFORMATSIYA QATLAMLARI",
+      contactHeading: "ALOQA VA MARKAZ",
+      phoneLabel: "Telefon",
+      phoneValue: "+998 90 277 73 66",
       rights: "Barcha huquqlar himoyalangan.",
-      locations: "Toshkent · Istanbul · Global",
-      privacy: "Maxfiylik",
-      terms: "Shartlar",
+      locations: "Toshkent, O'zbekiston / Istanbul, Turkiya",
+      privacy: "Maxfiylik Siyosati",
     },
   },
 
   // ============================================================
-  // TURKISH (TR) - 100% Doğal ve Sade Türkçe
+  // TURKISH (TR) - 100% Doğal Türkçe
   // ============================================================
   tr: {
     nav: {
-      platforms: "Platformlar",
-      techLayers: "Teknoloji",
-      telemetry: "Telemetri",
+      system: "Ne Yapıyoruz?",
+      dimensions: "Dönüşüm Katmanları",
+      greenCarbon: "Green Carbon",
+      tech: "Teknoloji Katmanı",
       contact: "İletişim",
-      demoButton: "Demo İste",
+      demoButton: "Proje / Demo İste",
     },
     hero: {
-      groupTag: "DEEP TECH & DİJİTAL İKİZ GRUBU",
-      titleStart: "Fiziksel sahanın, üretimin ve bilimin",
-      titleHighlight: "bütünleşik dijital ikizi",
-      titleEnd: ".",
+      badge: "MEKANSAL DİJİTALLEŞTİRME EKOSİSTEMİ",
+      title1: "Fiziksel Mekan ve Yapıların",
+      title2: "Dijital İkiz Hizmetleri",
       description:
-        "Sanayi bölgeleri (Saha & OSB), akıllı üretim (IIoT), teknoloji transferi (R&D) ve kurumsal eğitimi (VR & Akademi) tek altyapıda birleştiren ekosistem.",
-      ctaDemo: "Demo Görüşmesi Ayarla",
-      ctaPlatforms: "Platformları İncele",
-      statusActive: "Sistem Aktif",
+        "Fiziksel sahaları, tesisleri ve yapıları 3D lazer tarama, IoT datchik/sensör bağlantıları ve simülasyon altyapısıyla dijital ikizlere dönüştürüyoruz. Hazır modelleri entegre ediyor veya ihtiyacınıza göre sıfırdan saha modellemesi yapıyoruz.",
+      tagAreas: "Makro / Coğrafi",
+      tagFacilities: "Mikro / Yapılar",
+      tagXr: "İnsan & Etkileşim",
+      tagGreen: "Green Carbon",
+      btnMain: "Fiziki Varlığınızı Dijitalleştirin",
+      btnSub: "Dönüşüm Katmanlarını Keşfet",
+      canvasTelemetry: "Canlı Telemetri & GIS",
     },
-    stats: {
-      label1: "Temel Dikey",
-      value1: "4 Ana Sütun",
-      sub1: "Saha, Fabrika, Ar-Ge ve Akademi",
-      label2: "Yönetilen Alan",
-      value2: "1,240+ Ha",
-      sub2: "OSB ve sanayi sahaları",
-      label3: "Model Hassasiyeti",
-      value3: "99.4%",
-      sub3: "Simülasyon katsayısı",
+    coreEngines: {
+      badge: "NELER YAPAYORUZ?",
+      title: "Fiziksel Dünyayı Dijital Modellere Aktarıyoruz",
+      subtitle:
+        "İhtiyacınıza göre hazır dijital şablonları kullanıyor veya sahanızda özel modelleme ve sensör entegrasyonu gerçekleştiriyoruz.",
+      engine1Tag: "1. MODEL: HAZIR İKİZ KÜTÜPHANESİ",
+      engine1Title: "Hazır Dijitalleştirilmiş Varlıklar",
+      engine1Desc:
+        "Önceden modellenmiş mekansal şablonları, bina ve arazi modellerini sisteme entegre ederek hızlı kullanım sağlıyoruz.",
+      engine1Check: "Hazır 3D ve GIS Kütüphanesi Entegrasyonu",
+      engine2Tag: "2. MODEL: SAHA DİJİTALLEŞTİRME HİZMETİ",
+      engine2Title: "Özel Dijital İkiz Geliştirme",
+      engine2Desc:
+        "Dijitalleşmemiş sahaları, tesisleri ve yapıları 3D tarama, fotogrametri ve sensör ağı kurarak dijital ortama modelliyoruz.",
+      engine2Check: "Saha Taraması, Sensör Entegrasyonu ve 3D İkiz Modeli",
     },
-    twinExplorer: {
-      tabIndustry: "1. Industry (Saha & OSB)",
-      tabFactory: "2. Factory (Üretim & IIoT)",
-      tabRd: "3. R&D (Sanayi-Akademi)",
-      tabEducation: "4. Education (Eğitim & VR)",
-      liveBadge: "Canlı Sistem",
-      allocated: "Tahsis Edildi",
-      available: "Uygun",
-      activeStatus: "AKTİF",
-      // Industry
-      industryTitle: "Organize Sanayi Bölgesi (OSB) — 3D GIS Saha İkizi",
-      industryDesc: "1,240 Hektar alan, 48 sanayi parseli ve merkezi altyapı şebekesi",
-      industryGis: "GIS: 41.2995° N, 69.2401° E",
-      parcel1Name: "Parsel A-01",
-      parcel1Desc: "İlaç ve Tıbbi Cihaz Tesisi",
-      parcel2Name: "Parsel A-02",
-      parcel2Desc: "Makine ve Otomasyon Üretimi",
-      parcel3Name: "Parsel B-01",
-      parcel3Desc: "Tekstil ve İplik Kümesi",
-      parcel4Name: "Parsel B-02",
-      parcel4Desc: "Metal Konstrüksiyon Fabrikası",
-      powerLabel: "Trafo Merkezi",
-      powerValue: "110/10 kV — 12 MW Rezerv",
-      gasLabel: "Ana Gaz Hattı",
-      gasValue: "0.6 MPa Yüksek Basınç",
-      legalLabel: "Hukuki Teşvik (OSB)",
-      legalValue: "%0 Gümrük / 10 Yıl Vergi Muafiyeti",
-      // Factory
-      factoryTitle: "Akıllı Üretim Hattı — SCADA & IIoT Canlı Telemetrisi",
-      factoryDesc: "Otomatik hat akışı, sensör telemetrisi ve OEE verimlilik optimizasyonu",
-      factoryOeeBadge: "OEE: %95.8 (Optimal)",
-      stage1Label: "01. İSTASYON: HAMMADDE",
-      stage1Title: "Besleme Tezgahı",
-      stage1Desc: "Sensör sıcaklığı: 42.1°C\nYük: %88 Nominal Güç",
-      stage2Label: "02. İSTASYON: MONTAJ",
-      stage2Title: "Robotik Kaynak",
-      stage2Desc: "Titreşim: 1.1 mm/s\nÇevrim Süresi: 14.2 sn",
-      stage3Label: "03. İSTASYON: KALİTE KONTROL",
-      stage3Title: "Optik Tarayıcı",
-      stage3Desc: "Hata Oranı: %0.02 (Minimum)\nÇıkış Kapasitesi: 1,840 adet/saat",
-      factoryFooterProtocol: "Protokol: OPC-UA over TLS · PLC: Siemens S7-1500",
-      factoryFooterMaintenance: "Kestirimci Bakım: Hata Riski %0",
-      // R&D
-      rdTitle: "Sanayi-Akademi İş Birliği & Teknoloji Transfer Laboratuvarı",
-      rdDesc: "Üniversite Ar-Ge projelerinin 3D simülasyon ortamında ticarileştirilmesi ve üretime entegrasyonu",
-      rdBadge: "24+ Aktif Transfer Projesi",
-      rdStage1Tag: "01. AŞAMA: AKADEMİK AR-GE",
-      rdStage1Title: "Ar-Ge & Patent Çıktısı",
-      rdStage1Desc: "Üniversite laboratuvarlarında geliştirilen yeni materyal, algoritma ve donanım tasarımları.",
-      rdStage1Partner: "Partnerler: 8 Öncü Üniversite",
-      rdStage2Tag: "02. AŞAMA: DİJİTAL İKİZ",
-      rdStage2Title: "3D Sanal Prototipleme",
-      rdStage2Desc: "Fiziksel kalıp harcaması yapmadan, dijital ikiz ortamında tam yük testleri.",
-      rdStage2Saving: "Maliyet Tasarrufu: %72 daha düşük",
-      rdStage3Tag: "03. AŞAMA: ÜRETİME GEÇİŞ",
-      rdStage3Title: "Fabrikaya Entegrasyon",
-      rdStage3Desc: "Onaylanan teknolojinin doğrudan DigiTwins Factory platformu üzerinden sahada devreye alınması.",
-      rdStage3Speed: "Pazara Çıkış: 2.8x daha hızlı",
-      rdFooterModel: "Model: Fikri Mülkiyet (IP) Koruma & Lisanslama",
-      rdFooterRate: "Ticarileşme Oranı: %91.5 Başarı",
-      // Education
-      eduTitle: "Sanayi Eğitim Akademisi — VR Simülasyonu & Yetkinlik Testi",
-      eduDesc: "Sanayi personeli ve operatörler için sıfır riskli sanal tesis eğitimleri ve sertifikasyon",
-      eduBadge: "4,500+ Sertifikalı Personel",
-      eduCard1Tag: "İSG VR SİSTEMİ",
-      eduCard1Title: "İş Güvenliği Simülasyonu",
-      eduCard1Desc: "Yüksek gerilim, yangın ve acil durum prosedürlerinin 1:1 sanal ortamda tatbikatı.",
-      eduCard1Metric: "Başarı Oranı: %99.1",
-      eduCard2Tag: "MAKİNE İKİZİ",
-      eduCard2Title: "Operatör Trenajörü",
-      eduCard2Desc: "Pahalı tesis ve robot kollarını sanal ortamda hatasız kullanmayı öğreten trenajör.",
-      eduCard2Metric: "Öğrenme Hızı: 3.4x daha hızlı",
-      eduCard3Tag: "YETKİNLİK ANALİTİĞİ",
-      eduCard3Title: "Dijital Sertifikasyon",
-      eduCard3Desc: "Personel refleksleri, hata oranları ve uluslararası standartlara (OSHA) uyumluluk denetimi.",
-      eduCard3Metric: "Standart: ISO 9001 / OSHA",
-      eduFooterCert: "Sertifikasyon: Uluslararası Sanayi Standartları",
-      eduFooterSafety: "Eğitimde kaza riski: Kesinlikle %0",
-    },
-    platformsSection: {
-      tag: "HİZMETLER VE PLATFORMLAR",
-      title: "Dört stratejik dikey platform",
-      description: "OSB sahaları, akıllı üretim, Ar-Ge transferi ve VR eğitimi.",
-      ctaBtn: "Demo Talep Et",
-      activeBadge: "AKTİF",
-      platforms: [
+    dimensionsSection: {
+      badge: "DÖNÜŞÜM KATMANLARI",
+      title: "Mekansal Ölçeklere Göre Dijital İkiz Çözümleri",
+      subtitle:
+        "Coğrafi alanlardan tekil binalara ve eğitim simülasyonlarına kadar 3 temel ölçekte çalışıyoruz.",
+      items: [
         {
-          id: "industry",
-          badge: "SAHA & OSB",
-          title: "DigiTwins Industry",
-          subtitle: "OSB & 3D GIS Saha İkizi",
+          id: "macro",
+          tag: "MAKRO ÖLÇEK",
+          title: "Coğrafi & Mekansal Varlıklar",
+          subtitle: "Araziler, Sahalar & Coğrafi Alanlar",
+          description:
+            "Geniş ölçekli sahaların, arazilerin ve altyapı ağlarının 3D GIS ve mekansal dijital ikizleme çözümleri.",
           features: [
-            "Parsellerin 3D dijital tahsisi",
-            "Altyapı (trafo, gaz, su) telemetrisi",
-            "Yatırımcılar için şeffaf portal",
+            "3D GIS Topoğrafya ve Saha Haritalama",
+            "Mekansal Veri Portalı ve Dijital Tahsis",
+            "Geniş Alan Altyapı ve Konum Analitiği",
           ],
-          metricLabel: "Yönetilen Alan",
-          metricValue: "1,240 Ha",
-          metricSub: "3,850 telemetri düğümü",
+          widgetTitle: "MEKANSAL TELEMETRİ",
+          widgetStatus: "CANLI",
+          metric1Label: "Haritalanan Saha",
+          metric1Value: "2,450 Hektar",
+          metric2Label: "GIS Hassasiyeti",
+          metric2Value: "< 2 cm",
+          btnText: "Makro İkiz Demosu",
         },
         {
-          id: "factory",
-          badge: "ÜRETİM & IIoT",
-          title: "DigiTwins Factory",
-          subtitle: "Akıllı Üretim & Hat İkizi",
+          id: "micro",
+          tag: "MİKRO ÖLÇEK",
+          title: "Yapılar & Operasyonel Tesisler",
+          subtitle: "Binalar, Tesisler & Fiziksel Varlıklar",
+          description:
+            "Binaların, tesislerin ve kapalı alanların canlı IoT sensörleri ile dijital takibi ve simülasyonu.",
           features: [
-            "Gerçek zamanlı OEE verimlilik takibi",
-            "Kestirimci bakım (Predictive)",
-            "Sanal devreye alma (Commissioning)",
+            "Fiziksel Varlık ve Tesis 3D Modellemesi",
+            "Canlı IoT & Sensör Telemetri Entegrasyonu",
+            "Kestirimci Bakım & Süreç Optimizasyonu",
           ],
-          metricLabel: "Tesis OEE Oranı",
-          metricValue: "95.8%",
-          metricSub: "Plansız duruşlar -%38",
+          widgetTitle: "CANLI TESİS İZLEME",
+          widgetStatus: "AKTİF",
+          metric1Label: "Yönetilen Bina & Tesis",
+          metric1Value: "82 Tesis",
+          metric2Label: "Sensör Verimliliği",
+          metric2Value: "96.2%",
+          btnText: "Mikro İkiz Demosu",
         },
         {
-          id: "rd",
-          badge: "R&D TRANSFER",
-          title: "DigiTwins R&D",
-          subtitle: "Sanayi-Akademi İş Birliği",
+          id: "xr",
+          tag: "ETKİLEŞİM ÖLÇEĞİ",
+          title: "İnsan, Simülasyon & Deneyim",
+          subtitle: "Süreçler, Eğitim & Sanal Deneyim",
+          description:
+            "Eğitim, simülasyon, oryantasyon ve 3D etkileşimli veri deneyimi ortamları.",
           features: [
-            "Üniversite — Fabrika doğrudan köprüsü",
-            "3D sanal prototipleme ve test",
-            "Patent ve fikri mülkiyet ticarileştirme",
+            "Sanal & Artırılmış Gerçeklik (XR) Simülasyonu",
+            "Etkileşimli Süreç ve Senaryo Modelleme",
+            "Dijital Yetkinlik ve Deneyim Yönetimi",
           ],
-          metricLabel: "Transfer Edilen",
-          metricValue: "24+ Proje",
-          metricSub: "8 partner üniversite ile",
-        },
-        {
-          id: "education",
-          badge: "EĞİTİM & VR",
-          title: "DigiTwins Education",
-          subtitle: "VR Trenajör & Akademi",
-          features: [
-            "İSG iş güvenliği VR sistemleri",
-            "Operatör sanal trenajörü",
-            "Uluslararası ISO/OSHA sertifikasyon",
-          ],
-          metricLabel: "Eğitilen Personel",
-          metricValue: "4,500+",
-          metricSub: "%98.4 başarı sertifikasyon oranı",
+          widgetTitle: "SİMÜLASYON & XR",
+          widgetStatus: "HAZIR",
+          metric1Label: "Aktif Kullanıcı",
+          metric1Value: "18,400+",
+          metric2Label: "Simülatör Modülü",
+          metric2Value: "54 Hazır İkiz",
+          btnText: "Etkileşim Demosu",
         },
       ],
     },
-    techLayersSection: {
-      tag: "TEKNOLOJİK KATMAN",
-      title: "4 katmanlı derin mühendislik mimarisi",
-      description: "Fiziksel sahadan toplanan telemetri verisini 3D model ve canlı simülasyona dönüştüren zincir.",
-      stepPrefix: "KATMAN",
+    greenCarbonSection: {
+      badge: "GREEN CARBON AI & ESG INTEGRATION",
+      title1: "Yeşil Dijital İkiz ve",
+      title2: "Karbon Ayak İzi Yönetimi",
+      description:
+        "GreenCarbonAI (greencarbonai.com) entegrasyonu ile tesis ve yapıların enerji tüketimini ve karbon emisyonunu dijital ikiz üzerinde izliyoruz.",
+      f1: "Canlı Karbon & Su Ayak İzi Raporlama",
+      f2: "AB SKDM & ESG Uyum Standartları",
+      f3: "Enerji Verimliliği & Isı Haritalama",
+      f4: "Yeşil Pasaport & Sürdürülebilirlik Sertifikası",
+      boxLabel: "CANLI KARBON NÖTR DÜZEYİ",
+      boxValue: "94.8%",
+      boxSub: "Optimizasyon Aktif",
+      boxBtn: "Green Carbon Modülü Ekle",
+    },
+    techSection: {
+      badge: "TEKNOLOJİ KATMANI",
+      title: "4 Adımda Mekansal İkiz Mimarisi",
+      subtitle:
+        "Sensörden dijital ikize, simülasyondan analitik karar desteğe kadar bütünleşik sistem katmanı.",
+      stepPrefix: "0",
       layers: [
         {
-          step: "01",
-          title: "IoT & Telemetri Katmanı",
-          description: "Endüstriyel PLC, sayaç ve sensörlerden şifreli veri akışı.",
-          tags: ["MQTT / OPC-UA", "Sensors", "Edge"],
+          step: "1",
+          title: "IoT & Sensör Katmanı",
+          description:
+            "Saha, tesis ve altyapıdaki fiziksel sensörlerden canlı telemetri verilerinin toplanması.",
+          tag: "Wi-Fi / MQTT / Sensör",
         },
         {
-          step: "02",
-          title: "Mekansal GIS Modelleme",
-          description: "Fabrika yerleşimi ve arazi verisinin 3D koordinatlara aktarımı.",
-          tags: ["BIM", "GIS Spatial", "Point Cloud"],
+          step: "2",
+          title: "Dijital İkiz Geliştirme",
+          description:
+            "Altyapı verilerinin yüksek hassasiyetli mekansal modellemesi ve 3D ikiz geliştirme.",
+          tag: "3D Mekansal / Point Cloud",
         },
         {
-          step: "03",
-          title: "Canlı Simülasyon",
-          description: "Fiziksel olayların sanal ortamda eşzamanlı canlandırılması.",
-          tags: ["Physics Engine", "Real-Time Sync"],
+          step: "3",
+          title: "Dijital İkiz Simülasyonu",
+          description:
+            "Fiziksel varlıkların sanal ortamda canlı modelleri, süreç takibi ve simülasyonları.",
+          tag: "XR / Simülasyon Motoru",
         },
         {
-          step: "04",
-          title: "Yapay Zeka & Analitik",
-          description: "Kestirimci bakım ve anomali tespiti.",
-          tags: ["Predictive Analytics", "Anomaly Detection"],
+          step: "4",
+          title: "Karar Destek & Analitik",
+          description:
+            "Veriye dayalı optimizasyon, kestirimci bakım ve üst düzey yönetim analitiği.",
+          tag: "Kestirimci Analitik",
         },
       ],
     },
-    telemetrySection: {
-      tag: "CANLI SİSTEM",
-      title: "Gerçek zamanlı telemetri göstergeleri",
-      description: "Saha, fabrika ve eğitim simülasyonlarından gelen anlık telemetri akışı.",
-      liveBadge: "CANLI AĞ",
-      refreshNote: "Otomatik güncellenir",
-      tile1Title: "SAHA & OSB (INDUSTRY)",
-      tile1Sub: "1,240 Ha · 48 parsel",
-      tile1FootLabel: "Gecikme (ping):",
-      tile2Title: "ÜRETİM OEE (FACTORY)",
-      tile2Sub: "Ekipman Verimlilik Oranı",
-      tile2FootLabel: "Plansız duruş:",
-      tile2FootValue: "0 dk",
-      tile3Title: "R&D TECHTRANSFER",
-      tile3Sub: "8 Partner Üniversite & Lab",
-      tile3FootLabel: "Ticarileşme:",
-      tile3FootValue: "%91.5 Başarı",
-      tile4Title: "VR EĞİTİM (EDUCATION)",
-      tile4Sub: "Eğitilen Sanayi Personeli",
-      tile4FootLabel: "Başarı testi:",
-      tile4FootValue: "%98.4",
-    },
     contactSection: {
-      tag: "İLETİŞİM",
-      title: "Teknik görüşme planlayalım",
-      description: "Sanayi sahanız, tesisiniz veya akademi projeniz için mühendislik ekibimizle görüşün.",
+      badge: "İLETİŞİM & MERKEZ",
+      title: "Fiziki Varlığınızı Dijital İkize Dönüştürün",
+      description:
+        "Araziler, tesisler, binalar ve tüm fiziki varlıkların dijital ikizi. Fiziksel mekanları dijital modellere dönüştürüyoruz.",
       officeLabel: "Genel Merkez",
-      officeValue: "Taşkent, Özbekistan",
-      emailLabel: "E-Posta",
+      officeValue: "Tashkent, Uzbekistan / İstanbul, Türkiye",
+      phoneLabel: "Telefon",
+      phoneValue: "+998 90 277 73 66",
       form: {
-        nameLabel: "Ad Soyad",
-        namePlaceholder: "Örn: Mehmet Yılmaz",
-        companyLabel: "Kurum / Şirket",
-        companyPlaceholder: "Şirketinizin Adı",
+        nameLabel: "Adınız ve Soyadınız",
+        namePlaceholder: "Jasur Rahimov",
+        orgLabel: "Şirket / Kurum Adı",
+        orgPlaceholder: "Tashkent Spatial Development",
         emailLabel: "E-Posta",
-        emailPlaceholder: "ornek@sirket.uz",
-        platformLabel: "İlgilendiğiniz Alan",
-        platformOptions: {
-          all: "Tüm Platformlar (Bütünleşik Grup)",
-          industry: "DigiTwins Industry (Saha & OSB)",
-          factory: "DigiTwins Factory (Üretim & IIoT)",
-          rd: "DigiTwins R&D (Sanayi-Akademi)",
-          education: "DigiTwins Education (Eğitim & VR)",
+        emailPlaceholder: "info@sirket.uz",
+        domainLabel: "İlgilendiğiniz Dönüşüm Katmanı",
+        domainOptions: {
+          all: "Tüm Dönüşüm Katmanları",
+          macro: "Mekansal & Coğrafi Varlıklar (Araziler, OSB & Altyapı)",
+          micro: "Tesisler & Yapı Kompleksleri (Fabrika, Binalar & Miras)",
+          xr: "Simülasyon, XR & Eğitim (Nara XR & Digital School)",
+          green: "Green Carbon AI (Karbon & Enerji)",
         },
-        messageLabel: "Proje Detayları",
-        messagePlaceholder: "Saha büyüklüğü, hat sayısı veya hedefler...",
-        submitBtn: "Talebi Gönder",
+        notesLabel: "Saha / Varlık Notları",
+        notesPlaceholder: "Saha büyüklüğü, lokasyon ve hedefleriniz...",
+        submitBtn: "Talep Gönder / Request Demo",
         submittingBtn: "Gönderiliyor...",
-        successMsg: "Talebiniz alındı! En kısa sürede dönüş yapacağız.",
+        successMsg:
+          "Teşekkürler! Talebiniz alındı. Uzmanlarımız en kısa sürede iletişime geçecektir.",
       },
     },
     demoModal: {
-      title: "Demo Görüşmesi İste",
-      subtitle: "DigiTwins platformunun canlı kabiliyetlerini sahanız için gösterelim.",
+      badge: "DIGITWINS PROJE TALEBİ",
+      title: "Fiziki Varlığınızı Dijitalleştirin",
       close: "Kapat",
-      phoneLabel: "Telefon veya Telegram",
-      submit: "Randevuyu Onayla",
+      nameLabel: "Adınız ve Soyadınız",
+      orgLabel: "Şirket / Kurum Adı",
+      domainLabel: "İlgilendiğiniz Dönüşüm Boyutu",
+      notesLabel: "Saha / Tesis Notları",
+      submitBtn: "Talep Gönder / Request Demo",
     },
     footer: {
-      tagline: "Sanayi, üretim, Ar-Ge ve eğitim için uçtan uca dijital ikiz grubu.",
+      description:
+        "Araziler, tesisler, binalar ve tüm fiziki varlıkların dijital ikizi. Fiziksel mekanları dijital modellere dönüştürüyoruz.",
+      dimensionsHeading: "DÖNÜŞÜM KATMANLARI",
+      contactHeading: "İLETİŞİM & MERKEZ",
+      phoneLabel: "Telefon",
+      phoneValue: "+998 90 277 73 66",
       rights: "Tüm hakları saklıdır.",
-      locations: "Taşkent · İstanbul · Global",
-      privacy: "Gizlilik",
-      terms: "Koşullar",
+      locations: "Tashkent, Uzbekistan / İstanbul, Türkiye",
+      privacy: "Gizlilik Politikası",
     },
   },
 
   // ============================================================
-  // ENGLISH (EN) - 100% Concise and Clean English
+  // ENGLISH (EN) - 100% Native English
   // ============================================================
   en: {
     nav: {
-      platforms: "Platforms",
-      techLayers: "Technology",
-      telemetry: "Telemetry",
+      system: "What We Do",
+      dimensions: "Transformation Layers",
+      greenCarbon: "Green Carbon",
+      tech: "Tech Stack",
       contact: "Contact",
       demoButton: "Request Demo",
     },
     hero: {
-      groupTag: "DEEP TECH & DIGITAL TWIN GROUP",
-      titleStart: "Unified digital twins for physical fields, production and",
-      titleHighlight: "industrial science",
-      titleEnd: ".",
+      badge: "SPATIAL DIGITIZATION ECOSYSTEM",
+      title1: "Digital Twin Services for",
+      title2: "Physical Spaces & Assets",
       description:
-        "An end-to-end ecosystem integrating industrial parks (Field & SEZ), smart manufacturing (IIoT), R&D tech transfer, and immersive VR training.",
-      ctaDemo: "Schedule Demo",
-      ctaPlatforms: "Explore Platforms",
-      statusActive: "System Online",
+        "We convert physical grounds, facilities, and structures into digital twins using 3D laser scanning, IoT sensors, and simulation engines. We integrate ready-made models or build custom spatial models on-site.",
+      tagAreas: "Macro / Geo-Spatial",
+      tagFacilities: "Micro / Structures",
+      tagXr: "Human & Interaction",
+      tagGreen: "Green Carbon",
+      btnMain: "Digitize Your Physical Asset",
+      btnSub: "Explore Transformation Layers",
+      canvasTelemetry: "Live Telemetry & GIS",
     },
-    stats: {
-      label1: "Core Verticals",
-      value1: "4 Pillars",
-      sub1: "Field, Factory, R&D, and Academy",
-      label2: "Footprint",
-      value2: "1,240+ Ha",
-      sub2: "Monitored industrial parks",
-      label3: "Model Fidelity",
-      value3: "99.4%",
-      sub3: "Simulation precision",
+    coreEngines: {
+      badge: "WHAT WE DO",
+      title: "Bridging Physical Spaces with Digital Models",
+      subtitle:
+        "We either integrate pre-built spatial assets or provide custom on-site 3D scanning, modeling, and telemetry integration.",
+      engine1Tag: "MODEL 1: PRE-BUILT TWIN LIBRARY",
+      engine1Title: "Ready-Made Digital Assets",
+      engine1Desc:
+        "Integrating pre-digitized spatial models, structural templates, and environments into the platform for rapid deployment.",
+      engine1Check: "Instant 3D & GIS Spatial Library Integration",
+      engine2Tag: "MODEL 2: ON-SITE DIGITIZATION SERVICE",
+      engine2Title: "Custom Digital Twin Development",
+      engine2Desc:
+        "Transforming non-digitized physical spaces, facilities, or structures via 3D scanning, photogrammetry, and IoT sensor setups.",
+      engine2Check: "Site Scanning, Sensor Integration & 3D Twin Modeling",
     },
-    twinExplorer: {
-      tabIndustry: "1. Industry (Field & SEZ)",
-      tabFactory: "2. Factory (Manufacturing)",
-      tabRd: "3. R&D (Industry-Academia)",
-      tabEducation: "4. Education (Training & VR)",
-      liveBadge: "Live System",
-      allocated: "Allocated",
-      available: "Available",
-      activeStatus: "ACTIVE",
-      // Industry
-      industryTitle: "Special Economic Zone (SEZ) — 3D GIS Spatial Twin",
-      industryDesc: "1,240 Hectares footprint, 48 industrial parcels and municipal utilities",
-      industryGis: "GIS: 41.2995° N, 69.2401° E",
-      parcel1Name: "Parcel A-01",
-      parcel1Desc: "Pharmaceutical Plant",
-      parcel2Name: "Parcel A-02",
-      parcel2Desc: "Machinery & Automation",
-      parcel3Name: "Parcel B-01",
-      parcel3Desc: "Textile Cluster",
-      parcel4Name: "Parcel B-02",
-      parcel4Desc: "Metal Fabrication Facility",
-      powerLabel: "Power Substation",
-      powerValue: "110/10 kV — 12 MW Reserve",
-      gasLabel: "Main Gas Pipeline",
-      gasValue: "0.6 MPa High Pressure",
-      legalLabel: "Zoning Incentives (SEZ)",
-      legalValue: "0% Customs / 10-Yr Tax Exemption",
-      // Factory
-      factoryTitle: "Smart Factory Production Line — SCADA & IIoT Telemetry",
-      factoryDesc: "Automated line flow, sensor telemetries, and live OEE optimization",
-      factoryOeeBadge: "OEE: 95.8% (Optimal)",
-      stage1Label: "STATION 01: RAW MATERIAL",
-      stage1Title: "Loading Infeed",
-      stage1Desc: "Sensor Temp: 42.1°C\nLoad: 88% Rated Power",
-      stage2Label: "STATION 02: ASSEMBLY",
-      stage2Title: "Robotic Welding",
-      stage2Desc: "Vibration: 1.1 mm/s\nCycle Time: 14.2 sec",
-      stage3Label: "STATION 03: QUALITY CONTROL",
-      stage3Title: "Optical Inspection",
-      stage3Desc: "Defect Rate: 0.02% (Minimum)\nThroughput: 1,840 units/hr",
-      factoryFooterProtocol: "Protocol: OPC-UA over TLS · PLC: Siemens S7-1500",
-      factoryFooterMaintenance: "Predictive Maintenance: Risk 0%",
-      // R&D
-      rdTitle: "Industry-Academia Tech Transfer Laboratory",
-      rdDesc: "Commercializing university scientific R&D through 3D simulation and production deployment",
-      rdBadge: "24+ Active Transfer Projects",
-      rdStage1Tag: "STAGE 01: ACADEMIC R&D",
-      rdStage1Title: "R&D & Patent Assets",
-      rdStage1Desc: "New materials, proprietary algorithms, and hardware architectures developed in university labs.",
-      rdStage1Partner: "Partners: 8 Leading Universities",
-      rdStage2Tag: "STAGE 02: DIGITAL TWIN",
-      rdStage2Title: "3D Virtual Prototyping",
-      rdStage2Desc: "Stress-testing under peak simulated workloads without expensive physical tooling.",
-      rdStage2Saving: "Cost Reduction: Up to 72% lower",
-      rdStage3Tag: "STAGE 03: PRODUCTION",
-      rdStage3Title: "Factory Integration",
-      rdStage3Desc: "Direct deployment of verified technologies onto production lines via DigiTwins Factory.",
-      rdStage3Speed: "Time to Market: 2.8x faster",
-      rdFooterModel: "Model: Intellectual Property (IP) Protection & Licensing",
-      rdFooterRate: "Commercialization Rate: 91.5% Success",
-      // Education
-      eduTitle: "Industrial Training Academy — VR Simulation & Skill Assessment",
-      eduDesc: "Zero-risk virtual simulations and certified skill assessment for industrial operators",
-      eduBadge: "4,500+ Certified Specialists",
-      eduCard1Tag: "HSE VR SYSTEM",
-      eduCard1Title: "Industrial Safety VR",
-      eduCard1Desc: "Immersive 1:1 drills for high voltage, fire safety, and emergency response procedures.",
-      eduCard1Metric: "Certification Rate: 99.1%",
-      eduCard2Tag: "MACHINE TWIN",
-      eduCard2Title: "Operator Simulator",
-      eduCard2Desc: "Digital twin training module for operating multi-million dollar machinery with zero risk.",
-      eduCard2Metric: "Learning Velocity: 3.4x faster",
-      eduCard3Tag: "COMPETENCY ANALYTICS",
-      eduCard3Title: "Digital Certification",
-      eduCard3Desc: "Real-time auditing of operator reaction times, error margins, and OSHA standard compliance.",
-      eduCard3Metric: "Standard: ISO 9001 / OSHA",
-      eduFooterCert: "Certification: International Industrial Standards",
-      eduFooterSafety: "Training Injury Risk: Absolute 0%",
-    },
-    platformsSection: {
-      tag: "SERVICES & VERTICALS",
-      title: "Four strategic digital twin platforms",
-      description: "Industrial zones, smart manufacturing, R&D transfer, and VR training.",
-      ctaBtn: "Request Demo",
-      activeBadge: "ACTIVE",
-      platforms: [
+    dimensionsSection: {
+      badge: "TRANSFORMATION LAYERS",
+      title: "Digital Twin Solutions Across 3 Scales",
+      subtitle:
+        "Working across geographical lands, facility structures, and interactive training simulations.",
+      items: [
         {
-          id: "industry",
-          badge: "FIELD & SEZ",
-          title: "DigiTwins Industry",
-          subtitle: "SEZs & 3D GIS Spatial Twin",
+          id: "macro",
+          tag: "MACRO SCALE",
+          title: "Geo-Spatial & Land Assets",
+          subtitle: "Lands, Terrains & Geographical Zones",
+          description:
+            "3D GIS mapping and spatial digital twin solutions for grounds, terrains, and infrastructure networks.",
           features: [
-            "3D parcel zoning & allocation",
-            "Utility (power, gas, water) telemetry",
-            "Transparent investor portal",
+            "3D GIS Topography & Land Mapping",
+            "Spatial Data Portal & Digital Allocation",
+            "Wide-Area Infrastructure & Spatial Analytics",
           ],
-          metricLabel: "Managed Area",
-          metricValue: "1,240 Ha",
-          metricSub: "3,850 telemetry nodes",
+          widgetTitle: "SPATIAL TELEMETRY",
+          widgetStatus: "LIVE",
+          metric1Label: "Mapped Area",
+          metric1Value: "2,450 Hectares",
+          metric2Label: "GIS Precision",
+          metric2Value: "< 2 cm",
+          btnText: "Request Macro Demo",
         },
         {
-          id: "factory",
-          badge: "MANUFACTURING",
-          title: "DigiTwins Factory",
-          subtitle: "Smart Manufacturing & IIoT",
+          id: "micro",
+          tag: "MICRO SCALE",
+          title: "Built Structures & Operations",
+          subtitle: "Buildings, Facilities & Physical Assets",
+          description:
+            "Live IoT sensor tracking, digital simulation, and operational tracking for physical structures and indoor spaces.",
           features: [
-            "Real-time OEE optimization",
-            "Predictive maintenance",
-            "Virtual commissioning",
+            "Physical Asset & Facility 3D Modeling",
+            "Live IoT & Sensor Telemetry Integration",
+            "Predictive Maintenance & Process Optimization",
           ],
-          metricLabel: "Plant OEE",
-          metricValue: "95.8%",
-          metricSub: "Downtime reduced by 38%",
+          widgetTitle: "FACILITY MONITORING",
+          widgetStatus: "ACTIVE",
+          metric1Label: "Managed Facilities",
+          metric1Value: "82 Facilities",
+          metric2Label: "Sensor Efficiency",
+          metric2Value: "96.2%",
+          btnText: "Request Micro Demo",
         },
         {
-          id: "rd",
-          badge: "R&D TRANSFER",
-          title: "DigiTwins R&D",
-          subtitle: "Industry-Academia Tech Transfer",
+          id: "xr",
+          tag: "INTERACTION SCALE",
+          title: "Human, Simulation & Experience",
+          subtitle: "Processes, Training & Virtual Experience",
+          description:
+            "Interactive 3D environments for training, simulation, orientation, and XR data experiences.",
           features: [
-            "University — Factory tech bridge",
-            "3D virtual prototyping & testing",
-            "Patent commercialization",
+            "Virtual & Augmented Reality (XR) Simulation",
+            "Interactive Process & Scenario Modeling",
+            "Digital Competency & Experience Management",
           ],
-          metricLabel: "Transfer Projects",
-          metricValue: "24+ Projects",
-          metricSub: "With 8 partner universities",
-        },
-        {
-          id: "education",
-          badge: "TRAINING & VR",
-          title: "DigiTwins Education",
-          subtitle: "VR Simulators & Academy",
-          features: [
-            "HSE industrial safety VR modules",
-            "Machinery operator digital twin",
-            "ISO / OSHA digital certification",
-          ],
-          metricLabel: "Trained Specialists",
-          metricValue: "4,500+",
-          metricSub: "98.4% certification pass rate",
+          widgetTitle: "SIMULATION & XR",
+          widgetStatus: "READY",
+          metric1Label: "Active Users",
+          metric1Value: "18,400+",
+          metric2Label: "Simulator Modules",
+          metric2Value: "54 Pre-built",
+          btnText: "Request Interaction Demo",
         },
       ],
     },
-    techLayersSection: {
-      tag: "ENGINEERING ARCHITECTURE",
-      title: "4-Layer Deep Tech Stack",
-      description: "Ingesting physical telemetry and converting it into accurate 3D spatial models and simulations.",
-      stepPrefix: "LAYER",
+    greenCarbonSection: {
+      badge: "GREEN CARBON AI & ESG INTEGRATION",
+      title1: "Green Digital Twin &",
+      title2: "Carbon Footprint Intelligence",
+      description:
+        "Integrated with GreenCarbonAI (greencarbonai.com) to track live energy consumption and carbon emissions on 3D spatial twins.",
+      f1: "Live Carbon & Water Footprint Reporting",
+      f2: "EU CBAM & ESG Compliance Standards",
+      f3: "Energy Efficiency & Thermal Heat Mapping",
+      f4: "Green Passport & Sustainability Certification",
+      boxLabel: "LIVE CARBON NEUTRAL LEVEL",
+      boxValue: "94.8%",
+      boxSub: "Optimization Active",
+      boxBtn: "Add Green Carbon Layer",
+    },
+    techSection: {
+      badge: "TECHNOLOGY STACK",
+      title: "4-Layer Spatial Architecture",
+      subtitle:
+        "From hardware sensors to 3D twins, XR simulation, and decision-support analytics.",
+      stepPrefix: "0",
       layers: [
         {
-          step: "01",
-          title: "IoT & Telemetry Ingestion",
-          description: "Secure data pipelines from industrial PLCs, meters, and sensors.",
-          tags: ["MQTT / OPC-UA", "Sensors", "Edge"],
+          step: "1",
+          title: "IoT & Sensor Layer",
+          description:
+            "Collecting real-time telemetry from physical IoT sensors across sites and infrastructure.",
+          tag: "Wi-Fi / MQTT / Sensors",
         },
         {
-          step: "02",
-          title: "Spatial & GIS Modeling",
-          description: "Sub-centimeter 3D spatial mapping of sites and assets.",
-          tags: ["BIM", "GIS Spatial", "Point Cloud"],
+          step: "2",
+          title: "Digital Twin Development",
+          description:
+            "High-precision spatial 3D modeling and digital twin asset construction.",
+          tag: "3D Spatial / Point Cloud",
         },
         {
-          step: "03",
-          title: "Real-Time Simulation",
-          description: "Mirroring physical machine dynamics under simulated stress.",
-          tags: ["Physics Engine", "Real-Time Sync"],
+          step: "3",
+          title: "Digital Twin Simulation",
+          description:
+            "Real-time virtual models, process tracking, and XR simulations.",
+          tag: "XR / Simulation Engine",
         },
         {
-          step: "04",
-          title: "AI Decision Support",
-          description: "Predicting equipment wear, energy waste, and anomalies.",
-          tags: ["Predictive Analytics", "Anomaly Detection"],
+          step: "4",
+          title: "Decision Support & Analytics",
+          description:
+            "Data-driven optimization, predictive maintenance, and executive reporting.",
+          tag: "Predictive Analytics",
         },
       ],
     },
-    telemetrySection: {
-      tag: "LIVE SYSTEM",
-      title: "Real-Time Telemetry Feed",
-      description: "Live operational telemetry across industrial zones, production lines, and training academies.",
-      liveBadge: "LIVE NETWORK",
-      refreshNote: "Auto-updating",
-      tile1Title: "FIELD & SEZ (INDUSTRY)",
-      tile1Sub: "1,240 Ha · 48 parcels",
-      tile1FootLabel: "Latency (ping):",
-      tile2Title: "PLANT OEE (FACTORY)",
-      tile2Sub: "Equipment Effectiveness Rate",
-      tile2FootLabel: "Unplanned downtime:",
-      tile2FootValue: "0 min",
-      tile3Title: "R&D TECHTRANSFER",
-      tile3Sub: "8 Partner Universities & Labs",
-      tile3FootLabel: "Commercialization:",
-      tile3FootValue: "91.5% Success",
-      tile4Title: "VR TRAINING (EDUCATION)",
-      tile4Sub: "Certified Industrial Specialists",
-      tile4FootLabel: "Certification rate:",
-      tile4FootValue: "98.4%",
-    },
     contactSection: {
-      tag: "CONTACT",
-      title: "Schedule an Engineering Consultation",
-      description: "Connect directly with our engineering team for deployment across your site, factory, or academy.",
+      badge: "GLOBAL HQ & CONTACT",
+      title: "Digitize Your Physical Asset",
+      description:
+        "Digital twins for grounds, facilities, buildings, and physical assets. We bridge physical spaces with digital models.",
       officeLabel: "Headquarters",
-      officeValue: "Tashkent, Uzbekistan",
-      emailLabel: "Email",
+      officeValue: "Tashkent, Uzbekistan / Istanbul, Türkiye",
+      phoneLabel: "Phone",
+      phoneValue: "+998 90 277 73 66",
       form: {
         nameLabel: "Full Name",
-        namePlaceholder: "e.g., Alex Johnson",
-        companyLabel: "Company / Organization",
-        companyPlaceholder: "Organization Name",
-        emailLabel: "Email Address",
-        emailPlaceholder: "name@company.com",
-        platformLabel: "Vertical of Interest",
-        platformOptions: {
-          all: "All Verticals (Unified Deep Tech Group)",
-          industry: "DigiTwins Industry (Field & SEZ)",
-          factory: "DigiTwins Factory (Manufacturing)",
-          rd: "DigiTwins R&D (Industry-Academia)",
-          education: "DigiTwins Education (Training & VR)",
+        namePlaceholder: "Jasur Rahimov",
+        orgLabel: "Company / Organization",
+        orgPlaceholder: "Tashkent Spatial Development",
+        emailLabel: "Email",
+        emailPlaceholder: "info@company.uz",
+        domainLabel: "Interested Layer",
+        domainOptions: {
+          all: "All Transformation Layers",
+          macro: "Macro / Geo-Spatial (Lands, SEZ & Utilities)",
+          micro: "Micro / Facilities (Factories, Buildings & Heritage)",
+          xr: "Interaction, XR & Training (Nara XR & Digital School)",
+          green: "Green Carbon AI (Carbon & Energy)",
         },
-        messageLabel: "Project Scope",
-        messagePlaceholder: "Site footprint, number of lines, or specific objectives...",
-        submitBtn: "Send Request",
+        notesLabel: "Asset / Site Notes",
+        notesPlaceholder: "Site footprint, location, and goals...",
+        submitBtn: "Submit Request / Request Demo",
         submittingBtn: "Submitting...",
-        successMsg: "Request received! Our team will contact you shortly.",
+        successMsg: "Thank you! Your request has been received.",
       },
     },
     demoModal: {
-      title: "Schedule Live Demo",
-      subtitle: "See how DigiTwins models and optimizes your physical operations.",
+      badge: "DIGITWINS PROJECT REQUEST",
+      title: "Digitize Your Physical Asset",
       close: "Close",
-      phoneLabel: "Phone or Telegram",
-      submit: "Confirm Request",
+      nameLabel: "Full Name",
+      orgLabel: "Company / Organization",
+      domainLabel: "Interested Transformation Dimension",
+      notesLabel: "Asset / Site Notes",
+      submitBtn: "Submit Request / Request Demo",
     },
     footer: {
-      tagline: "The deep tech group building digital twins for industry, manufacturing, R&D, and training.",
+      description:
+        "Digital twins for grounds, facilities, buildings, and physical assets. We bridge physical spaces with digital models.",
+      dimensionsHeading: "TRANSFORMATION LAYERS",
+      contactHeading: "GLOBAL HQ & CONTACT",
+      phoneLabel: "Phone",
+      phoneValue: "+998 90 277 73 66",
       rights: "All rights reserved.",
-      locations: "Tashkent · Istanbul · Global",
-      privacy: "Privacy",
-      terms: "Terms",
+      locations: "Tashkent, Uzbekistan / Istanbul, Türkiye",
+      privacy: "Privacy Policy",
     },
   },
 };

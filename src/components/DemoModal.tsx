@@ -21,17 +21,24 @@ export const DemoModal: React.FC<DemoModalProps> = ({
 }) => {
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
-  const [phone, setPhone] = useState('');
-  const [platform, setPlatform] = useState('all');
+  const [email, setEmail] = useState('');
+  const [domain, setDomain] = useState('all');
+  const [notes, setNotes] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (preselectedPlatform) {
-      if (preselectedPlatform.includes('Industry')) setPlatform('industry');
-      else if (preselectedPlatform.includes('Factory')) setPlatform('factory');
-      else if (preselectedPlatform.includes('R&D') || preselectedPlatform.includes('TechTransfer')) setPlatform('rd');
-      else if (preselectedPlatform.includes('Education')) setPlatform('education');
-      else setPlatform('all');
+      if (preselectedPlatform.toLowerCase().includes('macro') || preselectedPlatform.toLowerCase().includes('makro') || preselectedPlatform.toLowerCase().includes('arazi') || preselectedPlatform.toLowerCase().includes('land')) {
+        setDomain('macro');
+      } else if (preselectedPlatform.toLowerCase().includes('micro') || preselectedPlatform.toLowerCase().includes('mikro') || preselectedPlatform.toLowerCase().includes('tesis') || preselectedPlatform.toLowerCase().includes('facility')) {
+        setDomain('micro');
+      } else if (preselectedPlatform.toLowerCase().includes('xr') || preselectedPlatform.toLowerCase().includes('simülasyon') || preselectedPlatform.toLowerCase().includes('simulyatsiya') || preselectedPlatform.toLowerCase().includes('ta\'sir')) {
+        setDomain('xr');
+      } else if (preselectedPlatform.toLowerCase().includes('green') || preselectedPlatform.toLowerCase().includes('carbon') || preselectedPlatform.toLowerCase().includes('karbon') || preselectedPlatform.toLowerCase().includes('yashil')) {
+        setDomain('green');
+      } else {
+        setDomain('all');
+      }
     }
   }, [preselectedPlatform, isOpen]);
 
@@ -54,14 +61,15 @@ export const DemoModal: React.FC<DemoModalProps> = ({
       onSuccessToast(formContent.successMsg);
       setName('');
       setCompany('');
-      setPhone('');
+      setEmail('');
+      setNotes('');
     }, 700);
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/40 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className="relative w-full max-w-lg bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6"
+        className="relative w-full max-w-lg bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-5"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -74,19 +82,19 @@ export const DemoModal: React.FC<DemoModalProps> = ({
 
         {/* Header */}
         <div>
+          <div className="text-[10px] font-mono font-bold text-sky-700 uppercase tracking-widest mb-1">
+            {modalContent.badge}
+          </div>
           <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">
             {modalContent.title}
           </h3>
-          <p className="text-xs sm:text-sm text-zinc-500 mt-1">
-            {modalContent.subtitle}
-          </p>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4 text-sm">
+        <form onSubmit={handleSubmit} className="space-y-3.5 text-xs">
           <div>
-            <label className="block text-xs font-mono text-zinc-600 mb-1 font-medium">
-              {formContent.nameLabel}
+            <label className="block font-semibold text-zinc-800 mb-1">
+              {modalContent.nameLabel}
             </label>
             <input
               type="text"
@@ -94,67 +102,80 @@ export const DemoModal: React.FC<DemoModalProps> = ({
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder={formContent.namePlaceholder}
-              className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-sm focus:outline-none focus:border-sky-600 focus:bg-white transition-colors"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-xs focus:outline-hidden focus:border-sky-600 focus:bg-white transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono text-zinc-600 mb-1 font-medium">
-              {formContent.companyLabel}
+            <label className="block font-semibold text-zinc-800 mb-1">
+              {modalContent.orgLabel}
             </label>
             <input
               type="text"
               required
               value={company}
               onChange={(e) => setCompany(e.target.value)}
-              placeholder={formContent.companyPlaceholder}
-              className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-sm focus:outline-none focus:border-sky-600 focus:bg-white transition-colors"
+              placeholder={formContent.orgPlaceholder}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-xs focus:outline-hidden focus:border-sky-600 focus:bg-white transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono text-zinc-600 mb-1 font-medium">
-              {modalContent.phoneLabel}
+            <label className="block font-semibold text-zinc-800 mb-1">
+              {formContent.emailLabel}
             </label>
             <input
-              type="tel"
+              type="email"
               required
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="+998 90 123 45 67"
-              className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-sm focus:outline-none focus:border-sky-600 focus:bg-white font-mono transition-colors"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder={formContent.emailPlaceholder}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-xs focus:outline-hidden focus:border-sky-600 focus:bg-white font-mono transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono text-zinc-600 mb-1 font-medium">
-              {formContent.platformLabel}
+            <label className="block font-semibold text-zinc-800 mb-1">
+              {modalContent.domainLabel}
             </label>
             <select
-              value={platform}
-              onChange={(e) => setPlatform(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-sm focus:outline-none focus:border-sky-600 focus:bg-white transition-colors"
+              value={domain}
+              onChange={(e) => setDomain(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-xs focus:outline-hidden focus:border-sky-600 focus:bg-white transition-colors"
             >
-              <option value="all">{formContent.platformOptions.all}</option>
-              <option value="industry">{formContent.platformOptions.industry}</option>
-              <option value="factory">{formContent.platformOptions.factory}</option>
-              <option value="rd">{formContent.platformOptions.rd}</option>
-              <option value="education">{formContent.platformOptions.education}</option>
+              <option value="all">{formContent.domainOptions.all}</option>
+              <option value="macro">{formContent.domainOptions.macro}</option>
+              <option value="micro">{formContent.domainOptions.micro}</option>
+              <option value="xr">{formContent.domainOptions.xr}</option>
+              <option value="green">{formContent.domainOptions.green}</option>
             </select>
+          </div>
+
+          <div>
+            <label className="block font-semibold text-zinc-800 mb-1">
+              {modalContent.notesLabel}
+            </label>
+            <textarea
+              rows={2}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder={formContent.notesPlaceholder}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-xs focus:outline-hidden focus:border-sky-600 focus:bg-white transition-colors resize-none"
+            />
           </div>
 
           <div className="pt-2">
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-semibold text-sm transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              className="w-full py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-semibold text-xs transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
               <span>
                 {submitting
                   ? formContent.submittingBtn
-                  : modalContent.submit}
+                  : modalContent.submitBtn}
               </span>
-              <ArrowRight className="w-4 h-4 text-sky-400" />
+              <ArrowRight className="w-3.5 h-3.5 text-sky-400" />
             </button>
           </div>
         </form>

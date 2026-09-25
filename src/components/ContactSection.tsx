@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TranslationContent } from '../locales/translations';
-import { Mail, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
 
 interface ContactSectionProps {
   content: TranslationContent['contactSection'];
@@ -8,15 +8,15 @@ interface ContactSectionProps {
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ content }) => {
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     company: '',
     email: '',
-    platform: 'all',
-    message: '',
+    domain: 'all',
+    notes: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,202 +25,199 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ content }) => {
       setSubmitting(false);
       setSubmitted(true);
       setFormData({
-        name: '',
+        fullName: '',
         company: '',
         email: '',
-        platform: 'all',
-        message: '',
+        domain: 'all',
+        notes: '',
       });
-    }, 800);
+      setTimeout(() => setSubmitted(false), 6000);
+    }, 1000);
   };
 
   return (
-    <section id="aloqa" className="py-20 sm:py-24 relative border-t border-zinc-200/80 bg-white">
+    <section id="iletisim" className="py-16 sm:py-20 relative border-t border-zinc-200/80 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
+          <div className="inline-block text-xs font-mono font-bold tracking-widest text-sky-700 uppercase">
+            {content.badge}
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight">
+            {content.title}
+          </h2>
+          <p className="text-xs sm:text-sm text-zinc-600 font-normal leading-relaxed">
+            {content.description}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto">
           
-          {/* Left Info Column */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="inline-block text-xs font-mono font-bold tracking-widest text-sky-700 uppercase">
-              {content.tag}
-            </div>
-
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-              {content.title}
-            </h2>
-
-            <p className="text-zinc-600 text-sm sm:text-base leading-relaxed">
-              {content.description}
-            </p>
-
-            <div className="space-y-3 pt-3 text-sm text-zinc-700">
-              
-              <div className="flex items-start gap-4 p-4 rounded-xl bg-zinc-50 border border-zinc-200/80">
-                <div className="w-10 h-10 rounded-lg bg-white border border-zinc-200 flex items-center justify-center text-sky-600 shrink-0">
-                  <MapPin className="w-5 h-5" />
+          {/* Left: Contact Details Cards */}
+          <div className="lg:col-span-5 space-y-4">
+            
+            <div className="bg-zinc-50 rounded-2xl border border-zinc-200/80 p-5 shadow-2xs space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-xs font-mono text-zinc-500">
+                  <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
                     {content.officeLabel}
                   </div>
-                  <div className="font-semibold text-zinc-900 mt-0.5">
+                  <div className="text-xs font-semibold text-zinc-900 mt-0.5 leading-snug">
                     {content.officeValue}
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 rounded-xl bg-zinc-50 border border-zinc-200/80">
-                <div className="w-10 h-10 rounded-lg bg-white border border-zinc-200 flex items-center justify-center text-sky-600 shrink-0">
-                  <Mail className="w-5 h-5" />
+              <div className="flex items-start gap-3 pt-3 border-t border-zinc-200/60">
+                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <Phone className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-xs font-mono text-zinc-500">
-                    {content.emailLabel}
+                  <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
+                    {content.phoneLabel}
                   </div>
-                  <div className="font-semibold text-zinc-900 mt-0.5 font-mono">
-                    info@digitwins.uz
-                  </div>
+                  <a
+                    href="tel:+998902777366"
+                    className="text-xs font-semibold text-zinc-900 hover:text-emerald-700 hover:underline mt-0.5 block font-mono"
+                  >
+                    {content.phoneValue}
+                  </a>
                 </div>
               </div>
-
             </div>
+
+            {/* Quick Note Badge */}
+            <div className="p-4 rounded-xl bg-sky-50/60 border border-sky-200/80 text-xs text-sky-950 leading-relaxed font-mono">
+              <strong className="block text-sky-900 mb-1">Digitizing Physical Space:</strong>
+              LiDAR 3D scanning, IoT sensor grid, and real-time twin simulation across Tashkent & Istanbul operations.
+            </div>
+
           </div>
 
-          {/* Right Form Column */}
+          {/* Right: Interactive Form */}
           <div className="lg:col-span-7">
-            <div className="bg-zinc-50 border border-zinc-200/80 rounded-2xl p-7 sm:p-9 shadow-xs">
-              {submitted ? (
-                <div className="py-12 text-center space-y-4">
-                  <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mx-auto">
-                    <CheckCircle2 className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-bold text-zinc-900">
-                    {content.form.successMsg}
-                  </h3>
-                  <button
-                    onClick={() => setSubmitted(false)}
-                    className="text-xs font-mono text-sky-600 hover:underline pt-2 inline-block cursor-pointer"
-                  >
-                    Yangi xabar yuborish
-                  </button>
+            <form
+              onSubmit={handleSubmit}
+              className="bg-zinc-50/70 rounded-2xl border border-zinc-200/80 p-6 sm:p-7 shadow-2xs space-y-4"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                {/* Full Name */}
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-800 mb-1">
+                    {content.form.nameLabel}
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.fullName}
+                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                    placeholder={content.form.namePlaceholder}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-zinc-900 focus:outline-hidden focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition-colors shadow-2xs"
+                  />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-mono text-zinc-600 mb-1.5 font-medium">
-                        {content.form.nameLabel}
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder={content.form.namePlaceholder}
-                        value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
-                        className="w-full px-4 py-2.5 rounded-xl bg-white border border-zinc-200 text-zinc-900 text-sm focus:outline-none focus:border-sky-600 transition-colors"
-                      />
-                    </div>
 
-                    <div>
-                      <label className="block text-xs font-mono text-zinc-600 mb-1.5 font-medium">
-                        {content.form.companyLabel}
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder={content.form.companyPlaceholder}
-                        value={formData.company}
-                        onChange={(e) =>
-                          setFormData({ ...formData, company: e.target.value })
-                        }
-                        className="w-full px-4 py-2.5 rounded-xl bg-white border border-zinc-200 text-zinc-900 text-sm focus:outline-none focus:border-sky-600 transition-colors"
-                      />
-                    </div>
-                  </div>
+                {/* Company Name */}
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-800 mb-1">
+                    {content.form.orgLabel}
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    placeholder={content.form.orgPlaceholder}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-zinc-900 focus:outline-hidden focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition-colors shadow-2xs"
+                  />
+                </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-mono text-zinc-600 mb-1.5 font-medium">
-                        {content.form.emailLabel}
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        placeholder={content.form.emailPlaceholder}
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        className="w-full px-4 py-2.5 rounded-xl bg-white border border-zinc-200 text-zinc-900 text-sm focus:outline-none focus:border-sky-600 transition-colors"
-                      />
-                    </div>
+              </div>
 
-                    <div>
-                      <label className="block text-xs font-mono text-zinc-600 mb-1.5 font-medium">
-                        {content.form.platformLabel}
-                      </label>
-                      <select
-                        value={formData.platform}
-                        onChange={(e) =>
-                          setFormData({ ...formData, platform: e.target.value })
-                        }
-                        className="w-full px-4 py-2.5 rounded-xl bg-white border border-zinc-200 text-zinc-900 text-sm focus:outline-none focus:border-sky-600 transition-colors"
-                      >
-                        <option value="all">
-                          {content.form.platformOptions.all}
-                        </option>
-                        <option value="industry">
-                          {content.form.platformOptions.industry}
-                        </option>
-                        <option value="factory">
-                          {content.form.platformOptions.factory}
-                        </option>
-                        <option value="rd">
-                          {content.form.platformOptions.rd}
-                        </option>
-                        <option value="education">
-                          {content.form.platformOptions.education}
-                        </option>
-                      </select>
-                    </div>
-                  </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                {/* Email */}
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-800 mb-1">
+                    {content.form.emailLabel}
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder={content.form.emailPlaceholder}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-zinc-900 focus:outline-hidden focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition-colors shadow-2xs font-mono"
+                  />
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-mono text-zinc-600 mb-1.5 font-medium">
-                      {content.form.messageLabel}
-                    </label>
-                    <textarea
-                      rows={3}
-                      required
-                      placeholder={content.form.messagePlaceholder}
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      className="w-full px-4 py-2.5 rounded-xl bg-white border border-zinc-200 text-zinc-900 text-sm focus:outline-none focus:border-sky-600 transition-colors resize-none"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-semibold text-sm transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                {/* Domain Selector */}
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-800 mb-1">
+                    {content.form.domainLabel}
+                  </label>
+                  <select
+                    value={formData.domain}
+                    onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-zinc-900 focus:outline-hidden focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition-colors shadow-2xs"
                   >
-                    <span>
-                      {submitting
-                        ? content.form.submittingBtn
-                        : content.form.submitBtn}
-                    </span>
-                    <Send className="w-4 h-4 text-sky-400" />
-                  </button>
-                </form>
+                    <option value="all">{content.form.domainOptions.all}</option>
+                    <option value="macro">{content.form.domainOptions.macro}</option>
+                    <option value="micro">{content.form.domainOptions.micro}</option>
+                    <option value="xr">{content.form.domainOptions.xr}</option>
+                    <option value="green">{content.form.domainOptions.green}</option>
+                  </select>
+                </div>
+
+              </div>
+
+              {/* Notes */}
+              <div>
+                <label className="block text-xs font-semibold text-zinc-800 mb-1">
+                  {content.form.notesLabel}
+                </label>
+                <textarea
+                  rows={3}
+                  value={formData.notes}
+                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                  placeholder={content.form.notesPlaceholder}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-zinc-900 focus:outline-hidden focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition-colors shadow-2xs resize-none"
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-semibold text-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs disabled:opacity-50"
+              >
+                {submitting ? (
+                  <span>{content.form.submittingBtn}</span>
+                ) : (
+                  <>
+                    <Send className="w-3.5 h-3.5 text-sky-400" />
+                    <span>{content.form.submitBtn}</span>
+                  </>
+                )}
+              </button>
+
+              {/* Success Notification */}
+              {submitted && (
+                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-2 text-xs text-emerald-800 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>{content.form.successMsg}</span>
+                </div>
               )}
-            </div>
+
+            </form>
           </div>
 
         </div>
+
       </div>
     </section>
   );

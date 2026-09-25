@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { Language, translations } from './locales/translations';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { Platforms } from './components/Platforms';
+import { CoreEngines } from './components/CoreEngines';
+import { Dimensions } from './components/Dimensions';
+import { GreenCarbon } from './components/GreenCarbon';
 import { TechLayers } from './components/TechLayers';
-import { LiveTelemetry } from './components/LiveTelemetry';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { DemoModal } from './components/DemoModal';
@@ -46,8 +47,7 @@ export function App() {
     <div className="min-h-screen bg-[#F8F9FA] text-[#18181B] selection:bg-sky-600 selection:text-white flex flex-col justify-between relative">
       
       {/* Background Architectural Grid Pattern */}
-      <div className="fixed inset-0 bg-architectural-grid pointer-events-none z-0" />
-      <div className="fixed inset-0 ambient-light-glow pointer-events-none z-0" />
+      <div className="fixed inset-0 bg-architectural-grid pointer-events-none z-0 opacity-60" />
 
       {/* Navbar */}
       <Navbar
@@ -59,27 +59,36 @@ export function App() {
 
       {/* Main Content */}
       <main className="flex-grow relative z-10">
-        {/* Hero Section with TwinExplorer */}
+        
+        {/* 1. Hero Section with 3D Spatial Canvas */}
         <Hero
           heroContent={currentTranslation.hero}
-          statsContent={currentTranslation.stats}
           currentLang={lang}
           onOpenDemo={() => handleOpenDemo()}
         />
 
-        {/* 3 Unified Platforms (Industry, Factory, Education) */}
-        <Platforms
-          content={currentTranslation.platformsSection}
-          onOpenDemo={(pName) => handleOpenDemo(pName)}
+        {/* 2. Core Engines ("Nimalar Qilamiz? / Ne Yapıyoruz?") */}
+        <CoreEngines
+          content={currentTranslation.coreEngines}
+          onOpenDemo={(modName) => handleOpenDemo(modName)}
         />
 
-        {/* 4-Layer Engineering Architecture */}
-        <TechLayers content={currentTranslation.techLayersSection} />
+        {/* 3. Transformation Layers ("Transformatsiya Qatlamlari / Dönüşüm Katmanları") */}
+        <Dimensions
+          content={currentTranslation.dimensionsSection}
+          onOpenDemo={(dimName) => handleOpenDemo(dimName)}
+        />
 
-        {/* Live Telemetry Feed */}
-        <LiveTelemetry content={currentTranslation.telemetrySection} />
+        {/* 4. Green Carbon AI & ESG Section */}
+        <GreenCarbon
+          content={currentTranslation.greenCarbonSection}
+          onOpenDemo={(subj) => handleOpenDemo(subj)}
+        />
 
-        {/* Contact / Inquiry */}
+        {/* 5. 4-Layer Technology Stack Architecture */}
+        <TechLayers content={currentTranslation.techSection} />
+
+        {/* 6. Contact & Global HQ */}
         <ContactSection content={currentTranslation.contactSection} />
       </main>
 
