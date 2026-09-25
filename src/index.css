@@ -2,53 +2,59 @@
 
 @layer base {
   body {
-    background-color: #F8F9FA;
-    color: #18181B;
+    background-color: #030712;
+    color: #f3f4f6;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
   }
 }
 
-/* Subtle architectural paper texture & grid */
-.bg-architectural-grid {
-  background-size: 32px 32px;
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(0, 240, 255, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(0, 240, 255, 0.15);
+}
+
+.text-glow {
+  text-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 25px rgba(34, 197, 94, 0.4);
+}
+
+.bg-grid-pattern {
+  background-size: 50px 50px;
   background-image: 
-    linear-gradient(to right, rgba(24, 24, 27, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(24, 24, 27, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
 
-/* Subtle ambient warmth */
-.ambient-light-glow {
-  background: radial-gradient(circle at 50% 0%, rgba(2, 132, 199, 0.04) 0%, rgba(248, 249, 250, 0) 70%);
+.radial-gradient-overlay {
+  background: radial-gradient(circle at 50% 20%, rgba(14, 165, 233, 0.12) 0%, rgba(3, 7, 18, 0.98) 75%);
 }
 
-/* Minimalist light surface card */
-.light-card {
-  background: #FFFFFF;
-  border: 1px solid #E4E4E7;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
-}
-
-.light-card-hover {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.light-card-hover:hover {
-  border-color: #CBD5E1;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
-  transform: translateY(-2px);
-}
-
-/* Custom minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F8F9FA;
+  background: #030712;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D4D4D8;
-  border-radius: 3px;
+  background: #1e293b;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #A1A1AA;
+  background: #0284c7;
 }

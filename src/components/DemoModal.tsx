@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TranslationContent } from '../locales/translations';
-import { X, ArrowRight } from 'lucide-react';
+import { X } from 'lucide-react';
 
 interface DemoModalProps {
   isOpen: boolean;
@@ -14,30 +14,28 @@ interface DemoModalProps {
 export const DemoModal: React.FC<DemoModalProps> = ({
   isOpen,
   onClose,
-  preselectedPlatform = 'all',
+  preselectedPlatform = '',
   modalContent,
   formContent,
   onSuccessToast,
 }) => {
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
-  const [email, setEmail] = useState('');
-  const [domain, setDomain] = useState('all');
+  const [domain, setDomain] = useState('macro');
   const [notes, setNotes] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (preselectedPlatform) {
-      if (preselectedPlatform.toLowerCase().includes('macro') || preselectedPlatform.toLowerCase().includes('makro') || preselectedPlatform.toLowerCase().includes('arazi') || preselectedPlatform.toLowerCase().includes('land')) {
+      const p = preselectedPlatform.toLowerCase();
+      if (p.includes('macro') || p.includes('makro') || p.includes('arazi') || p.includes('mekansal')) {
         setDomain('macro');
-      } else if (preselectedPlatform.toLowerCase().includes('micro') || preselectedPlatform.toLowerCase().includes('mikro') || preselectedPlatform.toLowerCase().includes('tesis') || preselectedPlatform.toLowerCase().includes('facility')) {
+      } else if (p.includes('micro') || p.includes('mikro') || p.includes('tesis') || p.includes('yapı') || p.includes('bina')) {
         setDomain('micro');
-      } else if (preselectedPlatform.toLowerCase().includes('xr') || preselectedPlatform.toLowerCase().includes('simülasyon') || preselectedPlatform.toLowerCase().includes('simulyatsiya') || preselectedPlatform.toLowerCase().includes('ta\'sir')) {
+      } else if (p.includes('xr') || p.includes('simülasyon') || p.includes('simulyatsiya') || p.includes('etkileşim') || p.includes('ta\'sir')) {
         setDomain('xr');
-      } else if (preselectedPlatform.toLowerCase().includes('green') || preselectedPlatform.toLowerCase().includes('carbon') || preselectedPlatform.toLowerCase().includes('karbon') || preselectedPlatform.toLowerCase().includes('yashil')) {
+      } else if (p.includes('green') || p.includes('carbon') || p.includes('karbon') || p.includes('yashil')) {
         setDomain('green');
-      } else {
-        setDomain('all');
       }
     }
   }, [preselectedPlatform, isOpen]);
@@ -61,39 +59,39 @@ export const DemoModal: React.FC<DemoModalProps> = ({
       onSuccessToast(formContent.successMsg);
       setName('');
       setCompany('');
-      setEmail('');
       setNotes('');
-    }, 700);
+    }, 600);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/40 backdrop-blur-xs animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-in fade-in duration-200">
       <div
-        className="relative w-full max-w-lg bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-5"
+        className="glass-panel w-full max-w-lg rounded-2xl border border-[#00f0ff]/40 p-6 space-y-6 relative shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-zinc-100 text-zinc-500 hover:text-zinc-900 flex items-center justify-center transition-colors border border-zinc-200 cursor-pointer"
+          className="absolute top-4 right-4 text-slate-400 hover:text-white text-lg p-1 cursor-pointer transition-colors"
+          aria-label={modalContent.close}
         >
-          <X className="w-4 h-4" />
+          <X className="w-5 h-5" />
         </button>
 
         {/* Header */}
         <div>
-          <div className="text-[10px] font-mono font-bold text-sky-700 uppercase tracking-widest mb-1">
+          <div className="text-xs font-mono text-[#00f0ff] font-bold">
             {modalContent.badge}
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">
+          <h3 className="text-2xl font-bold text-white mt-1">
             {modalContent.title}
           </h3>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-3.5 text-xs">
+        <form onSubmit={handleSubmit} className="space-y-4 text-xs font-mono">
           <div>
-            <label className="block font-semibold text-zinc-800 mb-1">
+            <label className="block text-slate-300 mb-1 font-semibold">
               {modalContent.nameLabel}
             </label>
             <input
@@ -101,13 +99,13 @@ export const DemoModal: React.FC<DemoModalProps> = ({
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder={formContent.namePlaceholder}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-xs focus:outline-hidden focus:border-sky-600 focus:bg-white transition-colors"
+              placeholder="Jasur Rahimov"
+              className="w-full bg-[#0f172a] border border-[#1e293b] rounded-lg p-3 text-white focus:outline-none focus:border-[#00f0ff] transition-colors"
             />
           </div>
 
           <div>
-            <label className="block font-semibold text-zinc-800 mb-1">
+            <label className="block text-slate-300 mb-1 font-semibold">
               {modalContent.orgLabel}
             </label>
             <input
@@ -115,35 +113,20 @@ export const DemoModal: React.FC<DemoModalProps> = ({
               required
               value={company}
               onChange={(e) => setCompany(e.target.value)}
-              placeholder={formContent.orgPlaceholder}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-xs focus:outline-hidden focus:border-sky-600 focus:bg-white transition-colors"
+              placeholder="Tashkent Spatial Development"
+              className="w-full bg-[#0f172a] border border-[#1e293b] rounded-lg p-3 text-white focus:outline-none focus:border-[#00f0ff] transition-colors"
             />
           </div>
 
           <div>
-            <label className="block font-semibold text-zinc-800 mb-1">
-              {formContent.emailLabel}
-            </label>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={formContent.emailPlaceholder}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-xs focus:outline-hidden focus:border-sky-600 focus:bg-white font-mono transition-colors"
-            />
-          </div>
-
-          <div>
-            <label className="block font-semibold text-zinc-800 mb-1">
+            <label className="block text-slate-300 mb-1 font-semibold">
               {modalContent.domainLabel}
             </label>
             <select
               value={domain}
               onChange={(e) => setDomain(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-xs focus:outline-hidden focus:border-sky-600 focus:bg-white transition-colors"
+              className="w-full bg-[#0f172a] border border-[#1e293b] rounded-lg p-3 text-white focus:outline-none focus:border-[#00f0ff] transition-colors"
             >
-              <option value="all">{formContent.domainOptions.all}</option>
               <option value="macro">{formContent.domainOptions.macro}</option>
               <option value="micro">{formContent.domainOptions.micro}</option>
               <option value="xr">{formContent.domainOptions.xr}</option>
@@ -152,32 +135,27 @@ export const DemoModal: React.FC<DemoModalProps> = ({
           </div>
 
           <div>
-            <label className="block font-semibold text-zinc-800 mb-1">
+            <label className="block text-slate-300 mb-1 font-semibold">
               {modalContent.notesLabel}
             </label>
             <textarea
-              rows={2}
+              rows={3}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder={formContent.notesPlaceholder}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 text-xs focus:outline-hidden focus:border-sky-600 focus:bg-white transition-colors resize-none"
+              className="w-full bg-[#0f172a] border border-[#1e293b] rounded-lg p-3 text-white focus:outline-none focus:border-[#00f0ff] transition-colors resize-none"
             />
           </div>
 
-          <div className="pt-2">
-            <button
-              type="submit"
-              disabled={submitting}
-              className="w-full py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-semibold text-xs transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
-            >
-              <span>
-                {submitting
-                  ? formContent.submittingBtn
-                  : modalContent.submitBtn}
-              </span>
-              <ArrowRight className="w-3.5 h-3.5 text-sky-400" />
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={submitting}
+            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#0ea5e9] to-[#00f0ff] text-white font-bold hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-50"
+          >
+            <span>
+              {submitting ? formContent.submittingBtn : modalContent.submitBtn}
+            </span>
+          </button>
         </form>
       </div>
     </div>

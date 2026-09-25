@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { TranslationContent, DimensionItem } from '../locales/translations';
-import { Globe, Building, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Globe, Building, Glasses, Check, ArrowRight } from 'lucide-react';
 
 interface DimensionsProps {
   content: TranslationContent['dimensionsSection'];
@@ -8,127 +8,188 @@ interface DimensionsProps {
 }
 
 export const Dimensions: React.FC<DimensionsProps> = ({ content, onOpenDemo }) => {
-  const getIcon = (id: string) => {
-    switch (id) {
-      case 'macro':
-        return <Globe className="w-5 h-5 text-sky-700" />;
-      case 'micro':
-        return <Building className="w-5 h-5 text-blue-700" />;
-      case 'xr':
-        return <Sparkles className="w-5 h-5 text-purple-700" />;
-      default:
-        return <Globe className="w-5 h-5 text-sky-700" />;
-    }
-  };
+  const [oeeVal, setOeeVal] = useState('96.2%');
 
-  const getBadgeStyle = (id: string) => {
+  // Live telemetry fluctuation effect matching HTML
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const val = (95.2 + Math.random() * 1.4).toFixed(1);
+      setOeeVal(`${val}%`);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const getDimConfig = (id: string) => {
     switch (id) {
       case 'macro':
-        return 'bg-sky-50 text-sky-800 border-sky-200';
+        return {
+          borderTop: 'border-t-[#00f0ff]',
+          iconBg: 'bg-[#00f0ff]/10 border-[#00f0ff]/30 text-[#00f0ff]',
+          tagBorder: 'border-[#00f0ff]/30 bg-[#00f0ff]/10 text-[#00f0ff]',
+          hoverTitle: 'group-hover:text-[#00f0ff]',
+          checkColor: 'text-[#00f0ff]',
+          statusColor: 'text-[#00f0ff]',
+          metricColor: 'text-[#00f0ff]',
+          btnStyle: 'hover:bg-[#00f0ff]/20 text-[#00f0ff] border-[#00f0ff]/40',
+          icon: <Globe className="w-6 h-6" />,
+        };
       case 'micro':
-        return 'bg-blue-50 text-blue-800 border-blue-200';
+        return {
+          borderTop: 'border-t-[#f59e0b]',
+          iconBg: 'bg-[#f59e0b]/10 border-[#f59e0b]/30 text-[#f59e0b]',
+          tagBorder: 'border-[#f59e0b]/30 bg-[#f59e0b]/10 text-[#f59e0b]',
+          hoverTitle: 'group-hover:text-[#f59e0b]',
+          checkColor: 'text-[#f59e0b]',
+          statusColor: 'text-[#f59e0b]',
+          metricColor: 'text-[#f59e0b]',
+          btnStyle: 'hover:bg-[#f59e0b]/20 text-[#f59e0b] border-[#f59e0b]/40',
+          icon: <Building className="w-6 h-6" />,
+        };
       case 'xr':
-        return 'bg-purple-50 text-purple-800 border-purple-200';
       default:
-        return 'bg-zinc-100 text-zinc-800 border-zinc-200';
+        return {
+          borderTop: 'border-t-[#a855f7]',
+          iconBg: 'bg-[#a855f7]/10 border-[#a855f7]/30 text-[#a855f7]',
+          tagBorder: 'border-[#a855f7]/30 bg-[#a855f7]/10 text-[#a855f7]',
+          hoverTitle: 'group-hover:text-[#a855f7]',
+          checkColor: 'text-[#a855f7]',
+          statusColor: 'text-[#a855f7]',
+          metricColor: 'text-[#a855f7]',
+          btnStyle: 'hover:bg-[#a855f7]/20 text-[#a855f7] border-[#a855f7]/40',
+          icon: <Glasses className="w-6 h-6" />,
+        };
     }
   };
 
   return (
-    <section id="dijital-boyutlar" className="py-16 sm:py-20 relative border-t border-zinc-200/80 bg-white">
+    <section id="dijital-boyutlar" className="py-20 relative z-10 border-t border-[#1e293b]/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-          <div className="inline-block text-xs font-mono font-bold tracking-widest text-sky-700 uppercase">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <h2 className="text-xs font-mono font-bold tracking-widest text-[#00f0ff] uppercase">
             {content.badge}
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight">
-            {content.title}
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-600 font-normal leading-relaxed">
+          <p className="text-3xl sm:text-4xl font-extrabold text-white">
+            {content.title}
+          </p>
+          <p className="text-slate-400 text-sm">
             {content.subtitle}
           </p>
         </div>
 
-        {/* 3 Unified Dimension Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {content.items.map((item: DimensionItem) => (
-            <div
-              key={item.id}
-              className="bg-zinc-50/60 rounded-2xl border border-zinc-200/80 p-6 flex flex-col justify-between hover:border-zinc-300 transition-all shadow-2xs hover:shadow-md"
-            >
-              <div className="space-y-4">
-                
-                {/* Header with Icon and Tag */}
-                <div className="flex items-center justify-between">
-                  <span className={`text-[10px] font-mono font-bold tracking-wider px-2.5 py-1 rounded-md border ${getBadgeStyle(item.id)} uppercase`}>
-                    {item.tag}
-                  </span>
-                  <div className="w-8 h-8 rounded-lg bg-white border border-zinc-200/70 flex items-center justify-center">
-                    {getIcon(item.id)}
-                  </div>
-                </div>
-
-                {/* Title and Description */}
-                <div>
-                  <h3 className="text-base font-bold text-zinc-950 tracking-tight">
-                    {item.title}
-                  </h3>
-                  <div className="text-xs font-medium text-sky-800 mt-0.5">
-                    {item.subtitle}
-                  </div>
-                  <p className="text-xs text-zinc-600 font-normal leading-relaxed mt-2">
-                    {item.description}
-                  </p>
-                </div>
-
-                {/* Bullet Points */}
-                <div className="space-y-1.5 pt-1">
-                  {item.features.map((f, i) => (
-                    <div key={i} className="flex items-start gap-2 text-zinc-700">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-sky-600 shrink-0 mt-0.5" />
-                      <span className="text-[11px] leading-tight">{f}</span>
+        {/* 3 Dimension Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {content.items.map((item: DimensionItem) => {
+            const cfg = getDimConfig(item.id);
+            return (
+              <div
+                key={item.id}
+                className={`glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border-t-2 ${cfg.borderTop} relative overflow-hidden group`}
+              >
+                <div className="space-y-5">
+                  
+                  {/* Top Bar with Icon and Tag */}
+                  <div className="flex items-center justify-between">
+                    <div className={`w-12 h-12 rounded-xl border flex items-center justify-center text-2xl ${cfg.iconBg}`}>
+                      {cfg.icon}
                     </div>
-                  ))}
-                </div>
-
-                {/* Telemetry / Live Status Box */}
-                <div className="p-3 rounded-xl bg-white border border-zinc-200/70 font-mono text-xs shadow-2xs">
-                  <div className="flex items-center justify-between text-zinc-500 text-[10px] mb-1.5">
-                    <span>{item.widgetTitle}</span>
-                    <span className="text-emerald-700 font-bold flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      {item.widgetStatus}
+                    <span className={`px-2.5 py-1 rounded border font-mono text-xs font-bold ${cfg.tagBorder}`}>
+                      {item.tag}
                     </span>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 pt-1 border-t border-zinc-100">
-                    <div>
-                      <div className="text-[10px] text-zinc-500">{item.metric1Label}</div>
-                      <div className="text-sm font-bold text-zinc-900">{item.metric1Value}</div>
-                    </div>
-                    <div>
-                      <div className="text-[10px] text-zinc-500">{item.metric2Label}</div>
-                      <div className="text-sm font-bold text-sky-700">{item.metric2Value}</div>
-                    </div>
+
+                  {/* Title & Subtitle */}
+                  <div>
+                    <h3 className={`text-2xl font-bold text-white transition-colors ${cfg.hoverTitle}`}>
+                      {item.title}
+                    </h3>
+                    <p className="text-xs font-mono text-slate-400 mt-1">
+                      {item.subtitle}
+                    </p>
                   </div>
+
+                  {/* Description */}
+                  <p className="text-slate-300 text-sm leading-relaxed">
+                    {item.description}
+                  </p>
+
+                  {/* Feature Checkpoints */}
+                  <div className="space-y-2 pt-2 text-xs font-medium text-slate-300 border-t border-[#1e293b]/60">
+                    {item.features.map((f, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <Check className={`w-4 h-4 shrink-0 ${cfg.checkColor}`} />
+                        <span>{f}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Live Mini Telemetry Widget */}
+                  <div className="p-4 rounded-xl bg-[#090d16] border border-[#1e293b] font-mono text-xs space-y-3">
+                    <div className="flex items-center justify-between text-slate-400 text-[11px] border-b border-[#1e293b] pb-2">
+                      <span>{item.widgetTitle}</span>
+                      <span className={`font-bold ${cfg.statusColor}`}>
+                        {item.widgetStatus}
+                      </span>
+                    </div>
+
+                    {item.id === 'macro' && (
+                      <div className="grid grid-cols-2 gap-2 text-center">
+                        <div className="bg-[#0f172a] p-2 rounded border border-[#1e293b]">
+                          <div className="text-slate-400 text-[10px]">{item.metric1Label}</div>
+                          <div className="text-white font-bold text-sm">{item.metric1Value}</div>
+                        </div>
+                        <div className="bg-[#0f172a] p-2 rounded border border-[#1e293b]">
+                          <div className="text-slate-400 text-[10px]">{item.metric2Label}</div>
+                          <div className="text-[#00f0ff] font-bold text-sm">{item.metric2Value}</div>
+                        </div>
+                      </div>
+                    )}
+
+                    {item.id === 'micro' && (
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="text-slate-400 text-[10px]">{item.metric1Label}</div>
+                          <div className="text-white font-bold text-sm">{item.metric1Value}</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-slate-400 text-[10px]">{item.metric2Label}</div>
+                          <div className="text-[#f59e0b] font-bold text-sm">{oeeVal}</div>
+                        </div>
+                      </div>
+                    )}
+
+                    {item.id === 'xr' && (
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="text-slate-400 text-[10px]">{item.metric1Label}</div>
+                          <div className="text-white font-bold text-sm">{item.metric1Value}</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-slate-400 text-[10px]">{item.metric2Label}</div>
+                          <div className="text-[#a855f7] font-bold text-sm">{item.metric2Value}</div>
+                        </div>
+                      </div>
+                    )}
+
+                  </div>
+
+                </div>
+
+                {/* Bottom CTA Button */}
+                <div className="pt-6">
+                  <button
+                    onClick={() => onOpenDemo(item.title)}
+                    className={`w-full py-3 rounded-xl bg-[#0f172a] border font-semibold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${cfg.btnStyle}`}
+                  >
+                    <span>{item.btnText}</span>
+                    <ArrowRight className="w-4 h-4 text-xs" />
+                  </button>
                 </div>
 
               </div>
-
-              {/* Action Button */}
-              <div className="pt-5">
-                <button
-                  onClick={() => onOpenDemo(item.title)}
-                  className="w-full py-2.5 rounded-xl bg-zinc-100 hover:bg-zinc-900 text-zinc-800 hover:text-white border border-zinc-200 hover:border-zinc-900 font-semibold text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-                >
-                  <span>{item.btnText}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>
