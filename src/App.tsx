@@ -4,8 +4,11 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { CoreEngines } from './components/CoreEngines';
 import { Dimensions } from './components/Dimensions';
-import { GreenCarbon } from './components/GreenCarbon';
+import { Events } from './components/Events';
 import { TechLayers } from './components/TechLayers';
+import { Partners } from './components/Partners';
+import { ShowcaseBanner } from './components/ShowcaseBanner';
+import { LegalGuide } from './components/LegalGuide';
 import { Footer } from './components/Footer';
 import { DemoModal } from './components/DemoModal';
 import { CheckCircle2 } from 'lucide-react';
@@ -68,27 +71,41 @@ export function App() {
         {/* 2. Core Engines ("Neler Yapıyoruz? / Nimalar Qilamiz?") */}
         <CoreEngines content={currentTranslation.coreEngines} />
 
-        {/* 3. Transformation Layers ("Dönüşüm Katmanları / Transformatsiya Qatlamlari") */}
+        {/* 3. Transformation Focus Dimensions ("Dönüşüm Odakları") */}
         <Dimensions
           content={currentTranslation.dimensionsSection}
           onOpenDemo={(dimTitle) => handleOpenDemo(dimTitle)}
         />
 
-        {/* 4. Green Carbon AI & ESG Section */}
-        <GreenCarbon
-          content={currentTranslation.greenCarbonSection}
-          onOpenDemo={(subj) => handleOpenDemo(subj)}
+        {/* 4. Summits & Field Events */}
+        <Events
+          content={currentTranslation.eventsSection}
+          onOpenDemo={(eventName) => handleOpenDemo(eventName)}
         />
 
         {/* 5. 4-Step Technology Stack Architecture */}
         <TechLayers content={currentTranslation.techSection} />
+
+        {/* 6. Partner Ecosystem */}
+        <Partners
+          content={currentTranslation.partnersSection}
+          onOpenDemo={(subject) => handleOpenDemo(subject)}
+        />
+
+        {/* 7. Featured Showcase & Sponsorship Banner */}
+        <ShowcaseBanner
+          content={currentTranslation.showcaseSection}
+          onOpenDemo={(subject) => handleOpenDemo(subject)}
+        />
+
+        {/* 8. Uzbekistan Digital Reforms & Legal Regulations */}
+        <LegalGuide content={currentTranslation.legalSection} />
 
       </main>
 
       {/* Footer */}
       <Footer
         content={currentTranslation.footer}
-        navContent={currentTranslation.nav}
       />
 
       {/* Demo Request Modal */}

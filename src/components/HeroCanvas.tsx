@@ -25,64 +25,76 @@ export const HeroCanvas: React.FC<HeroCanvasProps> = ({ telemetryLabel }) => {
     window.addEventListener('resize', resize);
     resize();
 
+    const points: Array<{ x: number; y: number; z: number; size: number }> = [];
+    for (let i = 0; i < 40; i++) {
+      points.push({
+        x: (Math.random() - 0.5) * 280,
+        y: (Math.random() - 0.5) * 180,
+        z: (Math.random() - 0.5) * 280,
+        size: Math.random() * 2 + 1,
+      });
+    }
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
-      const radius = Math.min(centerX, centerY) * 0.55;
 
-      rotationAngleRef.current += 0.006;
+      rotationAngleRef.current += 0.005;
       const rot = rotationAngleRef.current;
 
-      // Draw Wireframe Spatial Sphere
-      ctx.strokeStyle = 'rgba(0, 240, 255, 0.25)';
-      ctx.lineWidth = 1.2;
+      // Perspective wireframe ground grid
+      ctx.strokeStyle = 'rgba(0, 240, 255, 0.15)';
+      ctx.lineWidth = 1;
 
-      for (let i = -3; i <= 3; i++) {
+      for (let i = -150; i <= 150; i += 30) {
         ctx.beginPath();
-        const r = radius * Math.cos((i * Math.PI) / 8);
-        const y = centerY + radius * Math.sin((i * Math.PI) / 8);
-        ctx.ellipse(centerX, y, r, r * 0.35, rot, 0, Math.PI * 2);
+        ctx.moveTo(centerX + i, centerY + 80);
+        ctx.lineTo(centerX + i * 0.5, centerY - 60);
         ctx.stroke();
       }
 
-      for (let i = 0; i < 6; i++) {
-        ctx.beginPath();
-        const angle = rot + (i * Math.PI) / 3;
-        ctx.ellipse(centerX, centerY, radius, radius * 0.4, angle, 0, Math.PI * 2);
-        ctx.strokeStyle = i % 2 === 0 ? 'rgba(0, 240, 255, 0.35)' : 'rgba(34, 197, 94, 0.35)';
-        ctx.stroke();
+      // Projected 3D Nodes
+      const projected = points.map((p) => {
+        const cos = Math.cos(rot);
+        const sin = Math.sin(rot);
+        const rx = p.x * cos - p.z * sin;
+        const rz = p.x * sin + p.z * cos;
+
+        const scale = 300 / (300 + rz);
+        return {
+          x: centerX + rx * scale,
+          y: centerY + p.y * scale,
+          scale: scale,
+          size: p.size,
+        };
+      });
+
+      // Connecting lines between close nodes
+      ctx.strokeStyle = 'rgba(14, 165, 233, 0.2)';
+      for (let i = 0; i < projected.length; i++) {
+        for (let j = i + 1; j < projected.length; j++) {
+          const dist = Math.hypot(
+            projected[i].x - projected[j].x,
+            projected[i].y - projected[j].y
+          );
+          if (dist < 70) {
+            ctx.beginPath();
+            ctx.moveTo(projected[i].x, projected[i].y);
+            ctx.lineTo(projected[j].x, projected[j].y);
+            ctx.stroke();
+          }
+        }
       }
 
-      // Central Core Node
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, 8, 0, Math.PI * 2);
-      ctx.fillStyle = '#00f0ff';
-      ctx.shadowColor = '#00f0ff';
-      ctx.shadowBlur = 15;
-      ctx.fill();
-      ctx.shadowBlur = 0;
-
-      // Orbiting Satellite Nodes
-      const nodes = 4;
-      for (let i = 0; i < nodes; i++) {
-        const orbAngle = rot * 1.5 + (i * Math.PI * 2) / nodes;
-        const orbX = centerX + Math.cos(orbAngle) * (radius * 1.1);
-        const orbY = centerY + Math.sin(orbAngle) * (radius * 0.5);
-
+      // Node dots
+      projected.forEach((p) => {
+        ctx.fillStyle = '#00f0ff';
         ctx.beginPath();
-        ctx.arc(orbX, orbY, 4, 0, Math.PI * 2);
-        ctx.fillStyle = i % 2 === 0 ? '#0284c7' : '#22c55e';
+        ctx.arc(p.x, p.y, p.size * p.scale, 0, Math.PI * 2);
         ctx.fill();
-
-        // Connecting Line
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
-        ctx.lineTo(orbX, orbY);
-        ctx.strokeStyle = 'rgba(0, 240, 255, 0.15)';
-        ctx.stroke();
-      }
+      });
 
       animationFrameIdRef.current = requestAnimationFrame(animate);
     };
@@ -109,7 +121,7 @@ export const HeroCanvas: React.FC<HeroCanvasProps> = ({ telemetryLabel }) => {
           <span className="w-2.5 h-2.5 rounded-full bg-[#00f0ff] animate-pulse"></span>
           <span className="text-white font-bold">SPATIAL NODE</span>
         </div>
-        <span className="text-[#00f0ff]">LIVE 3D TWIN ENGINE</span>
+        <span className="text-[#00f0ff]">LIVE TWIN ENGINE</span>
       </div>
 
       <canvas ref={canvasRef} className="w-full h-full cursor-grab active:cursor-grabbing" />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TranslationContent } from '../locales/translations';
-import { Archive, Glasses, Check } from 'lucide-react';
+import { Archive, Layers, Check } from 'lucide-react';
 
 interface CoreEnginesProps {
   content: TranslationContent['coreEngines'];
@@ -50,7 +50,7 @@ export const CoreEngines: React.FC<CoreEnginesProps> = ({ content }) => {
           {/* Engine 2 */}
           <div className="glass-panel p-8 rounded-2xl border-l-4 border-l-[#a855f7] space-y-4">
             <div className="w-12 h-12 rounded-xl bg-[#a855f7]/10 border border-[#a855f7]/30 flex items-center justify-center text-[#a855f7] text-2xl">
-              <Glasses className="w-6 h-6" />
+              <Layers className="w-6 h-6" />
             </div>
             <span className="px-2.5 py-1 rounded bg-[#a855f7]/10 text-[#a855f7] font-mono text-xs font-bold inline-block">
               {content.engine2Tag}

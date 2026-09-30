@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Language, TranslationContent } from '../locales/translations';
-import { Globe, Boxes, Layers, Leaf, Cpu, Mail, Menu, X, Zap } from 'lucide-react';
+import { Globe, Boxes, Layers, Calendar, Cpu, Handshake, Mail, Menu, X, Zap } from 'lucide-react';
 
 interface NavbarProps {
   currentLang: Language;
@@ -39,46 +39,53 @@ export const Navbar: React.FC<NavbarProps> = ({
               DigiTwins<span className="text-[#00f0ff]">.uz</span>
             </span>
             <span className="text-[9px] font-mono text-slate-400 tracking-widest -mt-1 uppercase font-semibold">
-              Spatial Twin & Green Tech
+              OSB & Spatial Digital Twin
             </span>
           </div>
         </a>
 
         {/* Desktop Links */}
-        <nav className="hidden md:flex items-center space-x-7 text-sm font-medium text-slate-300">
+        <nav className="hidden lg:flex items-center space-x-6 text-xs font-medium text-slate-300">
           <a
             href="#oz-mantik"
             className="hover:text-[#00f0ff] transition-colors flex items-center gap-2"
           >
-            <Boxes className="w-4 h-4 text-[#38bdf8]" />
+            <Boxes className="w-3.5 h-3.5 text-[#38bdf8]" />
             <span>{content.system}</span>
           </a>
           <a
             href="#dijital-boyutlar"
             className="hover:text-[#00f0ff] transition-colors flex items-center gap-2"
           >
-            <Layers className="w-4 h-4 text-[#38bdf8]" />
+            <Layers className="w-3.5 h-3.5 text-[#38bdf8]" />
             <span>{content.dimensions}</span>
           </a>
           <a
-            href="#green-carbon"
-            className="hover:text-[#22c55e] transition-colors flex items-center gap-2 text-[#22c55e]/90 font-semibold"
+            href="#etkinlikler"
+            className="hover:text-[#f59e0b] transition-colors flex items-center gap-2 font-semibold text-[#f59e0b]/90"
           >
-            <Leaf className="w-4 h-4 text-[#22c55e] animate-pulse" />
-            <span>{content.greenCarbon}</span>
+            <Calendar className="w-3.5 h-3.5 text-[#f59e0b] animate-pulse" />
+            <span>{content.events}</span>
           </a>
           <a
             href="#teknoloji-katmani"
             className="hover:text-[#00f0ff] transition-colors flex items-center gap-2"
           >
-            <Cpu className="w-4 h-4 text-[#38bdf8]" />
+            <Cpu className="w-3.5 h-3.5 text-[#38bdf8]" />
             <span>{content.tech}</span>
+          </a>
+          <a
+            href="#partnerler"
+            className="hover:text-[#00f0ff] transition-colors flex items-center gap-2"
+          >
+            <Handshake className="w-3.5 h-3.5 text-[#38bdf8]" />
+            <span>{content.partners}</span>
           </a>
           <a
             href="#iletisim"
             className="hover:text-[#00f0ff] transition-colors flex items-center gap-2"
           >
-            <Mail className="w-4 h-4 text-[#38bdf8]" />
+            <Mail className="w-3.5 h-3.5 text-[#38bdf8]" />
             <span>{content.contact}</span>
           </a>
         </nav>
@@ -86,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Language Switcher & Gradient CTA */}
         <div className="hidden md:flex items-center space-x-4">
           
-          {/* Language Switcher Buttons */}
+          {/* Language Switcher */}
           <div className="flex items-center bg-[#0f172a] border border-[#1e293b] rounded-lg p-1 text-xs font-mono">
             {languages.map((item) => (
               <button
@@ -103,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             ))}
           </div>
 
-          {/* Project / Demo Button */}
+          {/* CTA Button */}
           <button
             onClick={() => onOpenDemo()}
             className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-bold rounded-xl group bg-gradient-to-br from-[#00f0ff] via-[#0ea5e9] to-[#22c55e] text-white shadow-lg shadow-[#0ea5e9]/20 hover:shadow-[#0ea5e9]/40 transition-all cursor-pointer"
@@ -118,7 +125,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Mobile menu button */}
         <button
           onClick={() => setMobileMenuOpen((prev) => !prev)}
-          className="md:hidden text-slate-300 hover:text-white text-2xl p-2 cursor-pointer"
+          className="lg:hidden text-slate-300 hover:text-white text-2xl p-2 cursor-pointer"
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -128,39 +135,46 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden glass-panel border-b border-[#1e293b] px-4 pt-4 pb-6 space-y-4 animate-in fade-in duration-150">
+        <div className="lg:hidden glass-panel border-b border-[#1e293b] px-4 pt-4 pb-6 space-y-4 animate-in fade-in duration-150">
           <a
             href="#oz-mantik"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-300 hover:text-[#00f0ff] font-medium py-2"
+            className="block text-slate-300 hover:text-[#00f0ff] font-medium py-2 text-sm"
           >
             {content.system}
           </a>
           <a
             href="#dijital-boyutlar"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-300 hover:text-[#00f0ff] font-medium py-2"
+            className="block text-slate-300 hover:text-[#00f0ff] font-medium py-2 text-sm"
           >
             {content.dimensions}
           </a>
           <a
-            href="#green-carbon"
+            href="#etkinlikler"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-[#22c55e] font-semibold py-2"
+            className="block text-[#f59e0b] font-semibold py-2 text-sm"
           >
-            {content.greenCarbon}
+            {content.events}
           </a>
           <a
             href="#teknoloji-katmani"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-300 hover:text-[#00f0ff] font-medium py-2"
+            className="block text-slate-300 hover:text-[#00f0ff] font-medium py-2 text-sm"
           >
             {content.tech}
           </a>
           <a
+            href="#partnerler"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-slate-300 hover:text-[#00f0ff] font-medium py-2 text-sm"
+          >
+            {content.partners}
+          </a>
+          <a
             href="#iletisim"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-300 hover:text-[#00f0ff] font-medium py-2"
+            className="block text-slate-300 hover:text-[#00f0ff] font-medium py-2 text-sm"
           >
             {content.contact}
           </a>

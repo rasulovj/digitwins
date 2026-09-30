@@ -1,27 +1,12 @@
 export type Language = 'uz' | 'tr' | 'en';
 
-export interface DimensionItem {
-  id: string;
-  tag: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  features: string[];
-  widgetTitle: string;
-  widgetStatus: string;
-  metric1Label: string;
-  metric1Value: string;
-  metric2Label: string;
-  metric2Value: string;
-  btnText: string;
-}
-
 export interface TranslationContent {
   nav: {
     system: string;
     dimensions: string;
-    greenCarbon: string;
+    events: string;
     tech: string;
+    partners: string;
     contact: string;
     demoButton: string;
   };
@@ -32,7 +17,6 @@ export interface TranslationContent {
     description: string;
     tagAreas: string;
     tagFacilities: string;
-    tagXr: string;
     tagGreen: string;
     btnMain: string;
     btnSub: string;
@@ -55,56 +39,91 @@ export interface TranslationContent {
     badge: string;
     title: string;
     subtitle: string;
-    items: DimensionItem[];
+    p1Tag: string;
+    p1Title: string;
+    p1Sub: string;
+    p1Desc: string;
+    p1C1: string;
+    p1C2: string;
+    p1C3: string;
+    p1Btn: string;
+    p2Tag: string;
+    p2Title: string;
+    p2Sub: string;
+    p2Desc: string;
+    p2C1: string;
+    p2C2: string;
+    p2C3: string;
+    p2Btn: string;
   };
-  greenCarbonSection: {
+  eventsSection: {
     badge: string;
-    title1: string;
-    title2: string;
-    description: string;
-    f1: string;
-    f2: string;
-    f3: string;
-    f4: string;
-    boxLabel: string;
-    boxValue: string;
-    boxSub: string;
-    boxBtn: string;
+    title: string;
+    subtitle: string;
+    event1Tag: string;
+    event1Location: string;
+    event1Title: string;
+    event1Desc: string;
+    event2Tag: string;
+    event2Location: string;
+    event2Title: string;
+    event2Desc: string;
+    ctaLabel: string;
+    ctaBtn1: string;
+    ctaBtn2: string;
   };
   techSection: {
     badge: string;
     title: string;
     subtitle: string;
-    stepPrefix: string;
-    layers: Array<{
-      step: string;
-      title: string;
-      description: string;
-      tag: string;
-    }>;
+    t1Step: string;
+    t1Title: string;
+    t1Desc: string;
+    t2Step: string;
+    t2Title: string;
+    t2Desc: string;
+    t3Step: string;
+    t3Title: string;
+    t3Desc: string;
+    t4Step: string;
+    t4Title: string;
+    t4Desc: string;
   };
-  contactSection: {
+  partnersSection: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    btn: string;
+  };
+  showcaseSection: {
     badge: string;
     title: string;
     description: string;
-    officeLabel: string;
-    officeValue: string;
-    phoneLabel: string;
-    phoneValue: string;
+    btn: string;
+  };
+  legalSection: {
+    title: string;
+    toggleOpen: string;
+    toggleClose: string;
+    pf6079Title: string;
+    pf6079Desc: string;
+    orq702Title: string;
+    orq702Desc: string;
+  };
+  contactSection: {
     form: {
       nameLabel: string;
       namePlaceholder: string;
       orgLabel: string;
       orgPlaceholder: string;
-      emailLabel: string;
-      emailPlaceholder: string;
       domainLabel: string;
       domainOptions: {
-        all: string;
-        macro: string;
-        micro: string;
-        xr: string;
-        green: string;
+        osb: string;
+        facilities: string;
+        summit: string;
+        fieldEvent: string;
+        ad: string;
+        partner: string;
       };
       notesLabel: string;
       notesPlaceholder: string;
@@ -126,204 +145,168 @@ export interface TranslationContent {
   footer: {
     description: string;
     dimensionsHeading: string;
+    tagAreas: string;
+    tagFacilities: string;
+    eventLink: string;
     contactHeading: string;
+    locations: string;
     phoneLabel: string;
     phoneValue: string;
     rights: string;
-    locations: string;
-    privacy: string;
+    tagline: string;
   };
 }
 
 export const translations: Record<Language, TranslationContent> = {
   // ============================================================
-  // UZBEK (UZ) - To'liq va Toza O'zbek Tili
+  // UZBEK (UZ)
   // ============================================================
   uz: {
     nav: {
       system: "Nimalar Qilamiz?",
-      dimensions: "Transformatsiya Qatlamlari",
-      greenCarbon: "Green Carbon",
-      tech: "Texnologiya Qatlami",
+      dimensions: "Transformatsiya Yo'nalishlari",
+      events: "Sammit va Tadbirlar",
+      tech: "Texnologiya Arxitekturasi",
+      partners: "Hamkorlarimiz",
       contact: "Aloqa",
       demoButton: "Loyiha / Demo So'rash",
     },
     hero: {
-      badge: "MAKONIY RAQAMLASHTIRISH EKOTIZIMI",
-      title1: "Jismoniy Maydon va Inshootlarning",
-      title2: "Raqamli Egizak Xizmatlari",
+      badge: "SANOAT ZONALARI VA INSHOOTLAR EKOTIZIMI",
+      title1: "Sanoat Zonalari (OSB) va Inshootlar uchun",
+      title2: "Raqamli Egizak va Green Carbon Platformasi",
       description:
-        "Maydonlar, inshootlar va obyektlarni 3D lazer skanerlash, IoT datchiklar va simulyatsiya tizimlari orqali raqamli egizakka aylantiramiz. Tayyor modellarni integratsiya qilamiz yoki ehtiyojingizga qarab noldan modellaymiz.",
-      tagAreas: "Makro / Geografik",
-      tagFacilities: "Mikro / Inshootlar",
-      tagXr: "Inson va Ta'sir",
-      tagGreen: "Green Carbon",
+        "Sanoat zonalari (OSB) va sanoat korxonalari uchun ajratilgan er maydonlari raqamli egizagi, infratuzilma kuzatuvi va tesis operatsion boshqaruvini ishlab chiqamiz.",
+      tagAreas: "OSB & Sanoat Zonalari",
+      tagFacilities: "Inshootlar va Majmualar",
+      tagGreen: "Green Carbon AI",
       btnMain: "Jismoniy Aktivingizni Raqamlashtiring",
-      btnSub: "Transformatsiya Qatlamlarini Kashf Eting",
+      btnSub: "Transformatsiya Yo'nalishlarini Kashf Eting",
       canvasTelemetry: "Jonli Telemetriya & GIS",
     },
     coreEngines: {
       badge: "NIMALAR QILAMIZ?",
       title: "Jismoniy Dunyoni Raqamli Modellarga Ko'chiramiz",
       subtitle:
-        "Ehtiyojingizga qarab tayyor raqamli shablonlarni taqdim etamiz yoki maydoningizda maxsus skanerlash va datchik o'rnatish ishlarini bajaramiz.",
-      engine1Tag: "1. MODEL: TAYYOR EGIZAKLAR KUTUBXONASI",
+        "Jismoniy maydonni raqamlashtirishda avvalo tayyor yechim bormi ko'rib chiqamiz, aks holda raqamli egizakni noldan o'zimiz modellashtiramiz.",
+      engine1Tag: "1-YO'L: TAYYOR RAQAMLASHTIRISH SHABLONLARI",
       engine1Title: "Tayyor Raqamlashtirilgan Aktivlar",
       engine1Desc:
-        "Oldindan modellashtirilgan makoniy shablonlarni, bino va yer maydoni modellarini tizimga integratsiya qilamiz.",
-      engine1Check: "Tayyor 3D va GIS kutubxonasi integratsiyasi",
-      engine2Tag: "2. MODEL: MAYDONNI RAQAMLASHTIRISH XIZMATI",
+        "Jismoniy maydonni raqamlashtirishda avvalo tayyor model va shablonlar kutubxonasidan foydalanamiz hamda mavjud yechimlarni tezkor integratsiya qilamiz.",
+      engine1Check: "Mavjud Modellarni Tezkor Integratsiya Qilish",
+      engine2Tag: "2-YO'L: MAYDON VA INSHOOTLARNI RAQAMLASHTIRISH",
       engine2Title: "Maxsus Raqamli Egizak Yaratish",
       engine2Desc:
-        "Raqamlashmagan maydonlar, inshootlar va obyektlarni 3D skanerlash va datchiklar o'rnatish orqali raqamli egizakka ko'chiramiz.",
-      engine2Check: "Maydon skanerlash, datchiklar va 3D egizak modeli",
+        "Tayyor yechim mavjud bo'lmagan maydon va inshootlarda skanerlash va maxsus raqamlashtirish orqali raqamli egizakni noldan o'zimiz ishlab chiqamiz.",
+      engine2Check: "Maydon Skanerlash va Noldan Raqamli Egizak Yaratish",
     },
     dimensionsSection: {
-      badge: "TRANSFORMATSIYA QATLAMLARI",
-      title: "Makoniy O'lchovlarga Ko'ra Raqamli Egizak Yechimlari",
+      badge: "TRANSFORMATSIYA YO'NALISHLARI",
+      title: "2 Ustuvor Yo'nalishda Raqamli Egizak Yechimlari",
       subtitle:
-        "Geografik hududlardan tortib binolar va ta'lim simulyatsiyalarigacha bo'lgan 3 bosqichda ishlaymiz.",
-      items: [
-        {
-          id: "macro",
-          tag: "MAKRO O'LCHOV",
-          title: "Geografik va Makoniy Aktivlar",
-          subtitle: "Yer Maydonlari va Geografik Hududlar",
-          description:
-            "Maydonlar, yerlar va infratuzilma tarmoqlarining 3D GIS va makoniy raqamli egizak modellari.",
-          features: [
-            "3D GIS Topografiya va Maydon Xaritalash",
-            "Makoniy Ma'lumotlar Portali va Raqamli Ajratish",
-            "Keng Maydonli Infratuzilma va Joylashuv Analitikasi",
-          ],
-          widgetTitle: "MAKONIY TELEMETRIYA",
-          widgetStatus: "JONLI",
-          metric1Label: "Xaritalangan Maydon",
-          metric1Value: "2,450 Hektar",
-          metric2Label: "GIS Aniqligi",
-          metric2Value: "< 2 cm",
-          btnText: "Makro Egizak Demosi",
-        },
-        {
-          id: "micro",
-          tag: "MIKRO O'LCHOV",
-          title: "Inshootlar va Operatsion Ob'ektlar",
-          subtitle: "Binolar, Inshootlar va Jismoniy Aktivlar",
-          description:
-            "Binolar, inshootlar va tizimlarning IoT datchiklari orqali raqamli kuzatuvi va simulyatsiyasi.",
-          features: [
-            "Jismoniy Aktiv va Inshoot 3D Modellashtirishi",
-            "Jonli IoT va Datchik Telemetriya Integratsiyasi",
-            "Prognostik Ta'mirlash va Jarayon Optimizatsiyasi",
-          ],
-          widgetTitle: "JONLI INSHOOT MONITORINGI",
-          widgetStatus: "FAOL",
-          metric1Label: "Boshqariladigan Bino va Tesis",
-          metric1Value: "82 Tesis",
-          metric2Label: "Datchik Unumdorligi",
-          metric2Value: "96.2%",
-          btnText: "Mikro Egizak Demosi",
-        },
-        {
-          id: "xr",
-          tag: "TA'SIR O'LCHOVI",
-          title: "Inson, Simulyatsiya va Ta'sir",
-          subtitle: "Jarayonlar, Ta'lim va Virtual Tajriba",
-          description:
-            "Ta'lim, simulyatsiya va 3D interaktiv ma'lumot tajribasi muhitlari.",
-          features: [
-            "Virtual va Arttirilgan Haqiqat (XR) Simulyatsiyasi",
-            "Interaktiv Jarayon va Senariy Modellashtirish",
-            "Raqamli Kompetensiya va Tajriba Boshqaruvi",
-          ],
-          widgetTitle: "SIMULYATSIYA VA XR",
-          widgetStatus: "TAYYOR",
-          metric1Label: "Faol Foydalanuvchilar",
-          metric1Value: "18,400+",
-          metric2Label: "Simulyator Modullari",
-          metric2Value: "54 Tayyor Egizak",
-          btnText: "Ta'sir Demosi",
-        },
-      ],
+        "Faqat ikkita strategik yo'nalishga e'tibor qaratamiz: Sanoat Zonalari (OSB) va Ishlab Chiqarish/Tijorat Inshootlari.",
+      p1Tag: "1-USTUN: OSB & SANOAT ZONALARI",
+      p1Title: "Sanoat Zonalari (OSB) Raqamli Egizagi",
+      p1Sub: "Yer Ajratish, Infratuzilma va Investor Portali",
+      p1Desc:
+        "Sanoat zonalarining 3D xaritalanishi, investorlarga masofaviy maydon namoyishi, elektr/gaz/suv tarmoqlari nazorati hamda ijarachilar portali.",
+      p1C1: "3D Yer Ajratish va Investor Portali",
+      p1C2: "Infratuzilma va Tarmoq Yo'qotishlarini Kuzatish",
+      p1C3: "Zona Boshqaruvi va Korxona Ruxsatnomalar Integratsiyasi",
+      p1Btn: "OSB Raqamlashtirish So'rovi",
+      p2Tag: "2-USTUN: INSHOOT VA MAJMYALAR",
+      p2Title: "Fabrika, Bino va Inshootlar",
+      p2Sub: "Raqamli Aktiv va Operatsion Boshqaruv",
+      p2Desc:
+        "Fabrikalar, tijorat binolari, omborlar va inshootlarni qavat/hudud bo'yicha yoki to'liq raqamlashtirish. Aktivlar inventarizatsiyasi va davriy texnik xizmat.",
+      p2C1: "Inshoot va Bo'limlar Bo'yicha 3D Aktiv Inventari",
+      p2C2: "Proaktiv Texnik Xizmat va Operatsion Boshqaruv",
+      p2C3: "Ixtiyoriy Jonli IoT va Datchik Telemetriyasi",
+      p2Btn: "Inshoot Demosini So'rash",
     },
-    greenCarbonSection: {
-      badge: "GREEN CARBON AI & ESG INTEGRATION",
-      title1: "Yashil Raqamli Egizak va",
-      title2: "Uglerod Izini Boshqarish",
-      description:
-        "GreenCarbonAI (greencarbonai.com) integratsiyasi bilan obyekt yoki inshootning energiya sarfi hamda uglerod chiqindisini raqamli egizakda kuzatamiz.",
-      f1: "Jonli Uglerod va Suv Izi Hisoboti",
-      f2: "Yevropa Ittifoqi SKDM va ESG Standartlari",
-      f3: "Energiya Samaradorligi va Issiqlik Xaritasi",
-      f4: "Yashil Pasport va Barqarorlik Sertifikati",
-      boxLabel: "JONLI UGLEROD NEYTRALLIK DARAJA",
-      boxValue: "94.8%",
-      boxSub: "Optimizatsiya Faol",
-      boxBtn: "Green Carbon Modulini Qo'shish",
+    eventsSection: {
+      badge: "KELAJAK TADBIR VA EKOTIZIM TASHABBUSLARI",
+      title: "Sohaviy Sammit va Maydon Tadbirlari",
+      subtitle:
+        "O'zbekiston sanoat va inshootlarni raqamlashtirish ekotizimini birlashtiruvchi nufuzli uchrashuvlar.",
+      event1Tag: "PRESTIJ SAMMITI",
+      event1Location: "Tashkent / Sirdaryo",
+      event1Title: "Aqlli Sanoat Zonalari Sammiti",
+      event1Desc:
+        "O'zbekistondagi Sanoat Zonalari rahbarlari, Vazirlik vakillari va xalqaro investorlarni birlashtiruvchi raqamli yer maydonlari hamda aqlli OSB sammiti.",
+      event2Tag: "MAYDON TADBIRI",
+      event2Location: "Jonli Inshoot Skanerlash",
+      event2Title: "\"Fabrikangizni Kashf Eting\" Amaliy Tadbiri",
+      event2Desc:
+        "Sanoatchilar va korxona egalari o'z ishlab chiqarish inshootlarining raqamli egizak salohiyati, aktivlar nazorati va energiya samaradorligini jonli tajriba qiluvchi amaliy uchrashuv.",
+      ctaLabel: "Ishtirok va Batafsil Ma'lumot uchun:",
+      ctaBtn1: "Ro'yxatdan O'tish",
+      ctaBtn2: "Mezbonlik / Ro'yxatdan O'tish",
     },
     techSection: {
-      badge: "TEXNOLOGIYA QATLAMI",
-      title: "4 Bosqichda Makoniy Egizak Arxitekturasi",
+      badge: "TEXNOLOGIYA ARXITEKTURASI",
+      title: "4 Bosqichda Makoniy Egizak Mimarisi",
       subtitle:
-        "Datchikdan raqamli egizakkacha, simulyatsiyadan tahliliy qaror qabul qilishgacha bo'lgan yaxlit tizim.",
-      stepPrefix: "0",
-      layers: [
-        {
-          step: "1",
-          title: "IoT & Sensör Katmanı",
-          description:
-            "Maydon, inshoot va infratuzilmadagi fizik datchiklardan jonli telemetriya ma'lumotlarini yig'ish.",
-          tag: "Wi-Fi / MQTT / Sensors",
-        },
-        {
-          step: "2",
-          title: "Raqamli Egizak Yaratish",
-          description:
-            "Infratuzilma ma'lumotlarining yuqori aniqlikdagi makoniy modellashtirilishi va 3D egizak yaratilishi.",
-          tag: "3D Spatial / Point Cloud",
-        },
-        {
-          step: "3",
-          title: "Raqamli Egizak Simulyatsiyasi",
-          description:
-            "Jismoniy aktivlarning virtual muhitdagi jonli modellari, jarayonlar kuzatuvi va simulyatsiyalari.",
-          tag: "XR / Physics Engine",
-        },
-        {
-          step: "4",
-          title: "Qaror Qabul Qilish va Analitika",
-          description:
-            "Ma'lumotlarga asoslangan optimallashtirish, prognozli ta'mirlash va yuqori darajadagi boshqaruv tahlili.",
-          tag: "Predictive Analytics",
-        },
-      ],
+        "Ma'lumot yig'ishdan raqamli egizakkacha, ixtiyoriy jonli ulanishlardan tahliliy qaror qabul qilishgacha bo'lgan bosqichli tizim.",
+      t1Step: "BOSQICH 01",
+      t1Title: "Maydon Ma'lumotlari va Raqamlashtirish",
+      t1Desc:
+        "Tayyor modellarni integratsiya qilish yoki maydondan skanerlash va makoniy ma'lumotlarni yig'ish.",
+      t2Step: "BOSQICH 02",
+      t2Title: "Raqamli Egizakni Shakllantirish",
+      t2Desc:
+        "Yig'ilgan jismoniy ma'lumotlarni raqamli egizak formatida tuzilmalashtirish va ma'lumotlar bazasini yaratish.",
+      t3Step: "BOSQICH 03",
+      t3Title: "Jonli Ma'lumotlar va Integratsiya (Ixtiyoriy)",
+      t3Desc:
+        "Zarur bo'lgan inshoot va tizimlarda datchiklar, IIoT va jonli telemetriya ulanishlari.",
+      t4Step: "BOSQICH 04",
+      t4Title: "Qaror Qabul Qilish va Analitika",
+      t4Desc:
+        "Boshqaruv panellari, operatsion kuzatuv, energiya va emissiya tahlili.",
+    },
+    partnersSection: {
+      badge: "HAMKORLARIMIZ VA EKOTIZIM",
+      title: "Rivojlanayotgan Texnologik Ekotizimimiz",
+      subtitle:
+        "Makoniy raqamlashtirish va IoT ekotizimimizga qo'shilish yoki texnologik hamkor bo'lish uchun biz bilan bog'laning.",
+      btn: "Hamkorimiz Bo'ling / Become a Partner",
+    },
+    showcaseSection: {
+      badge: "SARALANGAN MAYDONLAR VA REKLAMA PANOSI",
+      title: "Raqamlashtirilgan Aktivingizni Platformada Namoyish Eting",
+      description:
+        "Raqamli egizagi yaratilgan yer maydoningiz, sanoat inshootingiz va loyihangizni xalqaro investorlarga namoyish etish uchun platformamizda alohida ajratib ko'rsatishingiz mumkin.",
+      btn: "Reklama So'rovi / Sponsoring",
+    },
+    legalSection: {
+      title: "O'zbekiston Raqamli Islohotlari va Huquqiy Asoslar",
+      toggleOpen: "Qonunchilik / Ma'lumotnoma",
+      toggleClose: "Ma'lumotnomani Yopish",
+      pf6079Title: "\"Raqamli O'zbekiston – 2030\" Strategiyasi",
+      pf6079Desc:
+        "Sanoat korxonalari va infratuzilmada raqamli transformatsiyani joriy etish bo'yicha milliy strategiya.",
+      orq702Title: "\"Fazoviy Ma'lumotlar To'g'risida\"gi Qonun",
+      orq702Desc:
+        "GIS xaritalash, kadastr va 3D topografik ma'lumotlarni yagona standartlarda boshqarish qonuniy asoslari.",
     },
     contactSection: {
-      badge: "ALOQA VA MARKAZ",
-      title: "Fiziki Varligingizni Raqamli Egizakka Aylantiring",
-      description:
-        "Arazilar, inshootlar, binolar va har qanday jismoniy varliqlarning raqamli egizagi. Jismoniy dunyodagi barcha makonlarni raqamli modellarga ko'chiramiz.",
-      officeLabel: "Bosh Qarorgoh",
-      officeValue: "Toshkent, O'zbekiston / Istanbul, Turkiya",
-      phoneLabel: "Telefon",
-      phoneValue: "+998 90 277 73 66",
       form: {
         nameLabel: "Ismingiz va Familiyangiz",
         namePlaceholder: "Jasur Rahimov",
         orgLabel: "Kompaniya / Tashkilot Nomi",
         orgPlaceholder: "Tashkent Spatial Development",
-        emailLabel: "Elektron Pochta",
-        emailPlaceholder: "info@kompaniya.uz",
-        domainLabel: "Sizni Qiziqtirgan Katman",
+        domainLabel: "Sizni Qiziqtirgan Yo'nalish",
         domainOptions: {
-          all: "Barcha Transformatsiya Qatlamlari",
-          macro: "Mekansal & Coğrafi Varlıklar (Arazilar, OSB & Altyapı)",
-          micro: "Tesisler & Yapı Kompleksleri (Fabrika, Binalar & Miras)",
-          xr: "Simülasyon, XR & Eğitim (Nara XR & Digital School)",
-          green: "Green Carbon AI (Karbon & Enerji)",
+          osb: "OSB & Sanoat Zonalari (Yer va Infratuzilma)",
+          facilities: "Tesisler & Yapılar (Bino va Fabrikalar)",
+          summit: "Aqlli Sanoat Zonalari Sammiti (Ro'yxatdan o'tish)",
+          fieldEvent: "\"Fabrikangizni Kashf Eting\" Maydon Tadbiri",
+          ad: "Reklama & Saralangan Maydonlar (Sponsoring)",
+          partner: "Texnologik Hamkorlik / Partnership",
         },
         notesLabel: "Saha / Aktiv Haqida Izohlar",
-        notesPlaceholder: "Saha büyüklüğü, lokasyon va hedefleringiz...",
+        notesPlaceholder: "Saha hajmi, joylashuvi va raqamlashtirish maqsadlaringiz...",
         submitBtn: "So'rovni Yuborish / Request Demo",
         submittingBtn: "Yuborilmoqda...",
         successMsg: "Rahmat! So'rovingiz qabul qilindi. Mutaxassislarimiz tez orada bog'lanishadi.",
@@ -335,215 +318,177 @@ export const translations: Record<Language, TranslationContent> = {
       close: "Yopish",
       nameLabel: "Ismingiz va Familiyangiz",
       orgLabel: "Kompaniya / Tashkilot Nomi",
-      domainLabel: "Sizni Qiziqtirgan Katman",
+      domainLabel: "Sizni Qiziqtirgan Yo'nalish",
       notesLabel: "Saha / Aktiv Haqida Izohlar",
       submitBtn: "So'rovni Yuborish / Request Demo",
     },
     footer: {
-      description:
-        "Arazilar, inshootlar, binolar va barcha jismoniy varliqlarning raqamli egizagi. Jismoniy dunyodagi barcha makonlarni raqamli modellarga ko'chiramiz.",
-      dimensionsHeading: "TRANSFORMATSIYA QATLAMLARI",
+      description: "Sanoat zonalari, inshootlar va majmualarning raqamli egizak platformasi.",
+      dimensionsHeading: "TRANSFORMATSIYA YO'NALISHLARI",
+      tagAreas: "OSB & Sanoat Zonalari",
+      tagFacilities: "Inshootlar va Majmualar",
+      eventLink: "OSB & Sanoat Zirvesi",
       contactHeading: "ALOQA VA MARKAZ",
+      locations: "Tashkent, Uzbekistan / Istanbul, Türkiye",
       phoneLabel: "Telefon",
       phoneValue: "+998 90 277 73 66",
       rights: "Barcha huquqlar himoyalangan.",
-      locations: "Toshkent, O'zbekiston / Istanbul, Turkiya",
-      privacy: "Maxfiylik Siyosati",
+      tagline: "Spatial Twin & Green Tech Ecosystem",
     },
   },
 
   // ============================================================
-  // TURKISH (TR) - 100% Doğal Türkçe
+  // TURKISH (TR)
   // ============================================================
   tr: {
     nav: {
       system: "Ne Yapıyoruz?",
-      dimensions: "Dönüşüm Katmanları",
-      greenCarbon: "Green Carbon",
-      tech: "Teknoloji Katmanı",
+      dimensions: "Dönüşüm Odakları",
+      events: "Zirve & Etkinlikler",
+      tech: "Teknoloji Mimarisi",
+      partners: "Partnerlerimiz",
       contact: "İletişim",
       demoButton: "Proje / Demo İste",
     },
     hero: {
-      badge: "MEKANSAL DİJİTALLEŞTİRME EKOSİSTEMİ",
-      title1: "Fiziksel Mekan ve Yapıların",
-      title2: "Dijital İkiz Hizmetleri",
+      badge: "OSB & SANAYİ DİJİTALLEŞTİRME EKOSİSTEMİ",
+      title1: "Organize Sanayi Bölgeleri (OSB) ve Tesisler için",
+      title2: "Dijital İkiz ve Green Carbon Platformu",
       description:
-        "Fiziksel sahaları, tesisleri ve yapıları 3D lazer tarama, IoT datchik/sensör bağlantıları ve simülasyon altyapısıyla dijital ikizlere dönüştürüyoruz. Hazır modelleri entegre ediyor veya ihtiyacınıza göre sıfırdan saha modellemesi yapıyoruz.",
-      tagAreas: "Makro / Coğrafi",
-      tagFacilities: "Mikro / Yapılar",
-      tagXr: "İnsan & Etkileşim",
-      tagGreen: "Green Carbon",
+        "Organize sanayi bölgeleri ve endüstriyel tesisler için parsel tahsis ikizi, altyapı takibi ve tesis operasyon yönetimi geliştiriyoruz.",
+      tagAreas: "OSB & Sanayi Bölgeleri",
+      tagFacilities: "Tesisler & Yapılar",
+      tagGreen: "Green Carbon AI",
       btnMain: "Fiziki Varlığınızı Dijitalleştirin",
-      btnSub: "Dönüşüm Katmanlarını Keşfet",
+      btnSub: "Dönüşüm Odaklarını Keşfet",
       canvasTelemetry: "Canlı Telemetri & GIS",
     },
     coreEngines: {
-      badge: "NELER YAPAYORUZ?",
+      badge: "NE YAPIYORUZ?",
       title: "Fiziksel Dünyayı Dijital Modellere Aktarıyoruz",
       subtitle:
-        "İhtiyacınıza göre hazır dijital şablonları kullanıyor veya sahanızda özel modelleme ve sensör entegrasyonu gerçekleştiriyoruz.",
-      engine1Tag: "1. MODEL: HAZIR İKİZ KÜTÜPHANESİ",
+        "Bir fiziki mekanı dijitalleştirirken hazır bir çözüm varsa önce onu sunarız, yoksa dijital ikizini sıfırdan biz geliştiririz.",
+      engine1Tag: "1. YOL: HAZIR DİJİTALİZASYON ŞABLONLARI",
       engine1Title: "Hazır Dijitalleştirilmiş Varlıklar",
       engine1Desc:
-        "Önceden modellenmiş mekansal şablonları, bina ve arazi modellerini sisteme entegre ederek hızlı kullanım sağlıyoruz.",
-      engine1Check: "Hazır 3D ve GIS Kütüphanesi Entegrasyonu",
-      engine2Tag: "2. MODEL: SAHA DİJİTALLEŞTİRME HİZMETİ",
+        "Fiziki bir mekanı dijitalleştirirken öncelikle hazır model, veri ve şablon kütüphanemizden yararlanıyor, var olan çözümleri hızlıca entegre ediyoruz.",
+      engine1Check: "Var Olan Modelleri Hızlı Entegre Etme",
+      engine2Tag: "2. YOL: SAHA VE MEKAN DİJİTALLEŞTİRME",
       engine2Title: "Özel Dijital İkiz Geliştirme",
       engine2Desc:
-        "Dijitalleşmemiş sahaları, tesisleri ve yapıları 3D tarama, fotogrametri ve sensör ağı kurarak dijital ortama modelliyoruz.",
-      engine2Check: "Saha Taraması, Sensör Entegrasyonu ve 3D İkiz Modeli",
+        "Hazır bir çözümün bulunmadığı sahalarda veya yapılarda; saha taraması ve özel verileştirme ile dijital ikizi sıfırdan kendimiz geliştiriyoruz.",
+      engine2Check: "Saha Taraması ve Sıfırdan Dijital İkiz Geliştirme",
     },
     dimensionsSection: {
-      badge: "DÖNÜŞÜM KATMANLARI",
-      title: "Mekansal Ölçeklere Göre Dijital İkiz Çözümleri",
+      badge: "DÖNÜŞÜM ODAKLARI",
+      title: "2 Ana Sütunda Sanayi ve Tesis Dijitalleştirmesi",
       subtitle:
-        "Coğrafi alanlardan tekil binalara ve eğitim simülasyonlarına kadar 3 temel ölçekte çalışıyoruz.",
-      items: [
-        {
-          id: "macro",
-          tag: "MAKRO ÖLÇEK",
-          title: "Coğrafi & Mekansal Varlıklar",
-          subtitle: "Araziler, Sahalar & Coğrafi Alanlar",
-          description:
-            "Geniş ölçekli sahaların, arazilerin ve altyapı ağlarının 3D GIS ve mekansal dijital ikizleme çözümleri.",
-          features: [
-            "3D GIS Topoğrafya ve Saha Haritalama",
-            "Mekansal Veri Portalı ve Dijital Tahsis",
-            "Geniş Alan Altyapı ve Konum Analitiği",
-          ],
-          widgetTitle: "MEKANSAL TELEMETRİ",
-          widgetStatus: "CANLI",
-          metric1Label: "Haritalanan Saha",
-          metric1Value: "2,450 Hektar",
-          metric2Label: "GIS Hassasiyeti",
-          metric2Value: "< 2 cm",
-          btnText: "Makro İkiz Demosu",
-        },
-        {
-          id: "micro",
-          tag: "MİKRO ÖLÇEK",
-          title: "Yapılar & Operasyonel Tesisler",
-          subtitle: "Binalar, Tesisler & Fiziksel Varlıklar",
-          description:
-            "Binaların, tesislerin ve kapalı alanların canlı IoT sensörleri ile dijital takibi ve simülasyonu.",
-          features: [
-            "Fiziksel Varlık ve Tesis 3D Modellemesi",
-            "Canlı IoT & Sensör Telemetri Entegrasyonu",
-            "Kestirimci Bakım & Süreç Optimizasyonu",
-          ],
-          widgetTitle: "CANLI TESİS İZLEME",
-          widgetStatus: "AKTİF",
-          metric1Label: "Yönetilen Bina & Tesis",
-          metric1Value: "82 Tesis",
-          metric2Label: "Sensör Verimliliği",
-          metric2Value: "96.2%",
-          btnText: "Mikro İkiz Demosu",
-        },
-        {
-          id: "xr",
-          tag: "ETKİLEŞİM ÖLÇEĞİ",
-          title: "İnsan, Simülasyon & Deneyim",
-          subtitle: "Süreçler, Eğitim & Sanal Deneyim",
-          description:
-            "Eğitim, simülasyon, oryantasyon ve 3D etkileşimli veri deneyimi ortamları.",
-          features: [
-            "Sanal & Artırılmış Gerçeklik (XR) Simülasyonu",
-            "Etkileşimli Süreç ve Senaryo Modelleme",
-            "Dijital Yetkinlik ve Deneyim Yönetimi",
-          ],
-          widgetTitle: "SİMÜLASYON & XR",
-          widgetStatus: "HAZIR",
-          metric1Label: "Aktif Kullanıcı",
-          metric1Value: "18,400+",
-          metric2Label: "Simülatör Modülü",
-          metric2Value: "54 Hazır İkiz",
-          btnText: "Etkileşim Demosu",
-        },
-      ],
+        "Sadece iki stratejik alana odaklanıyoruz: OSB'ler/Sanayi Bölgeleri ve Üretim/Ticari Tesisler.",
+      p1Tag: "1. SÜTUN: OSB & SANAYİ BÖLGELERİ",
+      p1Title: "OSB ve Sanayi Bölgeleri Dijital İkizi",
+      p1Sub: "Parsel Tahsisi, Altyapı ve Yatırımcı Portalı",
+      p1Desc:
+        "Organize Sanayi Bölgelerinin 3D parsel haritalaması, yatırımcılara uzaktan saha gösterimi, elektrik/gaz/su hatları takibi ve kiracı yönetim portalı.",
+      p1C1: "3D Parsel Tahsis ve Yatırımcı Portalı",
+      p1C2: "OSB Altyapı, Şebeke ve Kayıp-Kaçak İzleme",
+      p1C3: "Bölge Yönetimi & Fabrika Ruhsat Entegrasyonu",
+      p1Btn: "OSB Dijitalleştirme Talebi",
+      p2Tag: "2. SÜTUN: TESİS VE YAPILAR",
+      p2Title: "Fabrika, Binalar ve Tesisler",
+      p2Sub: "Dijital Varlık, Tesis ve Operasyon Yönetimi",
+      p2Desc:
+        "Fabrikaların, ticari binaların, depoların ve tesislerin kat/alan bazlı veya komple dijitalleştirilmesi. Varlık envanteri, periyodik bakım takibi ve opsiyonel sensör entegrasyonu.",
+      p2C1: "Tesis & Bölüm Bazlı 3D Varlık Envanteri",
+      p2C2: "Kestirimci Bakım & Tesis Operasyon Yönetimi",
+      p2C3: "Opsiyonel Canlı IoT ve Sensör Telemetrisi",
+      p2Btn: "Tesis Demosu İste",
     },
-    greenCarbonSection: {
-      badge: "GREEN CARBON AI & ESG INTEGRATION",
-      title1: "Yeşil Dijital İkiz ve",
-      title2: "Karbon Ayak İzi Yönetimi",
-      description:
-        "GreenCarbonAI (greencarbonai.com) entegrasyonu ile tesis ve yapıların enerji tüketimini ve karbon emisyonunu dijital ikiz üzerinde izliyoruz.",
-      f1: "Canlı Karbon & Su Ayak İzi Raporlama",
-      f2: "AB SKDM & ESG Uyum Standartları",
-      f3: "Enerji Verimliliği & Isı Haritalama",
-      f4: "Yeşil Pasaport & Sürdürülebilirlik Sertifikası",
-      boxLabel: "CANLI KARBON NÖTR DÜZEYİ",
-      boxValue: "94.8%",
-      boxSub: "Optimizasyon Aktif",
-      boxBtn: "Green Carbon Modülü Ekle",
+    eventsSection: {
+      badge: "GELECEK ETKİNLİKLER VE EKOSİSTEM İNİSİYATİFLERİ",
+      title: "Sektörel Zirveler ve Saha Etkinlikleri",
+      subtitle:
+        "Özbekistan sanayi ve tesis dijitalleşme ekosistemini bir araya getiren prestijli buluşmalar.",
+      event1Tag: "PRESTİJ ZİRVESİ",
+      event1Location: "Tashkent / Sirdaryo",
+      event1Title: "Akıllı OSB ve Sanayi Bölgeleri Zirvesi",
+      event1Desc:
+        "Özbekistan'daki Organize Sanayi Bölgeleri müdürleri, Bakanlık yetkilileri ve uluslararası yatırımcıları buluşturan dijital parsel ve akıllı OSB dönüşüm zirvesi.",
+      event2Tag: "SAHA ATÖLYESİ",
+      event2Location: "Canlı Tesis Taraması",
+      event2Title: "\"Fabrikanı Keşfet\" Saha Etkinliği",
+      event2Desc:
+        "Sanayicilerin ve fabrika sahiplerinin kendi üretim tesislerinin dijital ikiz potansiyelini, varlık takibini ve enerji verimliliğini canlı yerinde tecrübe ettiği özel saha buluşması.",
+      ctaLabel: "Katılım & Detaylı Bilgi İçin:",
+      ctaBtn1: "Kayıt / Bilgi İste",
+      ctaBtn2: "Ev Sahipliği / Kayıt",
     },
     techSection: {
-      badge: "TEKNOLOJİ KATMANI",
+      badge: "TEKNOLOJİ MİMARİSİ",
       title: "4 Adımda Mekansal İkiz Mimarisi",
       subtitle:
-        "Sensörden dijital ikize, simülasyondan analitik karar desteğe kadar bütünleşik sistem katmanı.",
-      stepPrefix: "0",
-      layers: [
-        {
-          step: "1",
-          title: "IoT & Sensör Katmanı",
-          description:
-            "Saha, tesis ve altyapıdaki fiziksel sensörlerden canlı telemetri verilerinin toplanması.",
-          tag: "Wi-Fi / MQTT / Sensör",
-        },
-        {
-          step: "2",
-          title: "Dijital İkiz Geliştirme",
-          description:
-            "Altyapı verilerinin yüksek hassasiyetli mekansal modellemesi ve 3D ikiz geliştirme.",
-          tag: "3D Mekansal / Point Cloud",
-        },
-        {
-          step: "3",
-          title: "Dijital İkiz Simülasyonu",
-          description:
-            "Fiziksel varlıkların sanal ortamda canlı modelleri, süreç takibi ve simülasyonları.",
-          tag: "XR / Simülasyon Motoru",
-        },
-        {
-          step: "4",
-          title: "Karar Destek & Analitik",
-          description:
-            "Veriye dayalı optimizasyon, kestirimci bakım ve üst düzey yönetim analitiği.",
-          tag: "Kestirimci Analitik",
-        },
-      ],
+        "Veri toplamadan dijital ikize, opsiyonel canlı bağlantılardan analitik karar desteğe kadar aşamalı mimari.",
+      t1Step: "ADIM 01",
+      t1Title: "Saha Verisi & Dijitalleştirme",
+      t1Desc:
+        "Hazır modellerin entegrasyonu veya sahadan tarama ve mekansal verilerin toplanması.",
+      t2Step: "ADIM 02",
+      t2Title: "Dijital İkiz Yapılandırması",
+      t2Desc:
+        "Toplanan fiziki verilerin dijital ikiz formatında düzenlenmesi ve verileştirilmesi.",
+      t3Step: "ADIM 03",
+      t3Title: "Canlı Veri & Entegrasyon (Opsiyonel)",
+      t3Desc:
+        "İhtiyaç duyulan tesis ve sistemlerde sensör, IIoT ve canlı telemetri bağlantıları.",
+      t4Step: "ADIM 04",
+      t4Title: "Karar Destek & Analitik",
+      t4Desc:
+        "Yönetim panelleri, operasyonel takip, enerji ve emisyon analitiği.",
+    },
+    partnersSection: {
+      badge: "PARTNERLERİMİZ VE EKOSİSTEM",
+      title: "Gelişen Teknoloji Ekosistemimiz",
+      subtitle:
+        "Mekansal dijitalleştirme ve teknoloji ekosistemimize katılmak veya partnerimiz olmak için bizimle iletişime geçebilirsiniz.",
+      btn: "Partnerimiz Olun / Become a Partner",
+    },
+    showcaseSection: {
+      badge: "ÖNE ÇIKAN SAHALAR VE REKLAM PANOSU",
+      title: "Dijitalleşen Varlığınızı Platformda Öne Çıkarın",
+      description:
+        "Dijital ikizini oluşturduğumuz arazinizi, sanayi tesisinizi veya projenizi yatırımcılara ve müşterilere sergilemek için platformumuzda öne çıkarabilirsiniz.",
+      btn: "Reklam / Öne Çıkarma Talebi",
+    },
+    legalSection: {
+      title: "Özbekistan Dijital Reformları ve Yasal Mevzuat",
+      toggleOpen: "Mevzuat / Bilgi Rehberi",
+      toggleClose: "Rehberi Kapat",
+      pf6079Title: "\"Dijital Özbekistan – 2030\" Stratejisi",
+      pf6079Desc:
+        "Sanayi ve altyapıda dijital dönüşümü hayata geçirmeye yönelik ulusal strateji.",
+      orq702Title: "\"Mekansal Veriler Hakkında\" Kanun",
+      orq702Desc:
+        "GIS haritalama, kadastro ve 3D topografik verilerin yönetimi yasal çerçevesi.",
     },
     contactSection: {
-      badge: "İLETİŞİM & MERKEZ",
-      title: "Fiziki Varlığınızı Dijital İkize Dönüştürün",
-      description:
-        "Araziler, tesisler, binalar ve tüm fiziki varlıkların dijital ikizi. Fiziksel mekanları dijital modellere dönüştürüyoruz.",
-      officeLabel: "Genel Merkez",
-      officeValue: "Tashkent, Uzbekistan / İstanbul, Türkiye",
-      phoneLabel: "Telefon",
-      phoneValue: "+998 90 277 73 66",
       form: {
         nameLabel: "Adınız ve Soyadınız",
         namePlaceholder: "Jasur Rahimov",
         orgLabel: "Şirket / Kurum Adı",
         orgPlaceholder: "Tashkent Spatial Development",
-        emailLabel: "E-Posta",
-        emailPlaceholder: "info@sirket.uz",
-        domainLabel: "İlgilendiğiniz Dönüşüm Katmanı",
+        domainLabel: "İlgilendiğiniz Dönüşüm Boyutu",
         domainOptions: {
-          all: "Tüm Dönüşüm Katmanları",
-          macro: "Mekansal & Coğrafi Varlıklar (Araziler, OSB & Altyapı)",
-          micro: "Tesisler & Yapı Kompleksleri (Fabrika, Binalar & Miras)",
-          xr: "Simülasyon, XR & Eğitim (Nara XR & Digital School)",
-          green: "Green Carbon AI (Karbon & Enerji)",
+          osb: "OSB & Sanayi Bölgeleri (Parsel ve Altyapı Takibi)",
+          facilities: "Tesisler & Yapılar (Binalar, Fabrikalar & Tesisler)",
+          summit: "Akıllı OSB ve Sanayi Bölgeleri Zirvesi (Kayıt / Bilgi)",
+          fieldEvent: "\"Fabrikanı Keşfet\" Saha Etkinliği (Ev Sahipliği / Kayıt)",
+          ad: "Reklam & Öne Çıkarma (Sponsoring)",
+          partner: "Teknoloji Partnerliği / Partnership",
         },
         notesLabel: "Saha / Varlık Notları",
         notesPlaceholder: "Saha büyüklüğü, lokasyon ve hedefleriniz...",
         submitBtn: "Talep Gönder / Request Demo",
         submittingBtn: "Gönderiliyor...",
-        successMsg:
-          "Teşekkürler! Talebiniz alındı. Uzmanlarımız en kısa sürede iletişime geçecektir.",
+        successMsg: "Teşekkürler! Talebiniz alındı. Uzmanlarımız en kısa sürede iletişime geçecektir.",
       },
     },
     demoModal: {
@@ -557,203 +502,166 @@ export const translations: Record<Language, TranslationContent> = {
       submitBtn: "Talep Gönder / Request Demo",
     },
     footer: {
-      description:
-        "Araziler, tesisler, binalar ve tüm fiziki varlıkların dijital ikizi. Fiziksel mekanları dijital modellere dönüştürüyoruz.",
-      dimensionsHeading: "DÖNÜŞÜM KATMANLARI",
+      description: "Organize Sanayi Bölgeleri ve tesisler için dijital ikiz altyapı platformu.",
+      dimensionsHeading: "DÖNÜŞÜM ODAKLARI",
+      tagAreas: "OSB & Sanayi Bölgeleri",
+      tagFacilities: "Tesisler & Yapılar",
+      eventLink: "OSB & Sanayi Zirvesi",
       contactHeading: "İLETİŞİM & MERKEZ",
+      locations: "Tashkent, Uzbekistan / İstanbul, Türkiye",
       phoneLabel: "Telefon",
       phoneValue: "+998 90 277 73 66",
       rights: "Tüm hakları saklıdır.",
-      locations: "Tashkent, Uzbekistan / İstanbul, Türkiye",
-      privacy: "Gizlilik Politikası",
+      tagline: "Spatial Twin & Green Tech Ecosystem",
     },
   },
 
   // ============================================================
-  // ENGLISH (EN) - 100% Native English
+  // ENGLISH (EN)
   // ============================================================
   en: {
     nav: {
       system: "What We Do",
-      dimensions: "Transformation Layers",
-      greenCarbon: "Green Carbon",
-      tech: "Tech Stack",
+      dimensions: "Transformation Focus",
+      events: "Summits & Events",
+      tech: "Tech Architecture",
+      partners: "Partners",
       contact: "Contact",
       demoButton: "Request Demo",
     },
     hero: {
-      badge: "SPATIAL DIGITIZATION ECOSYSTEM",
-      title1: "Digital Twin Services for",
-      title2: "Physical Spaces & Assets",
+      badge: "INDUSTRIAL ZONES & FACILITIES ECOSYSTEM",
+      title1: "Digital Twin & Green Carbon Platform for",
+      title2: "Industrial Zones (OSB) & Facilities",
       description:
-        "We convert physical grounds, facilities, and structures into digital twins using 3D laser scanning, IoT sensors, and simulation engines. We integrate ready-made models or build custom spatial models on-site.",
-      tagAreas: "Macro / Geo-Spatial",
-      tagFacilities: "Micro / Structures",
-      tagXr: "Human & Interaction",
-      tagGreen: "Green Carbon",
+        "We develop plot allocation twins, infrastructure tracking, and facility operation management systems for industrial zones and enterprise facilities.",
+      tagAreas: "Industrial Zones (OSB)",
+      tagFacilities: "Facilities & Built Spaces",
+      tagGreen: "Green Carbon AI",
       btnMain: "Digitize Your Physical Asset",
-      btnSub: "Explore Transformation Layers",
+      btnSub: "Explore Focus Dimensions",
       canvasTelemetry: "Live Telemetry & GIS",
     },
     coreEngines: {
       badge: "WHAT WE DO",
       title: "Bridging Physical Spaces with Digital Models",
       subtitle:
-        "We either integrate pre-built spatial assets or provide custom on-site 3D scanning, modeling, and telemetry integration.",
-      engine1Tag: "MODEL 1: PRE-BUILT TWIN LIBRARY",
+        "When digitizing a space, we first check for ready-made solutions; if none exist, we develop the digital twin from scratch.",
+      engine1Tag: "PATH 1: PRE-BUILT DIGITIZATION TEMPLATES",
       engine1Title: "Ready-Made Digital Assets",
       engine1Desc:
-        "Integrating pre-digitized spatial models, structural templates, and environments into the platform for rapid deployment.",
-      engine1Check: "Instant 3D & GIS Spatial Library Integration",
-      engine2Tag: "MODEL 2: ON-SITE DIGITIZATION SERVICE",
+        "When digitizing a physical space, we first leverage our library of models, data, and templates to quickly integrate available solutions.",
+      engine1Check: "Rapid Integration of Existing Models",
+      engine2Tag: "PATH 2: ON-SITE DIGITIZATION SERVICE",
       engine2Title: "Custom Digital Twin Development",
       engine2Desc:
-        "Transforming non-digitized physical spaces, facilities, or structures via 3D scanning, photogrammetry, and IoT sensor setups.",
-      engine2Check: "Site Scanning, Sensor Integration & 3D Twin Modeling",
+        "If a ready-made solution does not exist, we perform on-site scanning and custom data modeling to build the digital twin from scratch.",
+      engine2Check: "On-Site Scanning & Twin Development from Scratch",
     },
     dimensionsSection: {
-      badge: "TRANSFORMATION LAYERS",
-      title: "Digital Twin Solutions Across 3 Scales",
+      badge: "TRANSFORMATION FOCUS",
+      title: "Focused Solutions Across 2 Core Pillars",
       subtitle:
-        "Working across geographical lands, facility structures, and interactive training simulations.",
-      items: [
-        {
-          id: "macro",
-          tag: "MACRO SCALE",
-          title: "Geo-Spatial & Land Assets",
-          subtitle: "Lands, Terrains & Geographical Zones",
-          description:
-            "3D GIS mapping and spatial digital twin solutions for grounds, terrains, and infrastructure networks.",
-          features: [
-            "3D GIS Topography & Land Mapping",
-            "Spatial Data Portal & Digital Allocation",
-            "Wide-Area Infrastructure & Spatial Analytics",
-          ],
-          widgetTitle: "SPATIAL TELEMETRY",
-          widgetStatus: "LIVE",
-          metric1Label: "Mapped Area",
-          metric1Value: "2,450 Hectares",
-          metric2Label: "GIS Precision",
-          metric2Value: "< 2 cm",
-          btnText: "Request Macro Demo",
-        },
-        {
-          id: "micro",
-          tag: "MICRO SCALE",
-          title: "Built Structures & Operations",
-          subtitle: "Buildings, Facilities & Physical Assets",
-          description:
-            "Live IoT sensor tracking, digital simulation, and operational tracking for physical structures and indoor spaces.",
-          features: [
-            "Physical Asset & Facility 3D Modeling",
-            "Live IoT & Sensor Telemetry Integration",
-            "Predictive Maintenance & Process Optimization",
-          ],
-          widgetTitle: "FACILITY MONITORING",
-          widgetStatus: "ACTIVE",
-          metric1Label: "Managed Facilities",
-          metric1Value: "82 Facilities",
-          metric2Label: "Sensor Efficiency",
-          metric2Value: "96.2%",
-          btnText: "Request Micro Demo",
-        },
-        {
-          id: "xr",
-          tag: "INTERACTION SCALE",
-          title: "Human, Simulation & Experience",
-          subtitle: "Processes, Training & Virtual Experience",
-          description:
-            "Interactive 3D environments for training, simulation, orientation, and XR data experiences.",
-          features: [
-            "Virtual & Augmented Reality (XR) Simulation",
-            "Interactive Process & Scenario Modeling",
-            "Digital Competency & Experience Management",
-          ],
-          widgetTitle: "SIMULATION & XR",
-          widgetStatus: "READY",
-          metric1Label: "Active Users",
-          metric1Value: "18,400+",
-          metric2Label: "Simulator Modules",
-          metric2Value: "54 Pre-built",
-          btnText: "Request Interaction Demo",
-        },
-      ],
+        "We focus specifically on Industrial Zones (OSB) and Manufacturing/Enterprise Facilities.",
+      p1Tag: "1. PILLAR: OSB & INDUSTRIAL ZONES",
+      p1Title: "Industrial Zones (OSB) Digital Twin",
+      p1Sub: "Plot Allocation, Infrastructure & Investor Portal",
+      p1Desc:
+        "3D plot mapping for Industrial Zones, remote site tours for investors, utility tracking, and tenant management portals.",
+      p1C1: "3D Plot Allocation & Investor Portal",
+      p1C2: "Infrastructure & Grid Loss Monitoring",
+      p1C3: "Zone Management & Factory Permit Integration",
+      p1Btn: "Request Industrial Zone Twin",
+      p2Tag: "2. PILLAR: FACILITIES & STRUCTURES",
+      p2Title: "Factories, Buildings & Facilities",
+      p2Sub: "Digital Asset, Facility & Operations Management",
+      p2Desc:
+        "Floor/zone or full digitization of factories, commercial buildings, warehouses, and facilities. Asset inventory and maintenance tracking.",
+      p2C1: "3D Asset Inventory by Zone/Facility",
+      p2C2: "Predictive Maintenance & Operations Management",
+      p2C3: "Optional Live IoT & Sensor Telemetry",
+      p2Btn: "Request Facility Demo",
     },
-    greenCarbonSection: {
-      badge: "GREEN CARBON AI & ESG INTEGRATION",
-      title1: "Green Digital Twin &",
-      title2: "Carbon Footprint Intelligence",
-      description:
-        "Integrated with GreenCarbonAI (greencarbonai.com) to track live energy consumption and carbon emissions on 3D spatial twins.",
-      f1: "Live Carbon & Water Footprint Reporting",
-      f2: "EU CBAM & ESG Compliance Standards",
-      f3: "Energy Efficiency & Thermal Heat Mapping",
-      f4: "Green Passport & Sustainability Certification",
-      boxLabel: "LIVE CARBON NEUTRAL LEVEL",
-      boxValue: "94.8%",
-      boxSub: "Optimization Active",
-      boxBtn: "Add Green Carbon Layer",
+    eventsSection: {
+      badge: "UPCOMING EVENTS & ECOSYSTEM INITIATIVES",
+      title: "Industry Summits & Field Events",
+      subtitle:
+        "Prestigious gatherings bringing together Uzbekistan's industrial and facility digitization ecosystem.",
+      event1Tag: "PRESTIGE SUMMIT",
+      event1Location: "Tashkent / Sirdaryo",
+      event1Title: "Smart OSB & Industrial Zones Summit",
+      event1Desc:
+        "A summit bringing together Industrial Zone directors, Ministry officials, and global investors for digital plot management and smart industrial zones.",
+      event2Tag: "FIELD WORKSHOP",
+      event2Location: "Live Facility Scanning",
+      event2Title: "\"Discover Your Factory\" Field Event",
+      event2Desc:
+        "An exclusive field workshop where industrialists and factory owners experience digital twin potential, asset tracking, and energy efficiency first-hand.",
+      ctaLabel: "For Registration & Info:",
+      ctaBtn1: "Request Registration",
+      ctaBtn2: "Host / Register",
     },
     techSection: {
-      badge: "TECHNOLOGY STACK",
-      title: "4-Layer Spatial Architecture",
+      badge: "TECH ARCHITECTURE",
+      title: "4-Step Spatial Twin Architecture",
       subtitle:
-        "From hardware sensors to 3D twins, XR simulation, and decision-support analytics.",
-      stepPrefix: "0",
-      layers: [
-        {
-          step: "1",
-          title: "IoT & Sensor Layer",
-          description:
-            "Collecting real-time telemetry from physical IoT sensors across sites and infrastructure.",
-          tag: "Wi-Fi / MQTT / Sensors",
-        },
-        {
-          step: "2",
-          title: "Digital Twin Development",
-          description:
-            "High-precision spatial 3D modeling and digital twin asset construction.",
-          tag: "3D Spatial / Point Cloud",
-        },
-        {
-          step: "3",
-          title: "Digital Twin Simulation",
-          description:
-            "Real-time virtual models, process tracking, and XR simulations.",
-          tag: "XR / Simulation Engine",
-        },
-        {
-          step: "4",
-          title: "Decision Support & Analytics",
-          description:
-            "Data-driven optimization, predictive maintenance, and executive reporting.",
-          tag: "Predictive Analytics",
-        },
-      ],
+        "From data acquisition to digital twin structuring, optional live connectivity, and decision support analytics.",
+      t1Step: "STEP 01",
+      t1Title: "Field Data & Digitization",
+      t1Desc:
+        "Integration of pre-built models or collecting spatial scan data directly from the field.",
+      t2Step: "STEP 02",
+      t2Title: "Digital Twin Structuring",
+      t2Desc:
+        "Organizing physical space data into structured digital twin asset models.",
+      t3Step: "STEP 03",
+      t3Title: "Live Data & Integration (Optional)",
+      t3Desc:
+        "Connecting sensors, IoT, and live telemetry in facilities where real-time tracking is required.",
+      t4Step: "STEP 04",
+      t4Title: "Decision Support & Analytics",
+      t4Desc:
+        "Executive dashboards, operational monitoring, energy and carbon analytics.",
+    },
+    partnersSection: {
+      badge: "PARTNERS & ECOSYSTEM",
+      title: "Our Growing Tech Ecosystem",
+      subtitle:
+        "Contact us to join our spatial digitization ecosystem or become a technology partner.",
+      btn: "Become a Partner",
+    },
+    showcaseSection: {
+      badge: "FEATURED SHOWCASE & SPONSORSHIP",
+      title: "Promote Your Digitized Asset on the Platform",
+      description:
+        "Feature your digitized land plot, industrial facility, or development project on our platform to reach global investors and buyers.",
+      btn: "Request Advertisement / Featuring",
+    },
+    legalSection: {
+      title: "Uzbekistan Digital Reforms & Legal Regulations",
+      toggleOpen: "Legal / Reference Guide",
+      toggleClose: "Close Guide",
+      pf6079Title: "\"Digital Uzbekistan – 2030\" Strategy",
+      pf6079Desc:
+        "National strategy for digital transformation in industries and infrastructure.",
+      orq702Title: "\"Law on Spatial Data\" (O'RQ-702)",
+      orq702Desc:
+        "Legal framework for managing GIS mapping, cadastre, and 3D topographic data.",
     },
     contactSection: {
-      badge: "GLOBAL HQ & CONTACT",
-      title: "Digitize Your Physical Asset",
-      description:
-        "Digital twins for grounds, facilities, buildings, and physical assets. We bridge physical spaces with digital models.",
-      officeLabel: "Headquarters",
-      officeValue: "Tashkent, Uzbekistan / Istanbul, Türkiye",
-      phoneLabel: "Phone",
-      phoneValue: "+998 90 277 73 66",
       form: {
         nameLabel: "Full Name",
         namePlaceholder: "Jasur Rahimov",
         orgLabel: "Company / Organization",
         orgPlaceholder: "Tashkent Spatial Development",
-        emailLabel: "Email",
-        emailPlaceholder: "info@company.uz",
-        domainLabel: "Interested Layer",
+        domainLabel: "Interested Focus",
         domainOptions: {
-          all: "All Transformation Layers",
-          macro: "Macro / Geo-Spatial (Lands, SEZ & Utilities)",
-          micro: "Micro / Facilities (Factories, Buildings & Heritage)",
-          xr: "Interaction, XR & Training (Nara XR & Digital School)",
-          green: "Green Carbon AI (Carbon & Energy)",
+          osb: "Industrial Zones (OSB) - Plot & Utilities",
+          facilities: "Facilities & Built Spaces (Factories & Buildings)",
+          summit: "Smart OSB & Industrial Zones Summit (Register)",
+          fieldEvent: "\"Discover Your Factory\" Field Event (Host / Register)",
+          ad: "Featured Showcase & Advertisement",
+          partner: "Technology Partnership",
         },
         notesLabel: "Asset / Site Notes",
         notesPlaceholder: "Site footprint, location, and goals...",
@@ -768,20 +676,22 @@ export const translations: Record<Language, TranslationContent> = {
       close: "Close",
       nameLabel: "Full Name",
       orgLabel: "Company / Organization",
-      domainLabel: "Interested Transformation Dimension",
+      domainLabel: "Interested Focus",
       notesLabel: "Asset / Site Notes",
       submitBtn: "Submit Request / Request Demo",
     },
     footer: {
-      description:
-        "Digital twins for grounds, facilities, buildings, and physical assets. We bridge physical spaces with digital models.",
-      dimensionsHeading: "TRANSFORMATION LAYERS",
+      description: "Digital twin platform tailored for Industrial Zones and enterprise facilities.",
+      dimensionsHeading: "TRANSFORMATION FOCUS",
+      tagAreas: "Industrial Zones (OSB)",
+      tagFacilities: "Facilities & Built Spaces",
+      eventLink: "OSB & Industrial Summit",
       contactHeading: "GLOBAL HQ & CONTACT",
+      locations: "Tashkent, Uzbekistan / Istanbul, Türkiye",
       phoneLabel: "Phone",
       phoneValue: "+998 90 277 73 66",
       rights: "All rights reserved.",
-      locations: "Tashkent, Uzbekistan / Istanbul, Türkiye",
-      privacy: "Privacy Policy",
+      tagline: "Spatial Twin & Green Tech Ecosystem",
     },
   },
 };

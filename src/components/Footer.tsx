@@ -4,10 +4,9 @@ import { Globe, MapPin, Phone, Send } from 'lucide-react';
 
 interface FooterProps {
   content: TranslationContent['footer'];
-  navContent: TranslationContent['nav'];
 }
 
-export const Footer: React.FC<FooterProps> = ({ content, navContent }) => {
+export const Footer: React.FC<FooterProps> = ({ content }) => {
   return (
     <footer id="iletisim" className="border-t border-[#1e293b]/80 bg-[#030712] relative z-10 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,23 +67,18 @@ export const Footer: React.FC<FooterProps> = ({ content, navContent }) => {
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <a href="#oz-mantik" className="hover:text-[#00f0ff] transition-colors">
-                  {navContent.system}
+                <a href="#dijital-boyutlar" className="hover:text-[#00f0ff] transition-colors">
+                  {content.tagAreas}
                 </a>
               </li>
               <li>
                 <a href="#dijital-boyutlar" className="hover:text-[#00f0ff] transition-colors">
-                  {navContent.dimensions}
+                  {content.tagFacilities}
                 </a>
               </li>
               <li>
-                <a href="#green-carbon" className="hover:text-[#22c55e] transition-colors font-medium text-[#22c55e]">
-                  {navContent.greenCarbon}
-                </a>
-              </li>
-              <li>
-                <a href="#teknoloji-katmani" className="hover:text-[#00f0ff] transition-colors">
-                  {navContent.tech}
+                <a href="#etkinlikler" className="hover:text-[#f59e0b] transition-colors font-medium text-[#f59e0b]">
+                  {content.eventLink}
                 </a>
               </li>
             </ul>
@@ -121,7 +115,7 @@ export const Footer: React.FC<FooterProps> = ({ content, navContent }) => {
         {/* Bottom copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 font-mono gap-4">
           <div>&copy; {new Date().getFullYear()} DigiTwins.uz. {content.rights}</div>
-          <div>Spatial Twin & Green Tech Ecosystem</div>
+          <div>{content.tagline}</div>
         </div>
 
       </div>

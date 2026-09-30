@@ -21,21 +21,25 @@ export const DemoModal: React.FC<DemoModalProps> = ({
 }) => {
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
-  const [domain, setDomain] = useState('macro');
+  const [domain, setDomain] = useState('osb');
   const [notes, setNotes] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (preselectedPlatform) {
       const p = preselectedPlatform.toLowerCase();
-      if (p.includes('macro') || p.includes('makro') || p.includes('arazi') || p.includes('mekansal')) {
-        setDomain('macro');
-      } else if (p.includes('micro') || p.includes('mikro') || p.includes('tesis') || p.includes('yapı') || p.includes('bina')) {
-        setDomain('micro');
-      } else if (p.includes('xr') || p.includes('simülasyon') || p.includes('simulyatsiya') || p.includes('etkileşim') || p.includes('ta\'sir')) {
-        setDomain('xr');
-      } else if (p.includes('green') || p.includes('carbon') || p.includes('karbon') || p.includes('yashil')) {
-        setDomain('green');
+      if (p.includes('osb') || p.includes('sanoat') || p.includes('sanayi') || p.includes('industrial') || p.includes('yer') || p.includes('parsel')) {
+        setDomain('osb');
+      } else if (p.includes('tesis') || p.includes('yapı') || p.includes('bina') || p.includes('fabrika') || p.includes('facility') || p.includes('inshoot') || p.includes('ombor')) {
+        setDomain('facilities');
+      } else if (p.includes('summit') || p.includes('zirve') || p.includes('sammit') || p.includes('akıllı')) {
+        setDomain('summit');
+      } else if (p.includes('keşfet') || p.includes('kashf') || p.includes('field') || p.includes('maydon') || p.includes('saha')) {
+        setDomain('fieldEvent');
+      } else if (p.includes('ad') || p.includes('reklam') || p.includes('sponsor') || p.includes('showcase')) {
+        setDomain('ad');
+      } else if (p.includes('partner') || p.includes('hamkor') || p.includes('ortak')) {
+        setDomain('partner');
       }
     }
   }, [preselectedPlatform, isOpen]);
@@ -127,10 +131,12 @@ export const DemoModal: React.FC<DemoModalProps> = ({
               onChange={(e) => setDomain(e.target.value)}
               className="w-full bg-[#0f172a] border border-[#1e293b] rounded-lg p-3 text-white focus:outline-none focus:border-[#00f0ff] transition-colors"
             >
-              <option value="macro">{formContent.domainOptions.macro}</option>
-              <option value="micro">{formContent.domainOptions.micro}</option>
-              <option value="xr">{formContent.domainOptions.xr}</option>
-              <option value="green">{formContent.domainOptions.green}</option>
+              <option value="osb">{formContent.domainOptions.osb}</option>
+              <option value="facilities">{formContent.domainOptions.facilities}</option>
+              <option value="summit">{formContent.domainOptions.summit}</option>
+              <option value="fieldEvent">{formContent.domainOptions.fieldEvent}</option>
+              <option value="ad">{formContent.domainOptions.ad}</option>
+              <option value="partner">{formContent.domainOptions.partner}</option>
             </select>
           </div>
 

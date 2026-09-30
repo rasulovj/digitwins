@@ -1,7 +1,7 @@
 import React from 'react';
 import { TranslationContent } from '../locales/translations';
 import { HeroCanvas } from './HeroCanvas';
-import { Globe, Building, Sparkles, Leaf, ArrowRight, Boxes } from 'lucide-react';
+import { Factory, Building, Leaf, ArrowRight, Boxes } from 'lucide-react';
 
 interface HeroProps {
   heroContent: TranslationContent['hero'];
@@ -29,7 +29,7 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
 
             {/* Glowing Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold tracking-tight text-white leading-[1.18]">
+            <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-white leading-[1.18]">
               <span>{heroContent.title1}</span> <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00f0ff] via-[#38bdf8] to-[#22c55e] text-glow">
                 {heroContent.title2}
@@ -41,21 +41,17 @@ export const Hero: React.FC<HeroProps> = ({
               {heroContent.description}
             </p>
 
-            {/* 4 Universal Indicators */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs font-mono text-slate-300 max-w-xl mx-auto lg:mx-0">
-              <div className="p-2.5 rounded-lg bg-[#0f172a] border border-[#1e293b] text-center hover:border-[#00f0ff]/50 transition-colors">
-                <Globe className="w-4 h-4 text-[#00f0ff] mx-auto mb-1" />
+            {/* 3 Indicators */}
+            <div className="grid grid-cols-3 gap-3 pt-2 text-xs font-mono text-slate-300 max-w-xl mx-auto lg:mx-0">
+              <div className="p-3 rounded-lg bg-[#0f172a] border border-[#1e293b] text-center hover:border-[#00f0ff]/50 transition-colors">
+                <Factory className="w-4 h-4 text-[#00f0ff] mx-auto mb-1" />
                 <span>{heroContent.tagAreas}</span>
               </div>
-              <div className="p-2.5 rounded-lg bg-[#0f172a] border border-[#1e293b] text-center hover:border-[#f59e0b]/50 transition-colors">
+              <div className="p-3 rounded-lg bg-[#0f172a] border border-[#1e293b] text-center hover:border-[#f59e0b]/50 transition-colors">
                 <Building className="w-4 h-4 text-[#f59e0b] mx-auto mb-1" />
                 <span>{heroContent.tagFacilities}</span>
               </div>
-              <div className="p-2.5 rounded-lg bg-[#0f172a] border border-[#1e293b] text-center hover:border-[#a855f7]/50 transition-colors">
-                <Sparkles className="w-4 h-4 text-[#a855f7] mx-auto mb-1" />
-                <span>{heroContent.tagXr}</span>
-              </div>
-              <div className="p-2.5 rounded-lg bg-[#0f172a] border border-[#1e293b] text-center hover:border-[#22c55e]/50 transition-colors">
+              <div className="p-3 rounded-lg bg-[#0f172a] border border-[#1e293b] text-center hover:border-[#22c55e]/50 transition-colors">
                 <Leaf className="w-4 h-4 text-[#22c55e] mx-auto mb-1" />
                 <span>{heroContent.tagGreen}</span>
               </div>
