@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
-import { Language, TranslationContent } from '../locales/translations';
-import { Globe, Boxes, Layers, Calendar, Cpu, Handshake, Mail, Menu, X, Zap } from 'lucide-react';
+import React, { useState } from "react";
+import { Language, TranslationContent } from "../locales/translations";
+import {
+  Boxes,
+  Layers,
+  Calendar,
+  Cpu,
+  Handshake,
+  Mail,
+  Menu,
+  X,
+  Zap,
+} from "lucide-react";
 
 interface NavbarProps {
   currentLang: Language;
   onLanguageChange: (lang: Language) => void;
-  content: TranslationContent['nav'];
+  content: TranslationContent["nav"];
   onOpenDemo: (platform?: string) => void;
 }
 
@@ -18,17 +28,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const languages: Array<{ code: Language; label: string }> = [
-    { code: 'uz', label: 'UZ' },
-    { code: 'tr', label: 'TR' },
-    { code: 'en', label: 'EN' },
+    { code: "uz", label: "UZ" },
+    { code: "tr", label: "TR" },
+    { code: "en", label: "EN" },
   ];
 
   return (
     <header className="sticky top-0 z-50 w-full glass-panel border-b border-[#1e293b]/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        
         {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-3.5 group">
+        {/* <a href="#" className="flex items-center gap-3.5 group">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00f0ff] via-[#0ea5e9] to-[#22c55e] p-[1px] transition-transform group-hover:scale-105">
             <div className="w-full h-full bg-[#030712] rounded-[11px] flex items-center justify-center">
               <Globe className="w-5 h-5 text-[#00f0ff] transition-transform group-hover:rotate-45" />
@@ -39,10 +48,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               DigiTwins<span className="text-[#00f0ff]">.uz</span>
             </span>
             <span className="text-[9px] font-mono text-slate-400 tracking-widest -mt-1 uppercase font-semibold">
-              OSB & Spatial Digital Twin
+              Spatial Digital Twin
             </span>
           </div>
-        </a>
+        </a> */}
+        <div>
+          <img src="/digitwins-logo.svg" alt="Logo" className="w-80" />
+        </div>
 
         {/* Desktop Links */}
         <nav className="hidden lg:flex items-center space-x-6 text-xs font-medium text-slate-300">
@@ -92,7 +104,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Language Switcher & Gradient CTA */}
         <div className="hidden md:flex items-center space-x-4">
-          
           {/* Language Switcher */}
           <div className="flex items-center bg-[#0f172a] border border-[#1e293b] rounded-lg p-1 text-xs font-mono">
             {languages.map((item) => (
@@ -101,8 +112,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => onLanguageChange(item.code)}
                 className={`px-2.5 py-1 rounded transition-all cursor-pointer ${
                   currentLang === item.code
-                    ? 'bg-[#0284c7] text-white font-bold'
-                    : 'text-slate-400 hover:text-white'
+                    ? "bg-[#0284c7] text-white font-bold"
+                    : "text-slate-400 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -128,9 +139,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="lg:hidden text-slate-300 hover:text-white text-2xl p-2 cursor-pointer"
           aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
         </button>
-
       </div>
 
       {/* Mobile Menu */}
@@ -190,8 +204,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }}
                 className={`flex-1 py-1 text-center rounded transition-all cursor-pointer ${
                   currentLang === item.code
-                    ? 'bg-[#0284c7] text-white font-bold'
-                    : 'text-slate-400'
+                    ? "bg-[#0284c7] text-white font-bold"
+                    : "text-slate-400"
                 }`}
               >
                 {item.label}

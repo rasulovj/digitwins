@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" role="img" aria-labelledby="title desc">
+  <title id="title">DigiTwins.uz logo</title>
+  <desc id="desc">A geometric digital twin cube connected to a network grid, with DigiTwins.uz wordmark.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06B6D4"/>
+      <stop offset=".55" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#10B981"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#10B981"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Mark -->
+  <g transform="translate(22 18)">
+    <rect x="0" y="0" width="144" height="144" rx="32" fill="#070B12" stroke="#1E293B" stroke-width="2"/>
+
+    <!-- subtle spatial grid -->
+    <g opacity=".22" stroke="#06B6D4" stroke-width="1">
+      <path d="M18 108H126M18 90H126M18 72H126M18 54H126"/>
+      <path d="M36 126V36M54 126V36M72 126V36M90 126V36M108 126V36"/>
+    </g>
+
+    <!-- twin cube -->
+    <g fill="none" stroke="url(#g)" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+      <path stroke-width="7" d="M72 25 112 47 72 69 32 47Z"/>
+      <path stroke-width="7" d="M32 47v46l40 24 40-24V47"/>
+      <path stroke-width="7" d="M72 69v48"/>
+    </g>
+
+    <!-- digital twin offset / duplicate geometry -->
+    <g fill="none" stroke="url(#g2)" stroke-width="3" opacity=".95" stroke-linecap="round">
+      <path d="M72 25 72 15 122 42"/>
+      <path d="M122 42v58l-10 6"/>
+      <path d="M32 93 22 99V51l10-5"/>
+    </g>
+
+    <!-- data nodes -->
+    <g fill="#F8FAFC">
+      <circle cx="72" cy="25" r="4"/>
+      <circle cx="112" cy="47" r="4"/>
+      <circle cx="72" cy="69" r="4"/>
+      <circle cx="32" cy="47" r="4"/>
+      <circle cx="72" cy="117" r="4"/>
+    </g>
+    <g fill="#10B981">
+      <circle cx="122" cy="42" r="3.5"/>
+      <circle cx="22" cy="99" r="3.5"/>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(195 57)">
+    <text x="0" y="48" font-family="Inter, Arial, Helvetica, sans-serif" font-size="52" font-weight="800" letter-spacing="-2.2" fill="#F8FAFC">DigiTwins</text>
+    <text x="3" y="78" font-family="JetBrains Mono, Menlo, monospace" font-size="13" font-weight="600" letter-spacing="3.2" fill="#64748B">SPATIAL DIGITAL TWIN</text>
+  </g>
+</svg>
