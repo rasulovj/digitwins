@@ -2,59 +2,94 @@
 
 @layer base {
   body {
-    background-color: #030712;
-    color: #f3f4f6;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #070B12;
+    color: #F8FAFC;
+    font-family: 'Inter', sans-serif;
     overflow-x: hidden;
   }
 }
 
 .glass-panel {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-panel-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-panel-hover:hover {
-  border-color: rgba(0, 240, 255, 0.35);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -15px rgba(0, 240, 255, 0.15);
-}
-
-.text-glow {
-  text-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
-}
-
-.text-glow-green {
-  text-shadow: 0 0 25px rgba(34, 197, 94, 0.4);
+  border-color: rgba(6, 182, 212, 0.45);
+  box-shadow: 0 12px 36px -10px rgba(6, 182, 212, 0.3);
+  transform: translateY(-2px);
 }
 
 .bg-grid-pattern {
-  background-size: 50px 50px;
+  background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
 }
 
-.radial-gradient-overlay {
-  background: radial-gradient(circle at 50% 20%, rgba(14, 165, 233, 0.12) 0%, rgba(3, 7, 18, 0.98) 75%);
+.glow-cyan {
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.22);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 35px rgba(16, 185, 129, 0.22);
+}
+
+.image-zoom-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background-color: #030712;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.image-zoom-card:hover {
+  border-color: rgba(6, 182, 212, 0.6);
+  box-shadow: 0 8px 24px -6px rgba(6, 182, 212, 0.3);
+}
+
+.image-zoom-card img {
+  transition: transform 0.35s ease;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.image-zoom-card:hover img {
+  transform: scale(1.02);
+}
+
+.image-zoom-badge {
+  opacity: 0.9;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.image-zoom-card:hover .image-zoom-badge {
+  opacity: 1;
+  transform: scale(1.05);
 }
 
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #070B12;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #1E293B;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0284c7;
+  background: #06B6D4;
 }
