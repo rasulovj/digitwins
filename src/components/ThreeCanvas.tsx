@@ -1,8 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { SiteDictionary } from '../locales/siteContent';
 
 declare const THREE: any;
 
-export const ThreeCanvas: React.FC = () => {
+interface ThreeCanvasProps {
+  content: SiteDictionary['hero'];
+}
+
+export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({ content }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [fps, setFps] = useState<number>(60);
   const [latency, setLatency] = useState<number>(12);
@@ -186,14 +191,14 @@ export const ThreeCanvas: React.FC = () => {
     <div className="glass-panel p-5 sm:p-7 rounded-2xl max-w-4xl mx-auto border border-[#06B6D4]/35 mt-8 glow-cyan text-left">
       <div className="flex flex-wrap items-center justify-between text-xs text-slate-400 mb-4 pb-3 border-b border-[#1E293B] font-mono gap-2">
         <span className="text-[#06B6D4] flex items-center gap-2 font-semibold">
-          <i className="fa-solid fa-satellite-dish animate-pulse"></i> CANLI TELEMETRİ VE KONTROL MERKEZİ (Spatial Digital Twin)
+          <i className="fa-solid fa-satellite-dish animate-pulse"></i> {content.telemetryTitle}
         </span>
         <div className="flex items-center gap-3">
           <span className="text-slate-400">
-            FPS: <span className="text-[#06B6D4] font-bold">{fps}</span>
+            {content.fpsLabel} <span className="text-[#06B6D4] font-bold">{fps}</span>
           </span>
           <span className="bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded border border-emerald-500/40 text-[10px] font-bold flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> ONLINE
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> {content.online}
           </span>
         </div>
       </div>
@@ -204,22 +209,22 @@ export const ThreeCanvas: React.FC = () => {
 
         <div className="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none">
           <div className="bg-[#0F172A]/90 backdrop-blur-md border border-[#1E293B] px-3.5 py-1.5 rounded-lg text-xs font-mono text-slate-300">
-            <span className="text-slate-400">Düğüm Sayısı:</span>{' '}
-            <span className="text-[#06B6D4] font-bold">142 Aktif Düğüm</span>
+            <span className="text-slate-400">{content.nodesLabel}</span>{' '}
+            <span className="text-[#06B6D4] font-bold">{content.nodesCount}</span>
           </div>
           <div className="bg-[#0F172A]/90 backdrop-blur-md border border-[#1E293B] px-3.5 py-1.5 rounded-lg text-xs font-mono text-slate-300">
-            <span className="text-slate-400">Telemetri Gecikmesi:</span>{' '}
+            <span className="text-slate-400">{content.latencyLabel}</span>{' '}
             <span className="text-emerald-400 font-bold">{latency} ms</span>
           </div>
           <div className="bg-[#0F172A]/90 backdrop-blur-md border border-[#1E293B] px-3.5 py-1.5 rounded-lg text-xs font-mono text-slate-300">
-            <span className="text-slate-400">Tesis Sağlık Oranı:</span>{' '}
-            <span className="text-emerald-400 font-bold">%89 Verimlilik (OEE)</span>
+            <span className="text-slate-400">{content.oeeLabel}</span>{' '}
+            <span className="text-emerald-400 font-bold">{content.oeeValue}</span>
           </div>
         </div>
 
         <div className="absolute bottom-4 right-4 bg-[#070B12]/90 backdrop-blur-md border border-[#06B6D4]/30 px-3.5 py-1.5 rounded-lg text-xs font-mono text-slate-300 flex items-center gap-2">
           <i className="fa-solid fa-arrows-up-down-left-right text-[#06B6D4]"></i>
-          <span>Fare veya Dokunmatik ile 3D Döndürün</span>
+          <span>{content.dragHint}</span>
         </div>
       </div>
     </div>

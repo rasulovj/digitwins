@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { SiteDictionary } from '../locales/siteContent';
 
 interface DimensionsSectionProps {
+  content: SiteDictionary['dimensions'];
   onOpenLightbox: (src: string, caption: string) => void;
 }
 
@@ -15,6 +17,7 @@ const DEFAULT_IMAGES = {
 };
 
 export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
+  content,
   onOpenLightbox,
 }) => {
   const [images, setImages] = useState(DEFAULT_IMAGES);
@@ -37,13 +40,13 @@ export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto">
           <span className="text-[#06B6D4] font-mono text-xs tracking-widest uppercase font-semibold">
-            UZMANLIK ALANLARIMIZ
+            {content.badge}
           </span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white mt-1">
-            İki Ana Sütun Üzerinde Dijitalleşme
+            {content.title}
           </h2>
           <p className="text-slate-400 text-sm mt-2">
-            Bölgesel ölçekten tesis ölçeğine kadar bütünsel dijital ikiz ekosistemi. Haritaların ayrıntılarını görmek için üzerlerine tıklayabilirsiniz.
+            {content.subtitle}
           </p>
         </div>
 
@@ -57,23 +60,20 @@ export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
                 <div
                   className="image-zoom-card border border-[#06B6D4]/40 p-1 h-48 sm:h-52 w-full"
                   onClick={() =>
-                    onOpenLightbox(
-                      images.osb1,
-                      'OSB 3D GIS Genel Yerleşim ve Katman Haritası (osb1.jpeg)'
-                    )
+                    onOpenLightbox(images.osb1, content.pillar1.osb1Caption)
                   }
                 >
                   <img
                     src={images.osb1}
-                    alt="OSB GIS 3D Haritası"
+                    alt={content.pillar1.title}
                     className="w-full h-full object-cover rounded-lg"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#070B12]/95 via-transparent to-transparent flex items-end justify-between p-2.5 pointer-events-none">
                     <span className="text-[10px] font-mono text-[#06B6D4] font-bold bg-[#070B12]/90 px-2 py-0.5 rounded border border-[#06B6D4]/30">
-                      3D OSB Masterplan (osb1.jpeg)
+                      {content.pillar1.osb1Badge}
                     </span>
                     <span className="image-zoom-badge text-[10px] font-mono bg-[#06B6D4] text-black px-2 py-0.5 rounded font-bold">
-                      <i className="fa-solid fa-expand mr-1"></i>Büyüt
+                      <i className="fa-solid fa-expand mr-1"></i>{content.expandBadge}
                     </span>
                   </div>
                 </div>
@@ -84,20 +84,17 @@ export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
                 <div
                   className="image-zoom-card border border-[#1E293B] p-1 h-28 w-full"
                   onClick={() =>
-                    onOpenLightbox(
-                      images.osb3,
-                      'Sanayi Parsellerinin Ruhsat, İzin Durumları ve Sektör İstatistikleri GIS Paneli (osb3.jpeg)'
-                    )
+                    onOpenLightbox(images.osb3, content.pillar1.osb3Caption)
                   }
                 >
                   <img
                     src={images.osb3}
-                    alt="Parsel İzin Durumu GIS"
+                    alt="OSB GIS"
                     className="w-full h-full object-cover rounded-lg"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#070B12]/95 via-transparent to-transparent flex items-end justify-between p-1.5 pointer-events-none">
                     <span className="text-[9px] font-mono text-[#06B6D4] font-bold bg-[#070B12]/85 px-1.5 py-0.5 rounded">
-                      Ruhsat GIS (osb3.jpeg)
+                      {content.pillar1.osb3Badge}
                     </span>
                     <span className="image-zoom-badge text-[9px] font-mono bg-[#06B6D4] text-black px-1.5 py-0.5 rounded font-bold">
                       <i className="fa-solid fa-expand"></i>
@@ -108,20 +105,17 @@ export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
                 <div
                   className="image-zoom-card border border-[#1E293B] p-1 h-28 w-full"
                   onClick={() =>
-                    onOpenLightbox(
-                      images.osb4,
-                      'Zonas Industriais Kadastro ve Mülkiyet Katman Yöneticisi (osb4.jpeg)'
-                    )
+                    onOpenLightbox(images.osb4, content.pillar1.osb4Caption)
                   }
                 >
                   <img
                     src={images.osb4}
-                    alt="GIS Katman Yöneticisi"
+                    alt="Cadastre GIS"
                     className="w-full h-full object-cover rounded-lg"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#070B12]/95 via-transparent to-transparent flex items-end justify-between p-1.5 pointer-events-none">
                     <span className="text-[9px] font-mono text-[#06B6D4] font-bold bg-[#070B12]/85 px-1.5 py-0.5 rounded">
-                      Kadastro (osb4.jpeg)
+                      {content.pillar1.osb4Badge}
                     </span>
                     <span className="image-zoom-badge text-[9px] font-mono bg-[#06B6D4] text-black px-1.5 py-0.5 rounded font-bold">
                       <i className="fa-solid fa-expand"></i>
@@ -133,18 +127,18 @@ export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
               <div className="space-y-3">
                 <div>
                   <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-[#06B6D4]/10 text-[#06B6D4] border border-[#06B6D4]/30">
-                    1. SÜTUN
+                    {content.pillar1.tag}
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#06B6D4] transition-colors mt-2">
-                    OSB ve Sanayi Bölgeleri Dijital İkizi
+                    {content.pillar1.title}
                   </h3>
                   <p className="text-xs font-mono text-[#06B6D4] mt-1">
-                    Parsel Tahsisi, Altyapı ve Yatırımcı Portalı
+                    {content.pillar1.sub}
                   </p>
                 </div>
 
                 <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Sanayi bölgelerinin parsel haritalarını, altyapı hatlarını ve yatırım alanlarını interaktif dijital ortama aktarıyoruz. Yatırımcılar için şeffaf parsel tahsis portalı sunuyoruz.
+                  {content.pillar1.desc}
                 </p>
               </div>
             </div>
@@ -158,23 +152,20 @@ export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
                 <div
                   className="image-zoom-card border border-[#F59E0B]/40 p-1 h-48 sm:h-52 w-full"
                   onClick={() =>
-                    onOpenLightbox(
-                      images.dt1,
-                      'Robotik Üretim Hattı Tel Kafes 3D Dijital İkizi (dt1.jpeg)'
-                    )
+                    onOpenLightbox(images.dt1, content.pillar2.dt1Caption)
                   }
                 >
                   <img
                     src={images.dt1}
-                    alt="Robotik Üretim Hattı"
+                    alt={content.pillar2.title}
                     className="w-full h-full object-cover rounded-lg"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#070B12]/95 via-transparent to-transparent flex items-end justify-between p-2.5 pointer-events-none">
                     <span className="text-[10px] font-mono text-[#F59E0B] font-bold bg-[#070B12]/90 px-2 py-0.5 rounded border border-[#F59E0B]/30">
-                      Robotik Hat & 3D Tarama (dt1.jpeg)
+                      {content.pillar2.dt1Badge}
                     </span>
                     <span className="image-zoom-badge text-[10px] font-mono bg-[#F59E0B] text-black px-2 py-0.5 rounded font-bold">
-                      <i className="fa-solid fa-expand mr-1"></i>Büyüt
+                      <i className="fa-solid fa-expand mr-1"></i>{content.expandBadge}
                     </span>
                   </div>
                 </div>
@@ -185,20 +176,17 @@ export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
                 <div
                   className="image-zoom-card border border-[#1E293B] p-1 h-28 w-full"
                   onClick={() =>
-                    onOpenLightbox(
-                      images.dt4,
-                      'Meqrix Endüstriyel IoT Sensör Donanımları & Canlı Telemetri Paneli (dt4.jpeg)'
-                    )
+                    onOpenLightbox(images.dt4, content.pillar2.dt4Caption)
                   }
                 >
                   <img
                     src={images.dt4}
-                    alt="Meqrix IoT Donanım"
+                    alt="IoT Sensors"
                     className="w-full h-full object-cover rounded-lg"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#070B12]/95 via-transparent to-transparent flex items-end justify-between p-1.5 pointer-events-none">
                     <span className="text-[9px] font-mono text-[#F59E0B] font-bold bg-[#070B12]/85 px-1.5 py-0.5 rounded">
-                      Meqrix Sensörler (dt4.jpeg)
+                      {content.pillar2.dt4Badge}
                     </span>
                     <span className="image-zoom-badge text-[9px] font-mono bg-[#F59E0B] text-black px-1.5 py-0.5 rounded font-bold">
                       <i className="fa-solid fa-expand"></i>
@@ -209,20 +197,17 @@ export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
                 <div
                   className="image-zoom-card border border-[#1E293B] p-1 h-28 w-full"
                   onClick={() =>
-                    onOpenLightbox(
-                      images.dt2,
-                      'Akıllı Fabrika Komuta Ekranı & Canlı SCADA Paneli (dt2.jpeg)'
-                    )
+                    onOpenLightbox(images.dt2, content.pillar2.dt2Caption)
                   }
                 >
                   <img
                     src={images.dt2}
-                    alt="Fabrika Komuta Paneli"
+                    alt="Command Panel"
                     className="w-full h-full object-cover rounded-lg"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#070B12]/95 via-transparent to-transparent flex items-end justify-between p-1.5 pointer-events-none">
                     <span className="text-[9px] font-mono text-[#F59E0B] font-bold bg-[#070B12]/85 px-1.5 py-0.5 rounded">
-                      Komuta Paneli (dt2.jpeg)
+                      {content.pillar2.dt2Badge}
                     </span>
                     <span className="image-zoom-badge text-[9px] font-mono bg-[#F59E0B] text-black px-1.5 py-0.5 rounded font-bold">
                       <i className="fa-solid fa-expand"></i>
@@ -234,18 +219,18 @@ export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
               <div className="space-y-3">
                 <div>
                   <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/30">
-                    2. SÜTUN
+                    {content.pillar2.tag}
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#F59E0B] transition-colors mt-2">
-                    Fabrika, Binalar ve Tesisler
+                    {content.pillar2.title}
                   </h3>
                   <p className="text-xs font-mono text-[#F59E0B] mt-1">
-                    Dijital Varlık, Tesis ve Operasyon Yönetimi
+                    {content.pillar2.sub}
                   </p>
                 </div>
 
                 <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Tesislerin ve binaların tamamını veya kritik üretim bölümlerini dijitalleştirerek varlık, makine ve operasyon takibini sağlıyoruz. Üretim verimliliğini merkezi dijital panelde birleştiriyoruz.
+                  {content.pillar2.desc}
                 </p>
               </div>
             </div>
@@ -261,37 +246,37 @@ export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
             <div className="lg:col-span-8 space-y-4">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="px-3 py-1 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-400/50 font-mono text-xs font-bold uppercase tracking-wider">
-                  ÇATI KATMANI: GREEN CARBON AI
+                  {content.greenCarbon.tag}
                 </span>
                 <span className="px-2.5 py-0.5 rounded bg-emerald-900/60 text-emerald-200 text-[11px] font-mono border border-emerald-500/30">
-                  SKDM / CBAM & AB UYUMLU
+                  {content.greenCarbon.standard}
                 </span>
               </div>
 
               <h3 className="text-xl sm:text-2xl font-extrabold text-white">
-                Sürdürülebilirlik, Enerji ve Karbon Ayak İzi Katmanı
+                {content.greenCarbon.title}
               </h3>
 
               <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">
-                Hem OSB'ler hem de münferit fabrikalar için ISO 14064, ISO 14046 ve SKDM standartlarında otomatik karbon ayak izi hesaplama, enerji optimizasyonu ve yeşil dönüşüm raporlama platformu.
+                {content.greenCarbon.desc}
               </p>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs font-mono">
                 <div className="p-3 rounded-lg bg-emerald-950/60 border border-emerald-500/30 text-emerald-200">
                   <i className="fa-solid fa-calculator text-emerald-400 mr-1.5"></i>
-                  <span>Kurumsal Karbon (Kapsam 1-2-3)</span>
+                  <span>{content.greenCarbon.c1}</span>
                 </div>
                 <div className="p-3 rounded-lg bg-emerald-950/60 border border-emerald-500/30 text-emerald-200">
                   <i className="fa-solid fa-file-contract text-emerald-400 mr-1.5"></i>
-                  <span>SKDM / CBAM Beyanı</span>
+                  <span>{content.greenCarbon.c2}</span>
                 </div>
                 <div className="p-3 rounded-lg bg-emerald-950/60 border border-emerald-500/30 text-emerald-200">
                   <i className="fa-solid fa-droplet text-emerald-400 mr-1.5"></i>
-                  <span>Su Ayak İzi (ISO 14046)</span>
+                  <span>{content.greenCarbon.c3}</span>
                 </div>
                 <div className="p-3 rounded-lg bg-emerald-950/60 border border-emerald-500/30 text-emerald-200">
                   <i className="fa-solid fa-box text-emerald-400 mr-1.5"></i>
-                  <span>Ürün Karbon Ayak İzi</span>
+                  <span>{content.greenCarbon.c4}</span>
                 </div>
               </div>
             </div>
@@ -300,10 +285,7 @@ export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
             <div
               className="lg:col-span-4 image-zoom-card border border-emerald-500/50 p-1 h-56 sm:h-64 w-full"
               onClick={() =>
-                onOpenLightbox(
-                  images.dt5,
-                  'Green Carbon AI Varlık Sağlığı ve Kestirimci Bakım Ekranı (dt5.jpeg)'
-                )
+                onOpenLightbox(images.dt5, content.greenCarbon.dt5Caption)
               }
             >
               <img
@@ -313,10 +295,10 @@ export const DimensionsSection: React.FC<DimensionsSectionProps> = ({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#070B12]/95 via-transparent to-transparent flex items-end justify-between p-3 pointer-events-none">
                 <span className="text-xs font-mono text-emerald-300 font-bold bg-[#070B12]/90 px-2.5 py-1 rounded border border-emerald-500/40">
-                  Varlık & Enerji İzleme (dt5.jpeg)
+                  {content.greenCarbon.dt5Badge}
                 </span>
                 <span className="image-zoom-badge p-1 px-2 rounded bg-emerald-400 text-black font-bold text-[10px] font-mono">
-                  <i className="fa-solid fa-expand mr-1"></i> Büyüt
+                  <i className="fa-solid fa-expand mr-1"></i> {content.expandBadge}
                 </span>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { SiteLanguage, siteContent } from './locales/siteContent';
 import { HeaderNav } from './components/HeaderNav';
 import { HeroSection } from './components/HeroSection';
 import { DimensionsSection } from './components/DimensionsSection';
@@ -8,12 +9,12 @@ import { LightboxModal } from './components/LightboxModal';
 import { ContactModal } from './components/ContactModal';
 
 export function App() {
-  const [lang, setLang] = useState<'UZ' | 'TR' | 'EN'>(() => {
+  const [lang, setLang] = useState<SiteLanguage>(() => {
     const saved = localStorage.getItem('digitwins_lang');
     if (saved === 'UZ' || saved === 'TR' || saved === 'EN') {
       return saved;
     }
-    return 'TR';
+    return 'UZ';
   });
 
   const [lightboxState, setLightboxState] = useState<{
@@ -31,8 +32,10 @@ export function App() {
     topic: string;
   }>({
     isOpen: false,
-    topic: 'Özbekistan Akıllı Sanayi Zirvesi',
+    topic: '',
   });
+
+  const currentDict = siteContent[lang];
 
   useEffect(() => {
     localStorage.setItem('digitwins_lang', lang);
@@ -51,10 +54,10 @@ export function App() {
     setLightboxState((prev) => ({ ...prev, isOpen: false }));
   };
 
-  const handleOpenContactModal = (topic = 'Özbekistan Akıllı Sanayi Zirvesi') => {
+  const handleOpenContactModal = (topic = '') => {
     setContactModalState({
       isOpen: true,
-      topic,
+      topic: topic || currentDict.modal.topics.summit,
     });
   };
 
@@ -67,6 +70,7 @@ export function App() {
       {/* Fixed Header */}
       <HeaderNav
         currentLang={lang}
+        content={currentDict.nav}
         onLanguageChange={setLang}
         onOpenModal={() => handleOpenContactModal()}
       />
@@ -74,26 +78,35 @@ export function App() {
       {/* Main Content */}
       <main className="flex-grow">
         {/* Hero with 3D Canvas */}
-        <HeroSection />
+        <HeroSection content={currentDict.hero} />
 
         {/* 2 Pillars & Green Carbon AI */}
-        <DimensionsSection onOpenLightbox={handleOpenLightbox} />
+        <DimensionsSection
+          content={currentDict.dimensions}
+          onOpenLightbox={handleOpenLightbox}
+        />
 
         {/* Summits & Field Workshops */}
         <EventsSection
+          content={currentDict.events}
+          expandBadgeText={currentDict.dimensions.expandBadge}
           onOpenModalWithSubject={(subject) => handleOpenContactModal(subject)}
           onOpenLightbox={handleOpenLightbox}
         />
       </main>
 
       {/* Footer */}
-      <FooterSection onOpenModal={() => handleOpenContactModal()} />
+      <FooterSection
+        content={currentDict.footer}
+        onOpenModal={() => handleOpenContactModal()}
+      />
 
       {/* Lightbox for Full-screen image inspection */}
       <LightboxModal
         isOpen={lightboxState.isOpen}
         src={lightboxState.src}
         caption={lightboxState.caption}
+        content={currentDict.lightbox}
         onClose={handleCloseLightbox}
       />
 
@@ -101,6 +114,7 @@ export function App() {
       <ContactModal
         isOpen={contactModalState.isOpen}
         initialTopic={contactModalState.topic}
+        content={currentDict.modal}
         onClose={handleCloseContactModal}
       />
     </div>
