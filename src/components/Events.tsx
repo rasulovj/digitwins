@@ -1,103 +1,57 @@
-import React from 'react';
-import { TranslationContent } from '../locales/translations';
-import { Megaphone, MapPin, Factory } from 'lucide-react';
+import type { Dict } from '../i18n';
+import summitImg from '../assets/event-summit.avif';
+import factoryImg from '../assets/event-factory.jpg';
+import { Reveal } from './Reveal';
 
-interface EventsProps {
-  content: TranslationContent['eventsSection'];
-  onOpenDemo: (eventName: string) => void;
-}
+const badge = { position: 'absolute', top: 14, left: 14, display: 'flex', alignItems: 'center', gap: 6, padding: '8px 14px', borderRadius: 999, background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(10px)', fontSize: 12, fontWeight: 700 } as const;
+const title = { margin: 0, fontSize: 24, fontWeight: 800, letterSpacing: '-0.025em', color: '#1b2230' } as const;
+const desc = { margin: 0, fontSize: 15, lineHeight: 1.65, color: '#5d6676', flex: 1 } as const;
+const media = { position: 'relative', height: 280, borderRadius: 24, overflow: 'hidden', background: '#dfe5e9' } as const;
+const body = { padding: '24px 18px 18px', display: 'flex', flexDirection: 'column', gap: 12, flex: 1 } as const;
 
-export const Events: React.FC<EventsProps> = ({ content, onOpenDemo }) => {
+export function Events({ t, onDemo }: { t: Dict; onDemo: () => void }) {
   return (
-    <section id="etkinlikler" className="py-20 border-t border-[#1e293b]/40 relative z-10 bg-[#090d16]/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f59e0b]/10 border border-[#f59e0b]/30 text-[#f59e0b] font-mono text-xs font-bold">
-            <Megaphone className="w-3.5 h-3.5 animate-bounce" />
-            <span>{content.badge}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
-            {content.title}
-          </h2>
-          <p className="text-slate-400 text-sm">
-            {content.subtitle}
-          </p>
+    <section id="etkinlikler" className="section" style={{ padding: '80px 24px 40px' }}>
+      <Reveal>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 14, marginBottom: 40 }}>
+          <div className="eyebrow"><i className="ph-duotone ph-calendar-star" style={{ fontSize: 18 }} />{t.events_tag}</div>
+          <h2 className="h2">{t.events_title}</h2>
+          <p style={{ margin: 0, maxWidth: 520, fontSize: 16, lineHeight: 1.65, color: '#5d6676' }}>{t.events_desc}</p>
         </div>
-
-        {/* 2 Summits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
-          {/* Summit 1 */}
-          <div className="glass-panel p-8 rounded-2xl border border-[#f59e0b]/30 relative overflow-hidden flex flex-col justify-between space-y-6 group hover:border-[#f59e0b] transition-all">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="px-2.5 py-1 rounded bg-[#f59e0b]/20 text-[#f59e0b] font-mono text-xs font-bold">
-                  {content.event1Tag}
-                </span>
-                <span className="text-xs font-mono text-slate-400 flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5 text-[#f59e0b]" />
-                  <span>{content.event1Location}</span>
-                </span>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,440px),1fr))', gap: 20 }}>
+          <article className="event-card">
+            <div style={media}>
+              <div className="zoom-bg" style={{ backgroundImage: `url(${summitImg})` }} />
+              <span style={{ ...badge, color: 'oklch(0.48 0.12 228)' }}><i className="ph-duotone ph-microphone-stage" style={{ fontSize: 15 }} />{t.ev1_badge}</span>
+            </div>
+            <div style={body}>
+              <h3 style={title}>{t.ev1_title}</h3>
+              <p style={desc}>{t.ev1_desc}</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, paddingTop: 12 }}>
+                <button className="btn-primary sm" onClick={onDemo}><i className="ph ph-ticket" style={{ fontSize: 16 }} />{t.btn_register}</button>
+                <button className="btn-ghost sm" onClick={onDemo}><i className="ph ph-handshake" style={{ fontSize: 16 }} />{t.btn_sponsor}</button>
               </div>
-              <h3 className="text-2xl font-bold text-white group-hover:text-[#f59e0b] transition-colors">
-                {content.event1Title}
-              </h3>
-              <p className="text-slate-300 text-xs leading-relaxed">
-                {content.event1Desc}
-              </p>
             </div>
-
-            <div className="pt-4 border-t border-[#1e293b] flex items-center justify-between gap-2">
-              <span className="text-xs font-mono text-slate-400">
-                {content.ctaLabel}
-              </span>
-              <button
-                onClick={() => onOpenDemo(content.event1Title)}
-                className="px-4 py-2 rounded-lg bg-[#f59e0b]/10 hover:bg-[#f59e0b] text-[#f59e0b] hover:text-[#030712] font-bold text-xs transition-colors cursor-pointer"
-              >
-                {content.ctaBtn1}
-              </button>
+          </article>
+          <article className="event-card">
+            <div style={media}>
+              <div className="zoom-bg" style={{ backgroundImage: `url(${factoryImg})` }} />
+              <span style={{ ...badge, color: 'oklch(0.5 0.12 60)' }}><i className="ph-duotone ph-hard-hat" style={{ fontSize: 15 }} />{t.ev2_badge}</span>
             </div>
-          </div>
-
-          {/* Summit 2 */}
-          <div className="glass-panel p-8 rounded-2xl border border-[#00f0ff]/30 relative overflow-hidden flex flex-col justify-between space-y-6 group hover:border-[#00f0ff] transition-all">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="px-2.5 py-1 rounded bg-[#00f0ff]/20 text-[#00f0ff] font-mono text-xs font-bold">
-                  {content.event2Tag}
+            <div style={body}>
+              <h3 style={title}>{t.ev2_title}</h3>
+              <p style={desc}>{t.ev2_desc}</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 10, paddingTop: 12 }}>
+                <span style={{ fontSize: 13, fontWeight: 600, color: '#5d6676', display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <i className="ph-duotone ph-factory" style={{ fontSize: 18, color: 'oklch(0.58 0.12 60)' }} />
+                  {t.ev2_target}
                 </span>
-                <span className="text-xs font-mono text-slate-400 flex items-center gap-1">
-                  <Factory className="w-3.5 h-3.5 text-[#00f0ff]" />
-                  <span>{content.event2Location}</span>
-                </span>
+                <button className="btn-amber" onClick={onDemo}>{t.btn_apply}<i className="ph ph-arrow-right" /></button>
               </div>
-              <h3 className="text-2xl font-bold text-white group-hover:text-[#00f0ff] transition-colors">
-                {content.event2Title}
-              </h3>
-              <p className="text-slate-300 text-xs leading-relaxed">
-                {content.event2Desc}
-              </p>
             </div>
-
-            <div className="pt-4 border-t border-[#1e293b] flex items-center justify-between gap-2">
-              <span className="text-xs font-mono text-slate-400">
-                {content.ctaLabel}
-              </span>
-              <button
-                onClick={() => onOpenDemo(content.event2Title)}
-                className="px-4 py-2 rounded-lg bg-[#00f0ff]/10 hover:bg-[#00f0ff] text-[#00f0ff] hover:text-[#030712] font-bold text-xs transition-colors cursor-pointer"
-              >
-                {content.ctaBtn2}
-              </button>
-            </div>
-          </div>
-
+          </article>
         </div>
-
-      </div>
+      </Reveal>
     </section>
   );
-};
+}

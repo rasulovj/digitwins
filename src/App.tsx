@@ -1,124 +1,103 @@
-import { useState, useEffect } from 'react';
-import { SiteLanguage, siteContent } from './locales/siteContent';
-import { HeaderNav } from './components/HeaderNav';
-import { HeroSection } from './components/HeroSection';
-import { DimensionsSection } from './components/DimensionsSection';
-import { EventsSection } from './components/EventsSection';
-import { FooterSection } from './components/FooterSection';
-import { LightboxModal } from './components/LightboxModal';
-import { ContactModal } from './components/ContactModal';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import type { Lang } from './i18n';
+import { T } from './i18n';
+import { getProducts } from './data';
+import { sendLead } from './sendLead';
+import type { Lead } from './sendLead';
+import { Header } from './components/Header';
+import { Hero } from './components/Hero';
+import { Platforms } from './components/Platforms';
+import { Consulting } from './components/Consulting';
+import { Events } from './components/Events';
+import { Contact } from './components/Contact';
+import { Footer } from './components/Footer';
+import { DemoModal } from './components/DemoModal';
+import { Toast } from './components/Toast';
 
-export function App() {
-  const [lang, setLang] = useState<SiteLanguage>(() => {
-    const saved = localStorage.getItem('digitwins_lang');
-    if (saved === 'UZ' || saved === 'TR' || saved === 'EN') {
-      return saved;
-    }
-    return 'UZ';
-  });
+const LANG_KEY = 'digitwins_lang';
+const LANGS: Lang[] = ['uz', 'ru', 'en', 'tr'];
 
-  const [lightboxState, setLightboxState] = useState<{
-    isOpen: boolean;
-    src: string;
-    caption: string;
-  }>({
-    isOpen: false,
-    src: '',
-    caption: '',
-  });
+const ERR_TITLE: Record<Lang, string> = { uz: 'Yuborilmadi', ru: 'Не отправлено', en: 'Not sent', tr: 'Gönderilemedi' };
+const ERR_DESC: Record<Lang, string> = {
+  uz: "Iltimos, qayta urinib ko'ring yoki qo'ng'iroq qiling.",
+  ru: 'Попробуйте ещё раз или позвоните нам.',
+  en: 'Please try again or call us.',
+  tr: 'Lütfen tekrar deneyin veya bizi arayın.',
+};
 
-  const [contactModalState, setContactModalState] = useState<{
-    isOpen: boolean;
-    topic: string;
-  }>({
-    isOpen: false,
-    topic: '',
-  });
+function readLang(): Lang {
+  try {
+    const saved = localStorage.getItem(LANG_KEY) as Lang | null;
+    if (saved && LANGS.includes(saved)) return saved;
+  } catch {
+    /* storage unavailable */
+  }
+  return 'uz';
+}
 
-  const currentDict = siteContent[lang];
+function useWindowWidth() {
+  const [w, setW] = useState(() => window.innerWidth);
+  useEffect(() => {
+    const onR = () => setW(window.innerWidth);
+    window.addEventListener('resize', onR);
+    return () => window.removeEventListener('resize', onR);
+  }, []);
+  return w;
+}
+
+export default function App() {
+  const [lang, setLang] = useState<Lang>(readLang);
+  const [modal, setModal] = useState(false);
+  const [toast, setToast] = useState<false | 'ok' | 'err'>(false);
+  const toastTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const w = useWindowWidth();
+
+  const t = T[lang];
+  const products = getProducts(lang, t);
 
   useEffect(() => {
-    localStorage.setItem('digitwins_lang', lang);
-    document.documentElement.lang = lang.toLowerCase();
+    document.documentElement.lang = lang;
+    try {
+      localStorage.setItem(LANG_KEY, lang);
+    } catch {
+      /* storage unavailable */
+    }
   }, [lang]);
 
-  const handleOpenLightbox = (src: string, caption: string) => {
-    setLightboxState({
-      isOpen: true,
-      src,
-      caption,
-    });
+  useEffect(() => () => clearTimeout(toastTimer.current), []);
+
+  const submitLead = async (source: string, lead: Lead) => {
+    const ok = await sendLead(source, lang, lead);
+    setToast(ok ? 'ok' : 'err');
+    clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToast(false), ok ? 3500 : 4000);
+    return ok;
   };
 
-  const handleCloseLightbox = () => {
-    setLightboxState((prev) => ({ ...prev, isOpen: false }));
-  };
-
-  const handleOpenContactModal = (topic = '') => {
-    setContactModalState({
-      isOpen: true,
-      topic: topic || currentDict.modal.topics.summit,
-    });
-  };
-
-  const handleCloseContactModal = () => {
-    setContactModalState((prev) => ({ ...prev, isOpen: false }));
-  };
+  const openModal = useCallback(() => setModal(true), []);
+  const closeModal = useCallback(() => setModal(false), []);
 
   return (
-    <div className="bg-[#070B12] text-slate-100 min-h-screen antialiased selection:bg-[#06B6D4] selection:text-black flex flex-col justify-between">
-      {/* Fixed Header */}
-      <HeaderNav
-        currentLang={lang}
-        content={currentDict.nav}
-        onLanguageChange={setLang}
-        onOpenModal={() => handleOpenContactModal()}
-      />
+    <div style={{ minHeight: '100vh', background: '#f5f6f4', position: 'relative', overflowX: 'hidden' }}>
+      <div style={{ position: 'absolute', top: -260, left: -200, width: 820, height: 820, borderRadius: '50%', background: 'radial-gradient(circle, oklch(0.92 0.045 222 / 0.75), transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: 80, right: -260, width: 760, height: 760, borderRadius: '50%', background: 'radial-gradient(circle, oklch(0.94 0.035 280 / 0.6), transparent 65%)', pointerEvents: 'none' }} />
 
-      {/* Main Content */}
-      <main className="flex-grow">
-        {/* Hero with 3D Canvas */}
-        <HeroSection content={currentDict.hero} />
+      <Header t={t} lang={lang} wide={w >= 900} compact={w < 600} onLang={setLang} onDemo={openModal} />
+      <Hero t={t} products={products} floatCard={w >= 1120} onDemo={openModal} />
+      <Platforms t={t} products={products} onDemo={openModal} />
+      <Consulting t={t} lang={lang} onDemo={openModal} />
+      <Events t={t} onDemo={openModal} />
+      <Contact t={t} onSubmit={submitLead} />
+      <Footer t={t} lang={lang} products={products} />
 
-        {/* 2 Pillars & Green Carbon AI */}
-        <DimensionsSection
-          content={currentDict.dimensions}
-          onOpenLightbox={handleOpenLightbox}
+      {modal && <DemoModal t={t} onClose={closeModal} onSubmit={submitLead} />}
+      {toast && (
+        <Toast
+          error={toast === 'err'}
+          title={toast === 'err' ? ERR_TITLE[lang] : t.notif_title}
+          desc={toast === 'err' ? ERR_DESC[lang] : t.notif_desc}
         />
-
-        {/* Summits & Field Workshops */}
-        <EventsSection
-          content={currentDict.events}
-          expandBadgeText={currentDict.dimensions.expandBadge}
-          onOpenModalWithSubject={(subject) => handleOpenContactModal(subject)}
-          onOpenLightbox={handleOpenLightbox}
-        />
-      </main>
-
-      {/* Footer */}
-      <FooterSection
-        content={currentDict.footer}
-        onOpenModal={() => handleOpenContactModal()}
-      />
-
-      {/* Lightbox for Full-screen image inspection */}
-      <LightboxModal
-        isOpen={lightboxState.isOpen}
-        src={lightboxState.src}
-        caption={lightboxState.caption}
-        content={currentDict.lightbox}
-        onClose={handleCloseLightbox}
-      />
-
-      {/* Contact & Registration Modal */}
-      <ContactModal
-        isOpen={contactModalState.isOpen}
-        initialTopic={contactModalState.topic}
-        content={currentDict.modal}
-        onClose={handleCloseContactModal}
-      />
+      )}
     </div>
   );
 }
-
-export default App;

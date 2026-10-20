@@ -1,90 +1,130 @@
-import React from 'react';
-import { TranslationContent } from '../locales/translations';
-import { HeroCanvas } from './HeroCanvas';
-import { Factory, Building, Leaf, ArrowRight, Boxes } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
+import type { Dict } from '../i18n';
+import { iconBox, ink, tint } from '../data';
+import type { Product } from '../data';
 
-interface HeroProps {
-  heroContent: TranslationContent['hero'];
-  onOpenDemo: () => void;
+const SLIDE_MS = 5000;
+const TICK_MS = 100;
+
+export const slideBg = (img: string, on: boolean): CSSProperties => ({
+  position: 'absolute',
+  inset: 0,
+  backgroundImage: `url(${img})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  opacity: on ? 1 : 0,
+  transform: on ? 'scale(1)' : 'scale(1.06)',
+  transition: 'opacity .9s ease, transform 6s ease',
+});
+
+interface Props {
+  t: Dict;
+  products: Product[];
+  floatCard: boolean;
+  onDemo: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({
-  heroContent,
-  onOpenDemo,
-}) => {
+export function Hero({ t, products, floatCard, onDemo }: Props) {
+  const [{ hero, heroT }, setSlide] = useState({ hero: 0, heroT: 0 });
+  const paused = useRef(false);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (paused.current) return;
+      setSlide(({ hero, heroT }) =>
+        heroT + TICK_MS >= SLIDE_MS ? { hero: (hero + 1) % products.length, heroT: 0 } : { hero, heroT: heroT + TICK_MS },
+      );
+    }, TICK_MS);
+    return () => clearInterval(id);
+  }, [products.length]);
+
+  const select = (i: number) => setSlide({ hero: i, heroT: 0 });
+  const hp = products[hero];
+
   return (
-    <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left Column */}
-          <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
-            
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-panel border-[#0ea5e9]/40 text-xs font-mono text-[#00f0ff]">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#00f0ff] animate-ping"></span>
-              <span className="font-bold tracking-wide">
-                {heroContent.badge}
-              </span>
-            </div>
-
-            {/* Glowing Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-white leading-[1.18]">
-              <span>{heroContent.title1}</span> <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00f0ff] via-[#38bdf8] to-[#22c55e] text-glow">
-                {heroContent.title2}
-              </span>
-            </h1>
-
-            {/* Description */}
-            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              {heroContent.description}
-            </p>
-
-            {/* 3 Indicators */}
-            <div className="grid grid-cols-3 gap-3 pt-2 text-xs font-mono text-slate-300 max-w-xl mx-auto lg:mx-0">
-              <div className="p-3 rounded-lg bg-[#0f172a] border border-[#1e293b] text-center hover:border-[#00f0ff]/50 transition-colors">
-                <Factory className="w-4 h-4 text-[#00f0ff] mx-auto mb-1" />
-                <span>{heroContent.tagAreas}</span>
-              </div>
-              <div className="p-3 rounded-lg bg-[#0f172a] border border-[#1e293b] text-center hover:border-[#f59e0b]/50 transition-colors">
-                <Building className="w-4 h-4 text-[#f59e0b] mx-auto mb-1" />
-                <span>{heroContent.tagFacilities}</span>
-              </div>
-              <div className="p-3 rounded-lg bg-[#0f172a] border border-[#1e293b] text-center hover:border-[#22c55e]/50 transition-colors">
-                <Leaf className="w-4 h-4 text-[#22c55e] mx-auto mb-1" />
-                <span>{heroContent.tagGreen}</span>
-              </div>
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-              <button
-                onClick={onOpenDemo}
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-[#0ea5e9] to-[#00f0ff] hover:from-[#0284c7] hover:to-[#0ea5e9] text-white font-bold text-sm shadow-xl shadow-[#0ea5e9]/20 hover:shadow-[#0ea5e9]/40 transition-all flex items-center justify-center gap-3 group cursor-pointer"
-              >
-                <span>{heroContent.btnMain}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              <a
-                href="#dijital-boyutlar"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel hover:bg-[#1a2436] text-slate-200 font-semibold text-sm border border-[#1e293b] hover:border-[#0ea5e9]/50 transition-all flex items-center justify-center gap-2"
-              >
-                <Boxes className="w-4 h-4 text-[#38bdf8]" />
-                <span>{heroContent.btnSub}</span>
-              </a>
-            </div>
-
+    <section id="top" style={{ position: 'relative', maxWidth: 1240, margin: '0 auto', padding: '64px 24px 32px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,460px),1fr))', gap: 56, alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 26, animation: 'dtUp .6s ease both' }}>
+          <h1 style={{ margin: 0, fontSize: 'clamp(40px,5.6vw,68px)', lineHeight: 1.02, fontWeight: 800, letterSpacing: '-0.04em', color: '#1b2230', textWrap: 'balance' }}>{t.hero_title}</h1>
+          <p style={{ margin: 0, fontSize: 18, lineHeight: 1.65, color: '#5d6676', maxWidth: 540, textWrap: 'pretty' }}>{t.hero_desc}</p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, paddingTop: 4 }}>
+            <button className="btn-primary" onClick={onDemo}>
+              {t.btn_demo}
+              <i className="ph ph-arrow-right" style={{ fontSize: 16 }} />
+            </button>
+            <a href="#cozumler" className="btn-ghost">
+              <i className="ph-duotone ph-squares-four" style={{ fontSize: 18, color: 'oklch(0.52 0.12 228)' }} />
+              {t.btn_solutions}
+            </a>
           </div>
-
-          {/* Right Column: 3D Spatial Interactive Visualizer */}
-          <div className="lg:col-span-5 relative">
-            <HeroCanvas telemetryLabel={heroContent.canvasTelemetry} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, paddingTop: 8 }}>
+            <div style={{ display: 'flex' }}>
+              {products.map((p, i) => {
+                const on = i === hero;
+                return (
+                  <button key={p.name} onClick={() => select(i)} title={p.name} style={{ width: 40, height: 40, marginLeft: i ? -8 : 0, borderRadius: '50%', border: '3px solid #f5f6f4', background: on ? ink(p.hue) : tint(p.hue), color: on ? '#fff' : ink(p.hue), display: 'grid', placeItems: 'center', fontSize: 18, cursor: 'pointer', padding: 0, transition: 'all .25s', position: 'relative', zIndex: on ? 2 : 1 }}>
+                    <i className={p.icon} />
+                  </button>
+                );
+              })}
+            </div>
+            <span style={{ fontSize: 14, color: '#5d6676', fontWeight: 600 }}>{t.section_platforms_title}</span>
           </div>
+        </div>
 
+        <div style={{ position: 'relative', animation: 'dtUp .8s .1s ease both' }}>
+          <div
+            onMouseEnter={() => (paused.current = true)}
+            onMouseLeave={() => (paused.current = false)}
+            style={{ position: 'relative', borderRadius: 36, overflow: 'hidden', height: 560, background: '#dfe5e9', boxShadow: '0 40px 80px -40px rgba(27,34,48,0.45)' }}
+          >
+            {products.map((p, i) => (
+              <div key={p.name} role="img" aria-label={p.name} style={slideBg(p.img, i === hero)} />
+            ))}
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg,rgba(17,24,36,0.25) 0%,transparent 30%,transparent 50%,rgba(17,24,36,0.7) 100%)', pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', top: 18, left: 18, right: 18, display: 'flex', justifyContent: 'flex-end' }}>
+              <span style={{ padding: '8px 14px', borderRadius: 999, background: 'rgba(17,24,36,0.45)', backdropFilter: 'blur(10px)', fontSize: 13, fontWeight: 700, color: '#fff' }}>{hp.num} / 04</span>
+            </div>
+            <div style={{ position: 'absolute', left: 12, right: 12, bottom: 12, display: 'flex', flexDirection: 'column', gap: 18 }}>
+              <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: 6, color: '#fff', textShadow: '0 2px 12px rgba(0,0,0,0.25)' }}>
+                <div style={{ fontSize: 13, fontWeight: 700, opacity: 0.9 }}>{hp.stage}</div>
+                <div style={{ fontSize: 'clamp(22px,2.4vw,30px)', fontWeight: 800, letterSpacing: '-0.025em', maxWidth: 420, lineHeight: 1.15, textWrap: 'balance' }}>{hp.sub}</div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,minmax(0,1fr))', gap: 6, padding: 6, borderRadius: 24, background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}>
+                {products.map((p, i) => {
+                  const on = i === hero;
+                  return (
+                    <button key={p.name} onClick={() => select(i)} style={{ border: 0, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 10, padding: '12px 12px 10px', borderRadius: 18, background: on ? '#fff' : 'transparent', color: '#1b2230', boxShadow: on ? '0 6px 18px -8px rgba(27,34,48,0.25)' : 'none', transition: 'all .25s', minWidth: 0 }}>
+                      <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6, minWidth: 0 }}>
+                        <i className={p.icon} style={{ fontSize: 22, color: ink(p.hue) }} />
+                        <span style={{ fontSize: 'clamp(11px, 3vw, 13px)', fontWeight: 800, lineHeight: 1.2, overflowWrap: 'anywhere' }}>{p.name}</span>
+                      </span>
+                      <span style={{ display: 'block', width: '100%', height: 3, borderRadius: 3, background: 'rgba(27,34,48,0.08)', overflow: 'hidden' }}>
+                        <span style={{ display: 'block', height: '100%', borderRadius: 3, background: ink(p.hue), width: on ? (heroT / SLIDE_MS) * 100 + '%' : '0%', transition: on ? 'width .1s linear' : 'none' }} />
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          {floatCard && (
+            <div style={{ position: 'absolute', left: -28, top: 96, width: 230, background: '#fff', borderRadius: 22, padding: 16, boxShadow: '0 24px 50px -24px rgba(27,34,48,0.35)', display: 'flex', flexDirection: 'column', gap: 10, border: '1px solid #eef0f2' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <span style={iconBox(hp.hue, 36)}><i className={hp.icon} /></span>
+                <span style={{ fontWeight: 800, fontSize: 15, letterSpacing: '-0.01em' }}>{hp.name}</span>
+              </div>
+              {hp.features.map((f) => (
+                <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 600, color: '#4a5363' }}>
+                  <i className="ph-duotone ph-check-circle" style={{ fontSize: 16, color: 'oklch(0.6 0.13 155)' }} />
+                  {f}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
   );
-};
+}
