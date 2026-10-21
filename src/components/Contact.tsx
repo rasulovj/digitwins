@@ -53,6 +53,18 @@ export function Contact({ t, onSubmit }: Props) {
                 <span style={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1, minWidth: 0 }}><span style={lbl}>{t.lbl_phone}</span><span style={val}>+998 90 277 73 66</span></span>
                 <i className="ph ph-arrow-up-right" style={{ color: '#9aa5b4' }} />
               </a>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(170px,1fr))', gap: 8 }}>
+                <a href="https://t.me/+998902777366" target="_blank" rel="noopener noreferrer" className="contact-link">
+                  <span style={iconTile}><i className="ph-duotone ph-telegram-logo" /></span>
+                  <span style={{ ...val, flex: 1, minWidth: 0 }}>Telegram</span>
+                  <i className="ph ph-arrow-up-right" style={{ color: '#9aa5b4' }} />
+                </a>
+                <a href="https://wa.me/998902777366" target="_blank" rel="noopener noreferrer" className="contact-link">
+                  <span style={iconTile}><i className="ph-duotone ph-whatsapp-logo" /></span>
+                  <span style={{ ...val, flex: 1, minWidth: 0 }}>WhatsApp</span>
+                  <i className="ph ph-arrow-up-right" style={{ color: '#9aa5b4' }} />
+                </a>
+              </div>
               <div className="contact-link">
                 <span style={iconTile}><i className="ph-duotone ph-map-pin" /></span>
                 <span style={{ display: 'flex', flexDirection: 'column', gap: 2 }}><span style={lbl}>{t.lbl_address}</span><span style={val}>{t.lbl_address_val}</span></span>

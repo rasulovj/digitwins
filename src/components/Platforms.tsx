@@ -37,9 +37,6 @@ export function Platforms({ t, products }: Props) {
                       <span style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-0.02em', color: '#1b2230' }}>{p.name}</span>
                       <span style={{ fontSize: 13, fontWeight: 600, color: '#5d6676' }}>{p.stage}</span>
                     </div>
-                    <span style={{ width: 36, height: 36, borderRadius: '50%', display: 'grid', placeItems: 'center', fontSize: 16, background: on ? ink(p.hue) : '#eef0f2', color: on ? '#fff' : '#6b7482', transform: on ? 'rotate(-45deg)' : 'none', transition: 'all .25s', flexShrink: 0 }}>
-                      <i className="ph ph-arrow-right" />
-                    </span>
                   </div>
                   {on && (
                     <p style={{ margin: 0, padding: '14px 0 2px 34px', fontSize: 14, lineHeight: 1.6, color: '#4a5363', animation: 'dtUp .35s ease both', textWrap: 'pretty' }}>{p.desc}</p>

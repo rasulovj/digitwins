@@ -28,6 +28,14 @@ export function Footer({ t, lang, products }: { t: Dict; lang: Lang; products: P
             <div style={colTitle}>{t.nav_contact}</div>
             <a href="mailto:info@digitwins.uz" className="muted-link">info@digitwins.uz</a>
             <a href="tel:+998902777366" className="muted-link">+998 90 277 73 66</a>
+            <a href="https://t.me/+998902777366" target="_blank" rel="noopener noreferrer" className="muted-link" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <i className="ph ph-telegram-logo" style={{ fontSize: 16 }} />
+              Telegram
+            </a>
+            <a href="https://wa.me/998902777366" target="_blank" rel="noopener noreferrer" className="muted-link" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <i className="ph ph-whatsapp-logo" style={{ fontSize: 16 }} />
+              WhatsApp
+            </a>
             <span style={{ color: '#5d6676', fontWeight: 500 }}>{t.lbl_address_val}</span>
           </div>
         </div>
