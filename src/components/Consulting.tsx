@@ -10,10 +10,9 @@ const ACCENT = 'oklch(0.52 0.12 228)';
 interface Props {
   t: Dict;
   lang: Lang;
-  onDemo: () => void;
 }
 
-export function Consulting({ t, lang, onDemo }: Props) {
+export function Consulting({ t, lang }: Props) {
   const [step, setStep] = useState(0);
   const steps = t.cons_formula.split('+').map((s) => s.trim());
 
@@ -44,12 +43,6 @@ export function Consulting({ t, lang, onDemo }: Props) {
                   </div>
                 );
               })}
-            </div>
-            <div style={{ paddingTop: 6 }}>
-              <button className="btn-dark" style={{ fontSize: 15, padding: '15px 24px', display: 'inline-flex', gap: 10 }} onClick={onDemo}>
-                <i className="ph-duotone ph-calendar-check" style={{ fontSize: 18 }} />
-                {t.btn_meeting}
-              </button>
             </div>
           </div>
           <div style={{ position: 'relative', height: '100%', minHeight: 440, borderRadius: 30, overflow: 'hidden', background: '#dfe5e9' }}>

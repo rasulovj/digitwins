@@ -8,10 +8,9 @@ import { Reveal } from './Reveal';
 interface Props {
   t: Dict;
   products: Product[];
-  onDemo: () => void;
 }
 
-export function Platforms({ t, products, onDemo }: Props) {
+export function Platforms({ t, products }: Props) {
   const [pIdx, setPIdx] = useState(0);
   const ap = products[pIdx];
 
@@ -71,12 +70,6 @@ export function Platforms({ t, products, onDemo }: Props) {
                     {f}
                   </span>
                 ))}
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginTop: 6, paddingTop: 16, borderTop: '1px solid #f0f2f4' }}>
-                <button className="btn-primary sm" onClick={onDemo}>
-                  {t.btn_demo_short}
-                  <i className="ph ph-arrow-right" />
-                </button>
               </div>
             </div>
           </article>

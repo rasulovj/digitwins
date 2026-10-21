@@ -84,9 +84,9 @@ export default function App() {
 
       <Header t={t} lang={lang} wide={w >= 900} compact={w < 600} onLang={setLang} onDemo={openModal} />
       <Hero t={t} products={products} floatCard={w >= 1120} onDemo={openModal} />
-      <Platforms t={t} products={products} onDemo={openModal} />
-      <Consulting t={t} lang={lang} onDemo={openModal} />
-      <Events t={t} onDemo={openModal} />
+      <Platforms t={t} products={products} />
+      <Consulting t={t} lang={lang} />
+      <Events t={t} />
       <Contact t={t} onSubmit={submitLead} />
       <Footer t={t} lang={lang} products={products} />
 

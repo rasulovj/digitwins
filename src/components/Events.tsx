@@ -9,7 +9,7 @@ const desc = { margin: 0, fontSize: 15, lineHeight: 1.65, color: '#5d6676', flex
 const media = { position: 'relative', height: 280, borderRadius: 24, overflow: 'hidden', background: '#dfe5e9' } as const;
 const body = { padding: '24px 18px 18px', display: 'flex', flexDirection: 'column', gap: 12, flex: 1 } as const;
 
-export function Events({ t, onDemo }: { t: Dict; onDemo: () => void }) {
+export function Events({ t }: { t: Dict }) {
   return (
     <section id="etkinlikler" className="section" style={{ padding: '80px 24px 40px' }}>
       <Reveal>
@@ -27,10 +27,6 @@ export function Events({ t, onDemo }: { t: Dict; onDemo: () => void }) {
             <div style={body}>
               <h3 style={title}>{t.ev1_title}</h3>
               <p style={desc}>{t.ev1_desc}</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, paddingTop: 12 }}>
-                <button className="btn-primary sm" onClick={onDemo}><i className="ph ph-ticket" style={{ fontSize: 16 }} />{t.btn_register}</button>
-                <button className="btn-ghost sm" onClick={onDemo}><i className="ph ph-handshake" style={{ fontSize: 16 }} />{t.btn_sponsor}</button>
-              </div>
             </div>
           </article>
           <article className="event-card">
@@ -41,13 +37,6 @@ export function Events({ t, onDemo }: { t: Dict; onDemo: () => void }) {
             <div style={body}>
               <h3 style={title}>{t.ev2_title}</h3>
               <p style={desc}>{t.ev2_desc}</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 10, paddingTop: 12 }}>
-                <span style={{ fontSize: 13, fontWeight: 600, color: '#5d6676', display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <i className="ph-duotone ph-factory" style={{ fontSize: 18, color: 'oklch(0.58 0.12 60)' }} />
-                  {t.ev2_target}
-                </span>
-                <button className="btn-amber" onClick={onDemo}>{t.btn_apply}<i className="ph ph-arrow-right" /></button>
-              </div>
             </div>
           </article>
         </div>
